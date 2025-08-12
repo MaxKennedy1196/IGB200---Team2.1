@@ -26,7 +26,7 @@ public class LayeringFix : MonoBehaviour
     void Update()
     {
         Vector2 positionScaledToCamera = transform.position - playerTransform.position;
-        yPos = positionScaledToCamera.y * 32;
+        yPos = positionScaledToCamera.y * 16;
         yPos = Mathf.Round(yPos);
         orderPos = (int)yPos;
         spriteRenderer.sortingOrder = orderPos * -1;

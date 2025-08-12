@@ -1,4 +1,6 @@
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Sector : MonoBehaviour
 {
@@ -11,6 +13,9 @@ public class Sector : MonoBehaviour
     public float fuelLevel;//Current Fuel Level
     public float growthLevel;//Current Growth Level
 
+    public TextMeshProUGUI fuelText;
+    public TextMeshProUGUI growthText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -21,12 +26,14 @@ public class Sector : MonoBehaviour
 
     public void nextSeason()
     {
-        print("nextSeason");
+        
         fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
         growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
-        print("fuelLevel:" + fuelLevel + " growthLevel:" + growthLevel);
+        fuelText.text = "Fuel:" + fuelLevel;
+        growthText.text = "Growth:" + growthLevel;
+
     }
-    
+
 
 }
