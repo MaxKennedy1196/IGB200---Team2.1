@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public float growthIncreaseRateMin;
     public float growthIncreaseRateMax;
 
+    public int ActionPointsMax = 5;
+    public int ActionPointsCurrent = 5;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -23,6 +26,8 @@ public class GameManager : MonoBehaviour
         {
             sector.nextSeason();
         }
+
+        
     }
 
     
