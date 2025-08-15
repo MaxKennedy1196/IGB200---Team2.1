@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,22 +18,29 @@ public class Sector : MonoBehaviour
     public TextMeshProUGUI growthText;
 
 
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
         Manager.sectorList.Add(gameObject.GetComponent<Sector>());//Add this sector to SectorList in the GameManager 
+
+        fuelLevel += Random.Range(Manager.fuelSpawnMin, Manager.fuelSpawnMax);
+        growthLevel += Random.Range(Manager.growthSpawnMin, Manager.growthSpawnMax);
+
+        fuelText.text = "Fuel:" + fuelLevel;
+        growthText.text = "Growth:" + growthLevel;
     }
 
     public void nextSeason()
     {
-        
+
         fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
         growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
         fuelText.text = "Fuel:" + fuelLevel;
         growthText.text = "Growth:" + growthLevel;
-
     }
 
 

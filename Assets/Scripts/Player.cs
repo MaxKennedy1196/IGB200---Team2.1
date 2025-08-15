@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
 
     }
 
-
     void Update()
     {
         _rb.linearVelocity = PlayerMovementInput * speed;
