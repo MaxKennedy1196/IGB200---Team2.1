@@ -394,6 +394,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 786550977084725341, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 786550977084725341, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1051771465547954532, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
       propertyPath: m_Name
       value: User Interface
@@ -578,7 +586,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 34
+  field of view: 73
   orthographic: 1
   orthographic size: 10
   m_Depth: -1
@@ -1383,6 +1391,17 @@ Transform:
   - {fileID: 302077058}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1288272432 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3955558579399143407, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
+  m_PrefabInstance: {fileID: 438707823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1510140304
 GameObject:
   m_ObjectHideFlags: 0
@@ -1742,6 +1761,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2826732437576076921, guid: dbff06240f2000a4ea4e355eb4e7f3b3, type: 3}
   m_PrefabInstance: {fileID: 1641375038}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1854126508 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2624430446726504600, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
+  m_PrefabInstance: {fileID: 438707823}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1889689746
 GameObject:
   m_ObjectHideFlags: 0
@@ -1862,9 +1892,11 @@ MonoBehaviour:
   ActionPointsMax: 5
   ActionPointsCurrent: 5
   seasonName: 
+  seasonText: {fileID: 1288272432}
   score: 0
   scoreHigh: 0
   scoreText: {fileID: 438707824}
+  scoreHighText: {fileID: 1854126508}
 --- !u!4 &2003298847
 Transform:
   m_ObjectHideFlags: 0

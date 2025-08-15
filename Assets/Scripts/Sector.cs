@@ -17,6 +17,8 @@ public class Sector : MonoBehaviour
     public TextMeshProUGUI fuelText;
     public TextMeshProUGUI growthText;
 
+    public Image fireImage;
+
 
 
 
@@ -29,18 +31,66 @@ public class Sector : MonoBehaviour
         fuelLevel += Random.Range(Manager.fuelSpawnMin, Manager.fuelSpawnMax);
         growthLevel += Random.Range(Manager.growthSpawnMin, Manager.growthSpawnMax);
 
+        sectorInit();
+    }
+
+    void sectorInit()
+    {
         fuelText.text = "Fuel:" + fuelLevel;
         growthText.text = "Growth:" + growthLevel;
+
+        fireImage.enabled = false;
     }
 
     public void nextSeason()
     {
+        fireImage.enabled = false;
 
         fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
         growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
+        if (fuelLevel >= 100f)
+        {
+            fuelLevel = 100f;
+        }
+
+        if (growthLevel >= 250f)
+        {
+            growthLevel = 250f;
+        }
+
         fuelText.text = "Fuel:" + fuelLevel;
         growthText.text = "Growth:" + growthLevel;
+
+        if (Manager.seasonName == "Spring")
+        {
+            float wildfireChance = Random.Range(60f, 100f);
+
+            if (wildfireChance <= fuelLevel)
+            {
+                startWildFire();
+            }
+        }
+        if (Manager.seasonName == "Summer")
+        {
+            float wildfireChance = Random.Range(40f, 100f);
+
+            if (wildfireChance <= fuelLevel)
+            {
+                startWildFire();
+            }
+        }
+
+    }
+
+    void startWildFire()
+    {
+        fireImage.enabled = true;
+        fuelLevel = 0f;
+        growthLevel = 0f;
+
+        print("WILDFIRE!!!");
+
     }
 
 

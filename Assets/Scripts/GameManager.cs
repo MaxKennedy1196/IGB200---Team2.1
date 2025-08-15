@@ -35,12 +35,15 @@ public class GameManager : MonoBehaviour
     int seasonsTotal = 1;//Total Seasons Ellapsed
     public string seasonName = "";// Displays the name of the current season Updated by updateSeasonName(), 
 
+    public TextMeshProUGUI seasonText;
+
     [Header("Scoring Variables")]
 
     public int score;
     public int scoreHigh;
 
     public TextMeshProUGUI scoreText;
+    public TextMeshProUGUI scoreHighText;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -58,7 +61,13 @@ public class GameManager : MonoBehaviour
             score += Mathf.RoundToInt(sector.growthLevel * 10f);
         }
 
-        scoreText.text = score.ToString();
+        if (score >= scoreHigh)
+        {
+            scoreHigh = score;
+        }
+
+        scoreText.text = "Score: " + score.ToString();
+        scoreHighText.text = "Score: " + scoreHigh.ToString();
 
     }
 
@@ -100,6 +109,8 @@ public class GameManager : MonoBehaviour
         {
             seasonName = "Summer";
         }
+
+        seasonText.text = "Season: " + seasonName;
     }
 
     
