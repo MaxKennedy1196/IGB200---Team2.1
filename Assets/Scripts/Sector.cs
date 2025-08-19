@@ -19,6 +19,8 @@ public class Sector : MonoBehaviour
 
     public Image fireImage;
 
+    public bool wildfire;
+
 
 
 
@@ -58,6 +60,15 @@ public class Sector : MonoBehaviour
         {
             growthLevel = 250f;
         }
+
+        if (wildfire == true)
+        {
+            fireImage.enabled = true;
+        }
+        if (wildfire == false)
+        {
+            fireImage.enabled = false;
+        }
     }
 
     void sectorInit()
@@ -65,35 +76,43 @@ public class Sector : MonoBehaviour
         fuelText.text = "Fuel:" + Mathf.RoundToInt(fuelLevel);
         growthText.text = "Growth:" + Mathf.RoundToInt(growthLevel);
 
+        wildfire = false;
         fireImage.enabled = false;
     }
 
     public void nextMonth()
     {
-        fireImage.enabled = false;
-
-        fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
-        growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
-
-
-
-        if (Manager.seasonName == "Spring")
+        if (wildfire == true)
         {
-            float wildfireChance = Random.Range(80f, 100f);
-
-            if (wildfireChance <= fuelLevel)
-            {
-                startWildFire();
-            }
+            fuelLevel = 0f;
+            growthLevel = 0f;
+            wildfire = false;
+            return;
         }
-        if (Manager.seasonName == "Summer")
+        if (wildfire == false)
         {
-            float wildfireChance = Random.Range(60f, 100f);
+            fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
+            growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
-            if (wildfireChance <= fuelLevel)
+            if (Manager.seasonName == "Spring")
             {
-                startWildFire();
+                float wildfireChance = Random.Range(80f, 100f);
+
+                if (wildfireChance <= fuelLevel)
+                {
+                    startWildFire();
+                }
             }
+            if (Manager.seasonName == "Summer")
+            {
+                float wildfireChance = Random.Range(60f, 100f);
+
+                if (wildfireChance <= fuelLevel)
+                {
+                    startWildFire();
+                }
+            }
+            return;
         }
 
     }
@@ -101,8 +120,7 @@ public class Sector : MonoBehaviour
     private void startWildFire()
     {
         fireImage.enabled = true;
-        fuelLevel = 0f;
-        growthLevel = 0f;
+        wildfire = true;
 
         print("WILDFIRE!!!");
 
@@ -115,13 +133,23 @@ public class Sector : MonoBehaviour
 
         print("Cool Burn Performed");
     }
-    
+
     public void startHotBurn()
     {
         fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin, Manager.hotBurnFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin, Manager.hotBurnGrowthDecreaseMax);
 
         print("Hot Burn Performed");
+    }
+    
+    public void startExtinguish()
+    {
+        fuelLevel -= Random.Range(Manager.extinguishFuelDecreaseMin, Manager.extinguishFuelDecreaseMax);
+        growthLevel -= Random.Range(Manager.extinguishGrowthDecreaseMin, Manager.extinguishGrowthDecreaseMax);
+
+        wildfire = false;
+
+        print("Extinguish Performed");
     }
 
     

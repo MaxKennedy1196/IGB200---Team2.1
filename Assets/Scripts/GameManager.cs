@@ -47,6 +47,18 @@ public class GameManager : MonoBehaviour
     public int hotBurnAPCost;
 
 
+    [Header("Extinguish Variables")]
+    public Button extinguishButton;
+
+    public float extinguishFuelDecreaseMin;
+    public float extinguishFuelDecreaseMax;
+
+    public float extinguishGrowthDecreaseMin;
+    public float extinguishGrowthDecreaseMax;
+
+    public int extinguishAPCost;
+
+
     [Header("Action Point Variables")]
     public int actionPointsMax;
     public int actionPointsCurrent;
@@ -87,6 +99,7 @@ public class GameManager : MonoBehaviour
 
         checkCoolBurnAvailable();
         checkHotBurnAvailable();
+        checkExtinguishAvailable();
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
 
@@ -125,6 +138,12 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent -= hotBurnAPCost;
     }
 
+    public void beginExtinguish()
+    {
+        player.sectorCurrent.startExtinguish();
+        actionPointsCurrent -= extinguishAPCost;
+    }
+
     void checkCoolBurnAvailable()
     {
         if (actionPointsCurrent < coolBurnAPCost)
@@ -155,6 +174,20 @@ public class GameManager : MonoBehaviour
         {
             hotBurnButton.interactable = false;
         }
+    }
+
+    void checkExtinguishAvailable()
+    {
+        if (actionPointsCurrent < hotBurnAPCost || player.sectorCurrent.wildfire == false)
+        {
+            extinguishButton.interactable = false;
+        }
+        if (actionPointsCurrent >= hotBurnAPCost && player.sectorCurrent.wildfire == true)
+        {
+            extinguishButton.interactable = true;
+        }
+
+        
     }
 
     void scoreUpdate()
