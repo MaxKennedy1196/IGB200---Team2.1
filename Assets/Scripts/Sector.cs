@@ -34,6 +34,32 @@ public class Sector : MonoBehaviour
         sectorInit();
     }
 
+    void Update()
+    {
+        fuelText.text = "Fuel:" + fuelLevel;
+        growthText.text = "Growth:" + growthLevel;
+
+        if (fuelLevel <= 0f)//cap min fuel
+        {
+            fuelLevel = 0f;
+        }
+
+        if (fuelLevel >= 100f)//cap max fuel
+        {
+            fuelLevel = 100f;
+        }
+
+        if (growthLevel <= 0f)//cap min growth
+        {
+            growthLevel = 0f;
+        }
+
+        if (growthLevel >= 250f)//cap max growth
+        {
+            growthLevel = 250f;
+        }
+    }
+
     void sectorInit()
     {
         fuelText.text = "Fuel:" + fuelLevel;
@@ -42,29 +68,18 @@ public class Sector : MonoBehaviour
         fireImage.enabled = false;
     }
 
-    public void nextSeason()
+    public void nextMonth()
     {
         fireImage.enabled = false;
 
         fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
         growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
-        if (fuelLevel >= 100f)
-        {
-            fuelLevel = 100f;
-        }
-
-        if (growthLevel >= 250f)
-        {
-            growthLevel = 250f;
-        }
-
-        fuelText.text = "Fuel:" + fuelLevel;
-        growthText.text = "Growth:" + growthLevel;
+        
 
         if (Manager.seasonName == "Spring")
         {
-            float wildfireChance = Random.Range(60f, 100f);
+            float wildfireChance = Random.Range(80f, 100f);
 
             if (wildfireChance <= fuelLevel)
             {
@@ -73,7 +88,7 @@ public class Sector : MonoBehaviour
         }
         if (Manager.seasonName == "Summer")
         {
-            float wildfireChance = Random.Range(40f, 100f);
+            float wildfireChance = Random.Range(60f, 100f);
 
             if (wildfireChance <= fuelLevel)
             {
@@ -83,7 +98,7 @@ public class Sector : MonoBehaviour
 
     }
 
-    void startWildFire()
+    private void startWildFire()
     {
         fireImage.enabled = true;
         fuelLevel = 0f;
@@ -92,6 +107,16 @@ public class Sector : MonoBehaviour
         print("WILDFIRE!!!");
 
     }
+
+    public void startCoolBurn()
+    {
+        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin, Manager.coolBurnFuelDecreaseMax);
+        growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
+
+        print("Cool Burn Performed");
+    }
+
+    
 
 
 }
