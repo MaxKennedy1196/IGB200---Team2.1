@@ -3,7 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
 
-    float speed = 5f;// How fast the player is 
+    float speed = 10f;// How fast the player is 
 
     public SpriteRenderer spriteRenderer;//
 

@@ -205,7 +205,7 @@ public class GameManager : MonoBehaviour
         }
 
         scoreText.text = "Score: " + score.ToString();
-        scoreHighText.text = "Score: " + scoreHigh.ToString();
+        scoreHighText.text = "High Score: " + scoreHigh.ToString();
     }
 
 

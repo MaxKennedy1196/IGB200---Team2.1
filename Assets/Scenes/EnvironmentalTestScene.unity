@@ -204,7 +204,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2003298846}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: beginCoolBurn
+        m_MethodName: beginExtinguish
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
