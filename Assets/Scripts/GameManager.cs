@@ -81,6 +81,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        //print(hotBurnAPCost);
+
         scoreUpdate();
 
         checkCoolBurnAvailable();
@@ -117,13 +119,19 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent -= coolBurnAPCost;
     }
 
+    public void beginHotBurn()
+    {
+        player.sectorCurrent.startHotBurn();
+        actionPointsCurrent -= hotBurnAPCost;
+    }
+
     void checkCoolBurnAvailable()
     {
         if (actionPointsCurrent < coolBurnAPCost)
         {
             coolBurnButton.interactable = false;
         }
-        if (actionPointsCurrent > coolBurnAPCost)
+        if (actionPointsCurrent >= coolBurnAPCost)
         {
             coolBurnButton.interactable = true;
         }
@@ -139,7 +147,7 @@ public class GameManager : MonoBehaviour
         {
             hotBurnButton.interactable = false;
         }
-        if (actionPointsCurrent > hotBurnAPCost)
+        if (actionPointsCurrent >= hotBurnAPCost)
         {
             hotBurnButton.interactable = true;
         }

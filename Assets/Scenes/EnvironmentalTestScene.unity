@@ -4962,9 +4962,9 @@ MonoBehaviour:
   hotBurnFuelDecreaseMax: 100
   hotBurnGrowthDecreaseMin: 60
   hotBurnGrowthDecreaseMax: 100
-  hotBurnAPCost: 125
-  actionPointsMax: 150
-  actionPointsCurrent: 150
+  hotBurnAPCost: 100
+  actionPointsMax: 100
+  actionPointsCurrent: 100
   actionPointsRemainingText: {fileID: 445439074}
   score: 0
   scoreHigh: 0
