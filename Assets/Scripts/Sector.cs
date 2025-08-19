@@ -36,8 +36,8 @@ public class Sector : MonoBehaviour
 
     void Update()
     {
-        fuelText.text = "Fuel:" + fuelLevel;
-        growthText.text = "Growth:" + growthLevel;
+        fuelText.text = "Fuel:" + Mathf.RoundToInt(fuelLevel);
+        growthText.text = "Growth:" + Mathf.RoundToInt(growthLevel);
 
         if (fuelLevel <= 0f)//cap min fuel
         {
@@ -62,8 +62,8 @@ public class Sector : MonoBehaviour
 
     void sectorInit()
     {
-        fuelText.text = "Fuel:" + fuelLevel;
-        growthText.text = "Growth:" + growthLevel;
+        fuelText.text = "Fuel:" + Mathf.RoundToInt(fuelLevel);
+        growthText.text = "Growth:" + Mathf.RoundToInt(growthLevel);
 
         fireImage.enabled = false;
     }
@@ -75,7 +75,7 @@ public class Sector : MonoBehaviour
         fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
         growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
 
-        
+
 
         if (Manager.seasonName == "Spring")
         {
@@ -114,6 +114,14 @@ public class Sector : MonoBehaviour
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
 
         print("Cool Burn Performed");
+    }
+    
+    public void startHotBurn()
+    {
+        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin, Manager.hotBurnFuelDecreaseMax);
+        growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin, Manager.hotBurnGrowthDecreaseMax);
+
+        print("Hot Burn Performed");
     }
 
     

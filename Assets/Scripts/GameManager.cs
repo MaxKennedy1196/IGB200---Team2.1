@@ -16,15 +16,14 @@ public class GameManager : MonoBehaviour
     public float fuelIncreaseRateMax;
 
     [Header("Growth Variables")]
-
     public float growthSpawnMin;
     public float growthSpawnMax;
 
     public float growthIncreaseRateMin;
     public float growthIncreaseRateMax;
 
-    [Header("Cool Burn Variables")]
 
+    [Header("Cool Burn Variables")]
     public Button coolBurnButton;
 
     public float coolBurnFuelDecreaseMin;
@@ -35,27 +34,27 @@ public class GameManager : MonoBehaviour
 
     public int coolBurnAPCost;
 
+
+    [Header("Hot Burn Variables")]
+    public Button hotBurnButton;
+
+    public float hotBurnFuelDecreaseMin;
+    public float hotBurnFuelDecreaseMax;
+
+    public float hotBurnGrowthDecreaseMin;
+    public float hotBurnGrowthDecreaseMax;
+
+    public int hotBurnAPCost;
+
+
     [Header("Action Point Variables")]
-    public int ActionPointsMax;
-    public int ActionPointsCurrent;
+    public int actionPointsMax;
+    public int actionPointsCurrent;
 
-    [Header("Season Info")]
-    
-    int month = 3;//Current month Number 
-    //1 = Autumn
-    //2 = Winter
-    //3 = Spring
-    //4 = Summer
+    public TextMeshProUGUI actionPointsRemainingText;
 
-    int  monthsTotal = 1;//Total Seasons Ellapsed
-    public string monthName = "";
-    public string seasonName = "";// Displays the name of the current month Updated by updateSeasonName(), 
-
-    public TextMeshProUGUI seasonText;
-    public TextMeshProUGUI monthText;
 
     [Header("Scoring Variables")]
-
     public int score;
     public int scoreHigh;
 
@@ -63,36 +62,37 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI scoreHighText;
 
 
+    [Header("Month + Season Variables")]
+    public string monthName = "";// Displays the name of the current month Updated by updateSeasonMonthNames()
+    public string seasonName = "";// Displays the name of the current Season Updated by updateSeasonMonthNames()
+
+    public TextMeshProUGUI monthText;
+    public TextMeshProUGUI seasonText;
+    
+    int month = 3;//Current Month Number 
+    int  monthsTotal = 1; //Total months Ellapsed
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        updateSeasonName();
+        updateSeasonMonthNames();
     }
 
     void Update()
     {
         scoreUpdate();
 
-        if (ActionPointsCurrent < coolBurnAPCost)
-        {
-            coolBurnButton.interactable = false;
-        }
-        if (ActionPointsCurrent > coolBurnAPCost)
-        {
-            coolBurnButton.interactable = true;
-        }
-        if (seasonName == "Spring" || seasonName == "Summer")
-        {
-            coolBurnButton.interactable = false;
-        }
+        checkCoolBurnAvailable();
+        checkHotBurnAvailable();
+
+        actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
 
     }
 
     public void beginNextMonth()
     {
-        ActionPointsCurrent = ActionPointsMax;
+        actionPointsCurrent = actionPointsMax;
 
         month += 1;
         monthsTotal += 1;
@@ -102,7 +102,7 @@ public class GameManager : MonoBehaviour
             month = 1;
         }
 
-        updateSeasonName();
+        updateSeasonMonthNames();
 
         foreach (Sector sector in sectorList)
         {
@@ -114,11 +114,40 @@ public class GameManager : MonoBehaviour
     public void beginCoolBurn()
     {
         player.sectorCurrent.startCoolBurn();
-        ActionPointsCurrent -= coolBurnAPCost;
-        
-        
+        actionPointsCurrent -= coolBurnAPCost;
     }
 
+    void checkCoolBurnAvailable()
+    {
+        if (actionPointsCurrent < coolBurnAPCost)
+        {
+            coolBurnButton.interactable = false;
+        }
+        if (actionPointsCurrent > coolBurnAPCost)
+        {
+            coolBurnButton.interactable = true;
+        }
+        if (seasonName == "Spring" || seasonName == "Summer")
+        {
+            coolBurnButton.interactable = false;
+        }
+    }
+
+    void checkHotBurnAvailable()
+    {
+        if (actionPointsCurrent < hotBurnAPCost)
+        {
+            hotBurnButton.interactable = false;
+        }
+        if (actionPointsCurrent > hotBurnAPCost)
+        {
+            hotBurnButton.interactable = true;
+        }
+        if (seasonName == "Autumn" || seasonName == "Winter")
+        {
+            hotBurnButton.interactable = false;
+        }
+    }
 
     void scoreUpdate()
     {
@@ -139,8 +168,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-    private void updateSeasonName()
+    private void updateSeasonMonthNames()
     {
         if (month == 1)
         {
