@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public Player player;
+    Controls controls;
     public List<Sector> sectorList = new List<Sector>();//List of all sectors in the game
 
     [Header("Fuel Variables")]
@@ -80,9 +81,53 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI monthText;
     public TextMeshProUGUI seasonText;
-    
+
     int month = 3;//Current Month Number 
-    int  monthsTotal = 1; //Total months Ellapsed
+    int monthsTotal = 1; //Total months Ellapsed
+
+    [Header("Ranger Book Variables")]
+
+    public GameObject RangerBook;
+
+    public Image mapSectorTL;
+    public Image mapSectorTM;
+    public Image mapSectorTR;
+
+    public Image mapSectorML;
+    public Image mapSectorMM;
+    public Image mapSectorMR;
+    
+    public Image mapSectorBL;
+    public Image mapSectorBM;
+    public Image mapSectorBR;
+
+    public bool rangerBookOpen;
+
+    void Awake()
+    {
+        controls = new Controls();
+
+        controls.GamePlay.RangerBook.performed += ctx => rangerBook();
+        
+    }
+
+    void rangerBook()
+    {
+        if (rangerBookOpen == false)
+        {
+            RangerBook.SetActive(true);
+            rangerBookOpen = true;
+            return;
+        }
+        if (rangerBookOpen == true)
+        {
+            RangerBook.SetActive(false);
+            rangerBookOpen = false;
+            return;
+        }
+        
+    }
+
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -101,8 +146,76 @@ public class GameManager : MonoBehaviour
         checkHotBurnAvailable();
         checkExtinguishAvailable();
 
+        updateMiniMapColours();
+
+
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
 
+    }
+
+    private Sector locateSectorInList(int XPos, int YPos)
+    {
+        foreach (Sector sector in sectorList)
+        {
+            if (sector.xPos == XPos && sector.yPos == YPos)
+            {
+                return sector;
+            }
+        }
+        return null;
+    }
+
+    private void updateMiniMapColours()
+    {
+        Sector sectorTL = locateSectorInList(-1, 1);
+        Sector sectorTM = locateSectorInList(0, 1);
+        Sector sectorTR = locateSectorInList(1, 1);
+
+        Sector sectorML = locateSectorInList(-1, 0);
+        Sector sectorMM = locateSectorInList(0, 0);
+        Sector sectorMR = locateSectorInList(1, 0);
+
+        Sector sectorBL = locateSectorInList(-1, -1);
+        Sector sectorBM = locateSectorInList(0, -1);
+        Sector sectorBR = locateSectorInList(1, -1);
+
+        float fuelValueTL = sectorTL.fuelLevel / 100f;
+        float fuelValueTM = sectorTM.fuelLevel / 100f;
+        float fuelValueTR = sectorTR.fuelLevel / 100f;
+
+        float fuelValueML = sectorML.fuelLevel / 100f;
+        float fuelValueMM = sectorMM.fuelLevel / 100f;
+        float fuelValueMR = sectorMR.fuelLevel / 100f;
+
+        float fuelValueBL = sectorBL.fuelLevel / 100f;
+        float fuelValueBM = sectorBM.fuelLevel / 100f;
+        float fuelValueBR = sectorBR.fuelLevel / 100f;
+
+
+        float growthValueTL = (sectorTL.growthLevel / 250f) - fuelValueTL;
+        float growthValueTM = (sectorTM.growthLevel / 250f) - fuelValueTM;
+        float growthValueTR = (sectorTR.growthLevel / 250f) - fuelValueTR;
+
+        float growthValueML = (sectorML.growthLevel / 250f) - fuelValueML;
+        float growthValueMM = (sectorMM.growthLevel / 250f) - fuelValueMM;
+        float growthValueMR = (sectorMR.growthLevel / 250f) - fuelValueMR;
+        
+        float growthValueBL = (sectorBL.growthLevel / 250f) - fuelValueBL;
+        float growthValueBM = (sectorBM.growthLevel / 250f) - fuelValueBM;
+        float growthValueBR = (sectorBR.growthLevel / 250f) - fuelValueBR;
+
+
+        mapSectorTL.color = new Color(fuelValueTL, growthValueTL, 0, 1f);
+        mapSectorTM.color = new Color(fuelValueTM, growthValueTM, 0, 1f);
+        mapSectorTR.color = new Color(fuelValueTR, growthValueTR, 0, 1f);
+
+        mapSectorML.color = new Color(fuelValueML, growthValueML, 0, 1f);
+        mapSectorMM.color = new Color(fuelValueMM, growthValueMM, 0, 1f);
+        mapSectorMR.color = new Color(fuelValueMR, growthValueMR, 0, 1f);
+
+        mapSectorBL.color = new Color(fuelValueBL, growthValueBL, 0, 1f);
+        mapSectorBM.color = new Color(fuelValueBM, growthValueBM, 0, 1f);
+        mapSectorBR.color = new Color(fuelValueBR, growthValueBR, 0, 1f);
     }
 
     public void beginNextMonth()
@@ -187,7 +300,7 @@ public class GameManager : MonoBehaviour
             extinguishButton.interactable = true;
         }
 
-        
+
     }
 
     void scoreUpdate()
@@ -314,5 +427,14 @@ public class GameManager : MonoBehaviour
         seasonText.text = "Season: " + seasonName;
     }
 
+    void OnEnable()
+    {
+        controls.GamePlay.Enable();
+    } 
+
+    void OnDisable()
+    {
+        controls.GamePlay.Disable();
+    } 
     
 }
