@@ -62,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Action Point Variables")]
     public int actionPointsMax;
+    public int actionPointsIncreaseRate;
     public int actionPointsCurrent;
 
     public TextMeshProUGUI actionPointsRemainingText;
@@ -134,6 +135,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         updateSeasonMonthNames();
+
+        actionPointsCurrent = actionPointsMax;
     }
 
     void Update()
@@ -220,7 +223,12 @@ public class GameManager : MonoBehaviour
 
     public void beginNextMonth()
     {
-        actionPointsCurrent = actionPointsMax;
+        actionPointsCurrent += actionPointsIncreaseRate;
+
+        if (actionPointsCurrent >= actionPointsMax)
+        {
+            actionPointsCurrent = actionPointsMax;
+        }
 
         month += 1;
         monthsTotal += 1;
