@@ -112,6 +112,8 @@ public class GameManager : MonoBehaviour
 
     float challengeTimer = 0f;
 
+    float challengeRating = 10f;
+
     int challengePhase = 1;
 
     public List<GameObject> challengeTargetList = new List<GameObject>();
@@ -188,84 +190,8 @@ public class GameManager : MonoBehaviour
 
         updateMiniMapColours();//updates the minimaps fire rating
 
+        environmentalChallenge();//handles all environmental challenge logic
 
-        if (challengeEnabled == true)
-        {
-            challengeTimer += Time.deltaTime;
-
-            currentPattern = pattern3;
-
-            int iterator = 0;
-            foreach (GameObject target in challengeTargetList)
-            {
-                target.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPattern[iterator, 0], currentPattern[iterator, 1]);
-                iterator += 1;
-                target.SetActive(true);
-            }
-
-            if (challengePhase == 1)
-            {
-                challengeButtonList[0].interactable = true;
-                challengeButtonList[1].interactable = false;
-                challengeButtonList[2].interactable = false;
-                challengeButtonList[3].interactable = false;
-                challengeButtonList[4].interactable = false;
-            }
-            
-            if (challengePhase == 2)
-            {
-                challengeButtonList[0].interactable = false;
-                challengeButtonList[1].interactable = true;
-                challengeButtonList[2].interactable = false;
-                challengeButtonList[3].interactable = false;
-                challengeButtonList[4].interactable = false;
-            }
-
-            if (challengePhase == 3)
-            {
-                challengeButtonList[0].interactable = false;
-                challengeButtonList[1].interactable = false;
-                challengeButtonList[2].interactable = true;
-                challengeButtonList[3].interactable = false;
-                challengeButtonList[4].interactable = false;
-            }
-
-            if (challengePhase == 4)
-            {
-                challengeButtonList[0].interactable = false;
-                challengeButtonList[1].interactable = false;
-                challengeButtonList[2].interactable = false;
-                challengeButtonList[3].interactable = true;
-                challengeButtonList[4].interactable = false;
-            }
-
-            if (challengePhase == 5)
-            {
-                challengeButtonList[0].interactable = false;
-                challengeButtonList[1].interactable = false;
-                challengeButtonList[2].interactable = false;
-                challengeButtonList[3].interactable = false;
-                challengeButtonList[4].interactable = true;
-            }
-
-            if (currentAction == "coolBurn" && challengePhase > challengeButtonList.Count)
-            {
-                player.sectorCurrent.startCoolBurn();
-                currentAction = "null";
-                challengeEnabled = false;
-                challengePhase = 1;               
-
-                foreach (GameObject target in challengeTargetList)
-                {
-                    target.SetActive(false);
-                }
-
-                foreach (Button button in challengeButtonList)
-                {
-                    button.interactable = false;
-                }
-            }
-        }
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
 
@@ -371,20 +297,167 @@ public class GameManager : MonoBehaviour
 
     public void beginHotBurn()
     {
-        player.sectorCurrent.startHotBurn();
+        beginEnvironmentalChallenge();
+        currentAction = "hotBurn";
         actionPointsCurrent -= hotBurnAPCost;
     }
 
     public void beginExtinguish()
     {
-        player.sectorCurrent.startExtinguish();
+        beginEnvironmentalChallenge();
+        currentAction = "extinguish";
         actionPointsCurrent -= extinguishAPCost;
     }
 
     private void beginEnvironmentalChallenge()
     {
+        randomizeChallengePattern();// randomizes current pattern
         challengeEnabled = true;
         challengePhase = 1;
+    }
+
+    private void environmentalChallenge()
+    {
+
+        if (challengeEnabled == true)
+        {
+            challengeTimer += Time.deltaTime;
+
+
+
+            int iterator = 0;
+            foreach (GameObject target in challengeTargetList)
+            {
+                target.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPattern[iterator, 0], currentPattern[iterator, 1]);
+                iterator += 1;
+                target.SetActive(true);
+            }
+
+            if (challengePhase == 1)
+            {
+                challengeButtonList[0].interactable = true;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 2)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = true;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 3)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = true;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 4)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = true;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 5)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = true;
+            }
+
+            if (currentAction == "coolBurn" && challengePhase > challengeButtonList.Count)
+            {
+                float Score = challengeTimer / challengeRating;
+
+                player.sectorCurrent.startCoolBurn(Score);
+                currentAction = "null";
+                challengeEnabled = false;
+                challengePhase = 1;
+
+                foreach (GameObject target in challengeTargetList)
+                {
+                    target.SetActive(false);
+                }
+
+                foreach (Button button in challengeButtonList)
+                {
+                    button.interactable = false;
+                }
+            }
+
+            if (currentAction == "hotBurn" && challengePhase > challengeButtonList.Count)
+            {
+                float Score = challengeTimer / challengeRating;
+
+                player.sectorCurrent.startHotBurn(Score);
+                currentAction = "null";
+                challengeEnabled = false;
+                challengePhase = 1;
+
+                foreach (GameObject target in challengeTargetList)
+                {
+                    target.SetActive(false);
+                }
+
+                foreach (Button button in challengeButtonList)
+                {
+                    button.interactable = false;
+                }
+            }
+            
+            
+            if (currentAction == "extinguish" && challengePhase > challengeButtonList.Count)
+            {
+                float Score = challengeTimer / challengeRating;
+
+                player.sectorCurrent.startExtinguish(Score);
+                currentAction = "null";
+                challengeEnabled = false;
+                challengePhase = 1;
+
+                foreach (GameObject target in challengeTargetList)
+                {
+                    target.SetActive(false);
+                }
+
+                foreach (Button button in challengeButtonList)
+                {
+                    button.interactable = false;
+                }
+            }
+        }
+    }
+
+
+    private void randomizeChallengePattern()
+    {
+        int randomizer = Random.Range(1, 4);
+
+        if (randomizer == 1)
+        {
+            currentPattern = pattern1;
+        }
+        if (randomizer == 2)
+        {
+            currentPattern = pattern2;
+        }
+        if (randomizer == 3)
+        {
+            currentPattern = pattern3;
+        }
     }
 
     public void nextChallengePhase()

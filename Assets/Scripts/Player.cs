@@ -2,8 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public GameManager Manager;
 
     float speed = 5f;// How fast the player is 
+    float maxSpeed = 5f;
 
     public SpriteRenderer spriteRenderer;//
 
@@ -31,13 +33,21 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-
+        Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
     }
 
     void Update()
     {
-        rb.linearVelocity = playerMovementInput * speed;
-        detectCurrentSector();
+        if (Manager.challengeEnabled == true)
+        {
+            speed = 0;
+        }
+        if (Manager.challengeEnabled == false)
+        {
+            speed = maxSpeed;
+        }
+            rb.linearVelocity = playerMovementInput * speed;
+            detectCurrentSector();
     }
 
     void detectCurrentSector()

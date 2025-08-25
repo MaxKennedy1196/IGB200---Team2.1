@@ -126,17 +126,15 @@ public class Sector : MonoBehaviour
 
     }
 
-    public void startCoolBurn()
+    public void startCoolBurn(float score)
     {
-
-
         fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin, Manager.coolBurnFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
 
         print("Cool Burn Performed");
     }
 
-    public void startHotBurn()
+    public void startHotBurn(float score)
     {
         fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin, Manager.hotBurnFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin, Manager.hotBurnGrowthDecreaseMax);
@@ -144,7 +142,7 @@ public class Sector : MonoBehaviour
         print("Hot Burn Performed");
     }
     
-    public void startExtinguish()
+    public void startExtinguish(float score)
     {
         fuelLevel -= Random.Range(Manager.extinguishFuelDecreaseMin, Manager.extinguishFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.extinguishGrowthDecreaseMin, Manager.extinguishGrowthDecreaseMax);
