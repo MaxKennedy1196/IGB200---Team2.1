@@ -119,12 +119,25 @@ public class GameManager : MonoBehaviour
     public List<Button> challengeButtonList = new List<Button>();
 
 
-    float[,] pattern1 = {
-                        { -400, 0},
-                        { -200, 0},
-                        {  0,   0},
-                        {  200, 0},
-                        {  400, 0},}; 
+    float[,] currentPattern;
+
+    float[,] pattern1 = {{ -500, 0},
+                         { -250, 0},
+                         {  0,   0},
+                         {  250, 0},
+                         {  500, 0}}; 
+
+    float[,] pattern2 = {{ -500, -400},
+                         { -250, -200},
+                         {  0,   0},
+                         {  250, 200},
+                         {  500, 400}}; 
+
+    float[,] pattern3 = {{ 500 , 400 },
+                         { -200 , 150 },
+                         { 0 , -300 },
+                         { 600 , 25 },
+                         { -300 , 80 }}; 
 
 
     void Awake()
@@ -179,16 +192,14 @@ public class GameManager : MonoBehaviour
         if (challengeEnabled == true)
         {
             challengeTimer += Time.deltaTime;
-            
-            challengeTargetList[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(-400f, 0f);
-            challengeTargetList[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-200f, 0f);
-            challengeTargetList[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 0f);
-            challengeTargetList[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(200f, 0f);
-            challengeTargetList[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(400f, 0f);
 
+            currentPattern = pattern3;
+
+            int iterator = 0;
             foreach (GameObject target in challengeTargetList)
             {
-
+                target.GetComponent<RectTransform>().anchoredPosition = new Vector2(currentPattern[iterator, 0], currentPattern[iterator, 1]);
+                iterator += 1;
                 target.SetActive(true);
             }
 

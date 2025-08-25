@@ -128,6 +128,8 @@ public class Sector : MonoBehaviour
 
     public void startCoolBurn()
     {
+
+
         fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin, Manager.coolBurnFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
 
