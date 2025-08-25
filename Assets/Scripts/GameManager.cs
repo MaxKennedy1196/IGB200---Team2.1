@@ -119,6 +119,13 @@ public class GameManager : MonoBehaviour
     public List<Button> challengeButtonList = new List<Button>();
 
 
+    float[,] pattern1 = {
+                        { -400, 0},
+                        { -200, 0},
+                        {  0,   0},
+                        {  200, 0},
+                        {  400, 0},}; 
+
 
     void Awake()
     {
@@ -172,9 +179,16 @@ public class GameManager : MonoBehaviour
         if (challengeEnabled == true)
         {
             challengeTimer += Time.deltaTime;
+            
+            challengeTargetList[0].GetComponent<RectTransform>().anchoredPosition = new Vector2(-400f, 0f);
+            challengeTargetList[1].GetComponent<RectTransform>().anchoredPosition = new Vector2(-200f, 0f);
+            challengeTargetList[2].GetComponent<RectTransform>().anchoredPosition = new Vector2(0f, 0f);
+            challengeTargetList[3].GetComponent<RectTransform>().anchoredPosition = new Vector2(200f, 0f);
+            challengeTargetList[4].GetComponent<RectTransform>().anchoredPosition = new Vector2(400f, 0f);
 
             foreach (GameObject target in challengeTargetList)
             {
+
                 target.SetActive(true);
             }
 
@@ -359,6 +373,7 @@ public class GameManager : MonoBehaviour
     private void beginEnvironmentalChallenge()
     {
         challengeEnabled = true;
+        challengePhase = 1;
     }
 
     public void nextChallengePhase()
