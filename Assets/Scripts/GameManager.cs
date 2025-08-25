@@ -104,12 +104,41 @@ public class GameManager : MonoBehaviour
 
     public bool rangerBookOpen;
 
+    [Header("Environmental Challenge Variables")]
+
+    public bool challengeEnabled;
+
+    private string currentAction;
+
+    float challengeTimer = 0f;
+
+    int challengePhase = 1;
+
+    public List<GameObject> challengeTargetList = new List<GameObject>();
+
+    public List<Button> challengeButtonList = new List<Button>();
+
+
+
     void Awake()
     {
         controls = new Controls();
 
         controls.GamePlay.RangerBook.performed += ctx => rangerBook();
-        
+    }
+
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        updateSeasonMonthNames();
+
+        actionPointsCurrent = actionPointsMax;
+
+        foreach (GameObject gameObject in challengeTargetList)
+        {
+            challengeButtonList.Add(gameObject.GetComponent<Button>());
+        }
+
     }
 
     void rangerBook()
@@ -129,28 +158,89 @@ public class GameManager : MonoBehaviour
         
     }
 
-
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        updateSeasonMonthNames();
-
-        actionPointsCurrent = actionPointsMax;
-    }
-
     void Update()
     {
-        //print(hotBurnAPCost);
-
         scoreUpdate();
 
-        checkCoolBurnAvailable();
-        checkHotBurnAvailable();
-        checkExtinguishAvailable();
+        checkCoolBurnAvailable();//check if this action can be performed
+        checkHotBurnAvailable();//check if this action can be performed
+        checkExtinguishAvailable();//check if this action can be performed
 
-        updateMiniMapColours();
+        updateMiniMapColours();//updates the minimaps fire rating
 
+
+        if (challengeEnabled == true)
+        {
+            challengeTimer += Time.deltaTime;
+
+            foreach (GameObject target in challengeTargetList)
+            {
+                target.SetActive(true);
+            }
+
+            if (challengePhase == 1)
+            {
+                challengeButtonList[0].interactable = true;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+            
+            if (challengePhase == 2)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = true;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 3)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = true;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 4)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = true;
+                challengeButtonList[4].interactable = false;
+            }
+
+            if (challengePhase == 5)
+            {
+                challengeButtonList[0].interactable = false;
+                challengeButtonList[1].interactable = false;
+                challengeButtonList[2].interactable = false;
+                challengeButtonList[3].interactable = false;
+                challengeButtonList[4].interactable = true;
+            }
+
+            if (currentAction == "coolBurn" && challengePhase > challengeButtonList.Count)
+            {
+                player.sectorCurrent.startCoolBurn();
+                currentAction = "null";
+                challengeEnabled = false;
+                challengePhase = 1;               
+
+                foreach (GameObject target in challengeTargetList)
+                {
+                    target.SetActive(false);
+                }
+
+                foreach (Button button in challengeButtonList)
+                {
+                    button.interactable = false;
+                }
+            }
+        }
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
 
@@ -249,7 +339,8 @@ public class GameManager : MonoBehaviour
 
     public void beginCoolBurn()
     {
-        player.sectorCurrent.startCoolBurn();
+        beginEnvironmentalChallenge();
+        currentAction = "coolBurn";
         actionPointsCurrent -= coolBurnAPCost;
     }
 
@@ -263,6 +354,16 @@ public class GameManager : MonoBehaviour
     {
         player.sectorCurrent.startExtinguish();
         actionPointsCurrent -= extinguishAPCost;
+    }
+
+    private void beginEnvironmentalChallenge()
+    {
+        challengeEnabled = true;
+    }
+
+    public void nextChallengePhase()
+    {
+        challengePhase += 1;
     }
 
     void checkCoolBurnAvailable()
