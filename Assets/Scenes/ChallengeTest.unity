@@ -807,11 +807,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6947079892136240443, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
   m_PrefabInstance: {fileID: 438707823}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &128926197 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6009588060698102230, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
-  m_PrefabInstance: {fileID: 438707823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &135996704
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1034,11 +1029,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3522334326012633636, guid: 34507f4ed1d419240a71450a37969d8e, type: 3}
   m_PrefabInstance: {fileID: 143693325}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &176905581 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7897156620083845798, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
-  m_PrefabInstance: {fileID: 438707823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &178552806
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1120,11 +1110,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &289841891 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2666529453925197686, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
-  m_PrefabInstance: {fileID: 438707823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &294022695
 GameObject:
   m_ObjectHideFlags: 0
@@ -3762,7 +3747,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2003298846}
         m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
-        m_MethodName: beginExtinguish
+        m_MethodName: beginPlanning
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -6193,11 +6178,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &1870933489 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6086480121235399658, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
-  m_PrefabInstance: {fileID: 438707823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1889689746
 GameObject:
   m_ObjectHideFlags: 0
@@ -6351,11 +6331,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3522334326012633636, guid: 34507f4ed1d419240a71450a37969d8e, type: 3}
   m_PrefabInstance: {fileID: 1924102660}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1966176756 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5062073217819517290, guid: 4ae9be2143d364146a1ae852250f8603, type: 3}
-  m_PrefabInstance: {fileID: 438707823}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2003298845
 GameObject:
   m_ObjectHideFlags: 0
@@ -6407,6 +6382,9 @@ MonoBehaviour:
   hotBurnGrowthDecreaseMin: 60
   hotBurnGrowthDecreaseMax: 100
   hotBurnAPCost: 100
+  planningButton: {fileID: 1163888707}
+  planningDuration: 3
+  planningAPCost: 25
   extinguishButton: {fileID: 23024531}
   extinguishFuelDecreaseMin: 5
   extinguishFuelDecreaseMax: 20
@@ -6436,14 +6414,6 @@ MonoBehaviour:
   mapSectorBM: {fileID: 1575301400}
   mapSectorBR: {fileID: 984934362}
   rangerBookOpen: 0
-  challengeEnabled: 0
-  challengeTargetList:
-  - {fileID: 289841891}
-  - {fileID: 1966176756}
-  - {fileID: 176905581}
-  - {fileID: 128926197}
-  - {fileID: 1870933489}
-  challengeButtonList: []
 --- !u!4 &2003298847
 Transform:
   m_ObjectHideFlags: 0

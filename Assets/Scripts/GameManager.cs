@@ -48,6 +48,14 @@ public class GameManager : MonoBehaviour
     public int hotBurnAPCost;
 
 
+    [Header("Planning Variables")]
+    public Button planningButton;
+
+    public int planningDuration;
+
+    public int planningAPCost;
+
+
     [Header("Extinguish Variables")]
     public Button extinguishButton;
 
@@ -252,6 +260,12 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent -= hotBurnAPCost;
     }
 
+    public void beginPlanning()
+    {
+        player.sectorCurrent.startPlanning();
+        actionPointsCurrent -= planningAPCost;
+    }
+
     public void beginExtinguish()
     {
         player.sectorCurrent.startExtinguish();
@@ -293,13 +307,27 @@ public class GameManager : MonoBehaviour
 
     void checkExtinguishAvailable()
     {
-        if (actionPointsCurrent < hotBurnAPCost || player.sectorCurrent.wildfire == false)
+        if (actionPointsCurrent < extinguishAPCost || player.sectorCurrent.wildfire == false)
         {
             extinguishButton.interactable = false;
         }
-        if (actionPointsCurrent >= hotBurnAPCost && player.sectorCurrent.wildfire == true)
+        if (actionPointsCurrent >= extinguishAPCost && player.sectorCurrent.wildfire == true)
         {
             extinguishButton.interactable = true;
+        }
+
+
+    }
+
+    void checkPlanningAvailable()
+    {
+        if (actionPointsCurrent < planningAPCost || player.sectorCurrent.wildfire == false)
+        {
+            planningButton.interactable = false;
+        }
+        if (actionPointsCurrent >= planningAPCost && player.sectorCurrent.wildfire == true)
+        {
+            planningButton.interactable = true;
         }
 
 

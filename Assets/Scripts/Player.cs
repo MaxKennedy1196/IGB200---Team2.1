@@ -5,7 +5,7 @@ public class Player : MonoBehaviour
 {
     public GameManager Manager;
 
-    float speed = 5f;// How fast the player is 
+    float speed = 10f;// How fast the player is 
     float maxSpeed = 5f;
 
     public SpriteRenderer spriteRenderer;//

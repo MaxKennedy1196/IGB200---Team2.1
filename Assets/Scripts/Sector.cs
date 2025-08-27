@@ -8,6 +8,8 @@ public class Sector : MonoBehaviour
     //Script for describing a sector and all related functions 
     public GameManager Manager;
 
+    [Header("Sector Variables")]
+
     public int xPos;//x Position of this sector
     public int yPos;//y Position of this sector
 
@@ -17,6 +19,11 @@ public class Sector : MonoBehaviour
     public TextMeshProUGUI fuelText;
     public TextMeshProUGUI growthText;
 
+    [Header("Planning Variables")]
+
+    public int plannedTurns;
+
+    [Header("Wildfire Variables")]
     public Image fireImage;
 
     public bool wildfire;
@@ -24,18 +31,16 @@ public class Sector : MonoBehaviour
     [Header("Environmental Challenge Variables")]
 
     public bool challengeEnabled;
-
     private string currentAction;
-
     float challengeTimer = 0f;
-
-    float challengeRating = 10f;
-
+    float challengeRating = 20f;
     int challengePhase = 1;
 
+    public GameObject challengeBorders;
     public List<GameObject> challengeTargetList = new List<GameObject>();
-
     public List<targetTrigger> challengeTriggerList = new List<targetTrigger>();
+
+    
 
     float[,] currentPattern;
 
@@ -58,6 +63,9 @@ public class Sector : MonoBehaviour
                          { -3 , 8 }};
 
 
+    float challengeScoreBonus = 0.4f;
+
+    float challengeScoreBonusPlanned = 1f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -132,13 +140,20 @@ public class Sector : MonoBehaviour
 
     public void nextMonth()
     {
-        if (wildfire == true)
+        plannedTurns -= 1;
+        if (plannedTurns <= 0)
         {
-            fuelLevel = 0f;
-            growthLevel = 0f;
-            wildfire = false;
-            return;
+            plannedTurns = 0;
         }
+
+
+        if (wildfire == true)
+            {
+                fuelLevel = 0f;
+                growthLevel = 0f;
+                wildfire = false;
+                return;
+            }
         if (wildfire == false)
         {
             fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
@@ -179,42 +194,73 @@ public class Sector : MonoBehaviour
     public void startCoolBurn()
     {
         currentAction = "coolBurn";
-        randomizeChallengePattern();
-        challengeEnabled = true;
+        beginEnvironmentalChallenge();
     }
 
     public void startHotBurn()
     {
         currentAction = "hotBurn";
-        randomizeChallengePattern();
-        challengeEnabled = true;
+        beginEnvironmentalChallenge();
+    }
+
+    public void startPlanning()
+    {
+        currentAction = "planning";
+        beginEnvironmentalChallenge();
     }
 
     public void startExtinguish()
     {
         currentAction = "extinguish";
-        randomizeChallengePattern();
-        challengeEnabled = true;
+        beginEnvironmentalChallenge();
     }
 
 
-    private void completeCoolBurn()
+    private void completeCoolBurn(float challengeScore)
     {
-        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin, Manager.coolBurnFuelDecreaseMax);
+        if (plannedTurns == 0)
+        {
+            challengeScore += challengeScoreBonus;
+        }
+        if (plannedTurns != 0)
+        {
+            challengeScore += challengeScoreBonusPlanned;
+            plannedTurns = 0;
+        }
+
+        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScoreBonus, Manager.coolBurnFuelDecreaseMax * challengeScoreBonus);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
 
-        print("Cool Burn Performed");
+        print("Cool Burn Performed: " + challengeScore );
     }
 
-    private void completeHotBurn()
+    private void completeHotBurn(float challengeScore)
     {
-        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin, Manager.hotBurnFuelDecreaseMax);
-        growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin, Manager.hotBurnGrowthDecreaseMax);
+        if (plannedTurns == 0)
+        {
+            challengeScore += challengeScoreBonus;
+        }
+        if (plannedTurns != 0)
+        {
+            challengeScore += challengeScoreBonusPlanned;
+            plannedTurns = 0;
+        }
+            
+
+        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin * challengeScoreBonus, Manager.hotBurnFuelDecreaseMax * challengeScoreBonus);
+        growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin , Manager.hotBurnGrowthDecreaseMax);
 
         print("Hot Burn Performed");
     }
 
-    private void completeExtinguish()
+    private void completePlanning(float challengeScore)
+    {
+        plannedTurns = Manager.planningDuration;
+
+        print("Planning Complete");
+    }
+
+    private void completeExtinguish(float challengeScore)
     {
         fuelLevel -= Random.Range(Manager.extinguishFuelDecreaseMin, Manager.extinguishFuelDecreaseMax);
         growthLevel -= Random.Range(Manager.extinguishGrowthDecreaseMin, Manager.extinguishGrowthDecreaseMax);
@@ -223,6 +269,8 @@ public class Sector : MonoBehaviour
 
         print("Extinguish Performed");
     }
+
+
 
     private void beginEnvironmentalChallenge()
     {
@@ -255,6 +303,9 @@ public class Sector : MonoBehaviour
         if (challengeEnabled == true)
         {
             challengeTimer += Time.deltaTime;
+            print(challengeTimer);
+
+            challengeBorders.SetActive(true);
 
             int iterator = 0;
             foreach (GameObject target in challengeTargetList)
@@ -263,12 +314,6 @@ public class Sector : MonoBehaviour
                 iterator += 1;
                 target.SetActive(true);
             }
-
-            //challengeTargetList[0].transform.position = transform.position + new Vector3(currentPattern[0, 0], currentPattern[0, 1]);
-            //challengeTargetList[1].transform.position = transform.position + new Vector3(currentPattern[1, 0], currentPattern[1, 1]);
-            //challengeTargetList[2].transform.position = transform.position + new Vector3(currentPattern[2, 0], currentPattern[2, 1]);
-            //challengeTargetList[3].transform.position = transform.position + new Vector3(currentPattern[3, 0], currentPattern[3, 1]);
-            //challengeTargetList[4].transform.position = transform.position + new Vector3(currentPattern[4, 0], currentPattern[4, 1]);
 
             if (challengePhase == 1)
             {
@@ -317,64 +362,60 @@ public class Sector : MonoBehaviour
 
             if (currentAction == "coolBurn" && challengePhase > challengeTriggerList.Count)
             {
-                float Score = challengeTimer / challengeRating;
+                float challengeScore = challengeTimer / challengeRating;
+                float challengeScoreInverted = 1 - challengeScore;
 
-                completeCoolBurn();
-                currentAction = "null";
-                challengeEnabled = false;
-                challengePhase = 1;
-
-                foreach (GameObject target in challengeTargetList)
-                {
-                    target.SetActive(false);
-                }
-
-                //foreach (Button button in challengeTriggerList)
-                //{
-                //    button.interactable = false;
-                //}
+                completeCoolBurn(challengeScoreInverted);
+                environmentalChallengeReset();
             }
 
             if (currentAction == "hotBurn" && challengePhase > challengeTriggerList.Count)
             {
-                float Score = challengeTimer / challengeRating;
+                float challengeScore = challengeTimer / challengeRating;
+                float challengeScoreInverted = 1 - challengeScore;
 
-                completeHotBurn();
-                currentAction = "null";
-                challengeEnabled = false;
-                challengePhase = 1;
-
-                foreach (GameObject target in challengeTargetList)
-                {
-                    target.SetActive(false);
-                }
-
-                //foreach (Button button in challengeTriggerList)
-                //{
-                //    button.interactable = false;
-                //}
+                completeHotBurn(challengeScoreInverted);
+                environmentalChallengeReset();
             }
-
 
             if (currentAction == "extinguish" && challengePhase > challengeTriggerList.Count)
             {
-                float Score = challengeTimer / challengeRating;
+                float challengeScore = challengeTimer / challengeRating;
+                float challengeScoreInverted = 1 - challengeScore;
 
-                completeExtinguish();
-                currentAction = "null";
-                challengeEnabled = false;
-                challengePhase = 1;
-
-                foreach (GameObject target in challengeTargetList)
-                {
-                    target.SetActive(false);
-                }
-
-                //foreach (Button button in challengeTriggerList)
-                //{
-                //    button.interactable = false;
-                //}
+                completeExtinguish(challengeScoreInverted);
+                environmentalChallengeReset();
             }
+
+            if (currentAction == "planning" && challengePhase > challengeTriggerList.Count)
+            {
+                float challengeScore = challengeTimer / challengeRating;
+                float challengeScoreInverted = 1 - challengeScore;
+
+                completePlanning(challengeScoreInverted);
+                environmentalChallengeReset();
+            }
+        }
+        if (challengeEnabled == false)
+        {
+            challengeBorders.SetActive(false);
+        }
+    }
+
+    private void environmentalChallengeReset()
+    {
+        currentAction = "null";
+        challengeEnabled = false;
+        challengePhase = 1;
+
+        foreach (GameObject target in challengeTargetList)
+        {
+            target.SetActive(false);
+        }
+
+        foreach (targetTrigger trigger in challengeTriggerList)
+        {
+            trigger.isActive = false;
         }
     }
     
