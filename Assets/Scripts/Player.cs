@@ -42,14 +42,7 @@ public class Player : MonoBehaviour
 
     void Update()
     {
-        if (Manager.challengeEnabled == true)
-        {
-            speed = 0;
-        }
-        if (Manager.challengeEnabled == false)
-        {
-            speed = maxSpeed;
-        }
+
         rb.linearVelocity = playerMovementInput * speed;
         detectCurrentSector();
 
@@ -71,7 +64,7 @@ public class Player : MonoBehaviour
         {
             GameObject sectorGameObject = sectorDetectionHit.collider.gameObject;
             sectorCurrent = sectorGameObject.GetComponent<Sector>();
-            Debug.Log("Raycast sectorDetectionHit: " + sectorDetectionHit.collider.gameObject.name);
+            // Debug.Log("Raycast sectorDetectionHit: " + sectorDetectionHit.collider.gameObject.name);
         }
         else
         {
