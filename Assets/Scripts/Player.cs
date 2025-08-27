@@ -1,3 +1,4 @@
+
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -20,6 +21,9 @@ public class Player : MonoBehaviour
     float sectorDetectionRaycastDistance = 100f;// How long Sector detect raycast is 
     RaycastHit sectorDetectionHit;// Output variable for sector detection raycast
     public Sector sectorCurrent;// Current sector the player is in
+
+    [Header("Animation Variables")]
+    public Animator anim;
 
     void Awake()
     {
@@ -46,8 +50,18 @@ public class Player : MonoBehaviour
         {
             speed = maxSpeed;
         }
-            rb.linearVelocity = playerMovementInput * speed;
-            detectCurrentSector();
+        rb.linearVelocity = playerMovementInput * speed;
+        detectCurrentSector();
+
+        anim.SetFloat("Horizontal", playerMovementInput.x);
+        anim.SetFloat("Vertical", playerMovementInput.y);
+
+        if (playerMovementInput != Vector2.zero)
+        {
+            anim.SetFloat("LastHorizontal", playerMovementInput.x);
+            anim.SetFloat("LastVertical",playerMovementInput.y);
+        }
+            
     }
 
     void detectCurrentSector()

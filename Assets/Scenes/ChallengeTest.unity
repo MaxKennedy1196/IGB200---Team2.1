@@ -2106,6 +2106,18 @@ PrefabInstance:
       propertyPath: xPos
       value: -1
       objectReference: {fileID: 0}
+    - target: {fileID: 2749877449350888548, guid: dbff06240f2000a4ea4e355eb4e7f3b3, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749877449350888548, guid: dbff06240f2000a4ea4e355eb4e7f3b3, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2749877449350888548, guid: dbff06240f2000a4ea4e355eb4e7f3b3, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2826732437576076921, guid: dbff06240f2000a4ea4e355eb4e7f3b3, type: 3}
       propertyPath: m_LocalPosition.x
       value: -24
