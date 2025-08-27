@@ -323,8 +323,6 @@ public class GameManager : MonoBehaviour
         {
             challengeTimer += Time.deltaTime;
 
-
-
             int iterator = 0;
             foreach (GameObject target in challengeTargetList)
             {
