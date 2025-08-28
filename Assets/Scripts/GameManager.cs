@@ -112,11 +112,20 @@ public class GameManager : MonoBehaviour
 
     public bool rangerBookOpen;
 
+    [Header("Community Centre Variables")]
+
+    public CommunityCentre centre;
+
+    public GameObject communityCentreMenu;
+    public Button communityCentreButton;
+
+
     void Awake()
     {
         controls = new Controls();
 
-        controls.GamePlay.RangerBook.performed += ctx => rangerBook();
+        controls.GamePlay.RangerBook.performed += ctx => rangerBookMenuCheck();
+        
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -127,7 +136,7 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent = actionPointsMax;
     }
 
-    void rangerBook()
+    void rangerBookMenuCheck()
     {
         if (rangerBookOpen == false)
         {
@@ -152,7 +161,11 @@ public class GameManager : MonoBehaviour
         checkHotBurnAvailable();//check if this action can be performed
         checkExtinguishAvailable();//check if this action can be performed
 
+        checkCommunityCentreAvailable();
+
         updateMiniMapColours();//updates the minimaps fire rating
+
+        
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
     }
@@ -305,20 +318,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void checkExtinguishAvailable()
-    {
-        if (actionPointsCurrent < extinguishAPCost || player.sectorCurrent.wildfire == false)
-        {
-            extinguishButton.interactable = false;
-        }
-        if (actionPointsCurrent >= extinguishAPCost && player.sectorCurrent.wildfire == true)
-        {
-            extinguishButton.interactable = true;
-        }
-
-
-    }
-
     void checkPlanningAvailable()
     {
         if (actionPointsCurrent < planningAPCost || player.sectorCurrent.wildfire == false)
@@ -329,9 +328,45 @@ public class GameManager : MonoBehaviour
         {
             planningButton.interactable = true;
         }
-
-
     }
+
+    void checkExtinguishAvailable()
+    {
+        if (actionPointsCurrent < extinguishAPCost || player.sectorCurrent.wildfire == false)
+        {
+            extinguishButton.interactable = false;
+        }
+        if (actionPointsCurrent >= extinguishAPCost && player.sectorCurrent.wildfire == true)
+        {
+            extinguishButton.interactable = true;
+        }
+    }
+
+    void checkCommunityCentreAvailable()
+    {
+        if (centre.playerInRange == true)
+        {
+            communityCentreButton.interactable = true;
+        }
+        if (centre.playerInRange == false)
+        {
+            communityCentreButton.interactable = false;
+            closeCommunityCentre();
+        }
+    }
+
+    public void openCommunityCentre()
+    {
+        communityCentreMenu.SetActive(true);
+        return;
+    }
+
+    public void closeCommunityCentre()
+    {
+        communityCentreMenu.SetActive(false);
+        return;
+    }
+
 
     void scoreUpdate()
     {
