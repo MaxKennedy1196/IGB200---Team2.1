@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using Unity.VisualScripting;
 
 public class GameManager : MonoBehaviour
 {
@@ -119,6 +120,12 @@ public class GameManager : MonoBehaviour
     public GameObject communityCentreMenu;
     public Button communityCentreButton;
 
+    [Header("Awareness Campaign Variables")]
+
+    public int awarenessAPCost;
+    public Button awarenessButton;
+    public TextMeshProUGUI awarenessLevelText;
+    int awarenessLevel;
 
     void Awake()
     {
@@ -160,12 +167,12 @@ public class GameManager : MonoBehaviour
         checkCoolBurnAvailable();//check if this action can be performed
         checkHotBurnAvailable();//check if this action can be performed
         checkExtinguishAvailable();//check if this action can be performed
-
-        checkCommunityCentreAvailable();
+        checkAwarenessAvailable();//check whether the player can purchase an awareness campaign
+        checkCommunityCentreAvailable();//check whether the player is in range of the community centre
 
         updateMiniMapColours();//updates the minimaps fire rating
 
-        
+        updateCommunityCentreText();
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
     }
@@ -238,6 +245,9 @@ public class GameManager : MonoBehaviour
     public void beginNextMonth()
     {
         actionPointsCurrent += actionPointsIncreaseRate;
+
+        actionPointsCurrent += 25 * awarenessLevel;
+        awarenessLevel = 0;
 
         if (actionPointsCurrent >= actionPointsMax)
         {
@@ -342,6 +352,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    void checkAwarenessAvailable()
+    {
+        if (actionPointsCurrent < awarenessAPCost)
+        {
+            awarenessButton.interactable = false;
+        }
+        if (actionPointsCurrent >= awarenessAPCost)
+        {
+            awarenessButton.interactable = true;
+        }
+    }
+
     void checkCommunityCentreAvailable()
     {
         if (centre.playerInRange == true)
@@ -365,6 +387,17 @@ public class GameManager : MonoBehaviour
     {
         communityCentreMenu.SetActive(false);
         return;
+    }
+
+    public void raiseAwareness()
+    {
+        awarenessLevel += 1;
+        actionPointsCurrent -= awarenessAPCost;
+    }
+
+    void updateCommunityCentreText()
+    {
+        awarenessLevelText.text = "Level: " + awarenessLevel.ToString();
     }
 
 

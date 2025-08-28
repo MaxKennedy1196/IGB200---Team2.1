@@ -228,7 +228,7 @@ public class Sector : MonoBehaviour
             plannedTurns = 0;
         }
 
-        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScoreBonus, Manager.coolBurnFuelDecreaseMax * challengeScoreBonus);
+        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScore, Manager.coolBurnFuelDecreaseMax * challengeScore);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
 
         print("Cool Burn Performed: " + challengeScore );
@@ -246,8 +246,7 @@ public class Sector : MonoBehaviour
             plannedTurns = 0;
         }
             
-
-        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin * challengeScoreBonus, Manager.hotBurnFuelDecreaseMax * challengeScoreBonus);
+        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin * challengeScore, Manager.hotBurnFuelDecreaseMax * challengeScore);
         growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin , Manager.hotBurnGrowthDecreaseMax);
 
         print("Hot Burn Performed");
@@ -277,6 +276,7 @@ public class Sector : MonoBehaviour
         randomizeChallengePattern();// randomizes current pattern
         challengeEnabled = true;
         challengePhase = 1;
+        challengeTimer = 0f;
     }
     
     private void randomizeChallengePattern()
