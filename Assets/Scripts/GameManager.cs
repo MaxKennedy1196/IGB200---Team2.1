@@ -162,11 +162,12 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        scoreUpdate();
+        
 
         checkCoolBurnAvailable();//check if this action can be performed
         checkHotBurnAvailable();//check if this action can be performed
         checkExtinguishAvailable();//check if this action can be performed
+        checkPlanningAvailable();
         checkAwarenessAvailable();//check whether the player can purchase an awareness campaign
         checkCommunityCentreAvailable();//check whether the player is in range of the community centre
 
@@ -244,6 +245,8 @@ public class GameManager : MonoBehaviour
 
     public void beginNextMonth()
     {
+        scoreUpdate();
+
         actionPointsCurrent += actionPointsIncreaseRate;
 
         actionPointsCurrent += 25 * awarenessLevel;
@@ -330,11 +333,11 @@ public class GameManager : MonoBehaviour
 
     void checkPlanningAvailable()
     {
-        if (actionPointsCurrent < planningAPCost || player.sectorCurrent.wildfire == false)
+        if (actionPointsCurrent < planningAPCost)
         {
             planningButton.interactable = false;
         }
-        if (actionPointsCurrent >= planningAPCost && player.sectorCurrent.wildfire == true)
+        if (actionPointsCurrent >= planningAPCost)
         {
             planningButton.interactable = true;
         }
@@ -403,11 +406,10 @@ public class GameManager : MonoBehaviour
 
     void scoreUpdate()
     {
-        score = 0;
 
         foreach (Sector sector in sectorList)
         {
-            score += Mathf.RoundToInt(sector.growthLevel * 10f);
+            score += Mathf.RoundToInt(sector.growthLevel);
         }
 
         if (score >= scoreHigh)
