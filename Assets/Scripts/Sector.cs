@@ -2,6 +2,7 @@ using TMPro;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Tilemaps;
 
 public class Sector : MonoBehaviour
 {
@@ -15,6 +16,9 @@ public class Sector : MonoBehaviour
 
     public float fuelLevel;//Current Fuel Level
     public float growthLevel;//Current Growth Level
+
+    public float fuelLevelPercent;//Current Fuel Level
+    public float growthLevelPercent;//Current Growth Level
 
     public TextMeshProUGUI fuelText;
     public TextMeshProUGUI growthText;
@@ -39,6 +43,15 @@ public class Sector : MonoBehaviour
     public GameObject challengeBorders;
     public List<GameObject> challengeTargetList = new List<GameObject>();
     public List<targetTrigger> challengeTriggerList = new List<targetTrigger>();
+
+
+
+    public GameObject tileMapHealthy;
+    public GameObject tileMapYellow;
+    public GameObject tileMapOrange;
+    public GameObject tileMapBurnedOverlay;
+
+    public bool burned;
 
     
 
@@ -126,7 +139,41 @@ public class Sector : MonoBehaviour
             fireImage.enabled = false;
         }
 
+        updateDisplayTiles();
+
         environmentalChallenge();//handles all environmental challenge logic
+    }
+
+    private void updateDisplayTiles()
+    {
+        fuelLevelPercent = fuelLevel / 100f;
+        growthLevelPercent = growthLevel / 250f;
+
+
+        tileMapOrange.SetActive(false);
+        tileMapYellow.SetActive(false);
+        tileMapHealthy.SetActive(false);
+        tileMapBurnedOverlay.SetActive(false);
+
+
+
+
+        if (fuelLevelPercent > 0.8f)
+        {
+            tileMapOrange.SetActive(true);
+        }
+        if (fuelLevelPercent > 0.6f)
+        {
+            tileMapYellow.SetActive(true);
+        }
+        if (growthLevelPercent >= 0.3f)
+        {
+            tileMapHealthy.SetActive(true);
+        }
+        if (burned == true)
+        {
+            tileMapBurnedOverlay.SetActive(true);
+        }
     }
 
     void sectorInit()
@@ -140,6 +187,8 @@ public class Sector : MonoBehaviour
 
     public void nextMonth()
     {
+        burned = false;
+
         plannedTurns -= 1;
         if (plannedTurns <= 0)
         {
@@ -148,12 +197,10 @@ public class Sector : MonoBehaviour
 
 
         if (wildfire == true)
-            {
-                fuelLevel = 0f;
-                growthLevel = 0f;
-                wildfire = false;
-                return;
-            }
+        {
+            completeWildfire();
+            return;
+        }
         if (wildfire == false)
         {
             fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
@@ -200,6 +247,7 @@ public class Sector : MonoBehaviour
     public void startHotBurn()
     {
         currentAction = "hotBurn";
+        
         beginEnvironmentalChallenge();
     }
 
@@ -216,6 +264,14 @@ public class Sector : MonoBehaviour
     }
 
 
+    private void completeWildfire()
+    {
+        fuelLevel = 0f;
+        growthLevel = 0f;
+        wildfire = false;
+        burned = true;
+    }
+
     private void completeCoolBurn(float challengeScore)
     {
         if (plannedTurns == 0)
@@ -230,8 +286,8 @@ public class Sector : MonoBehaviour
 
         fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScore, Manager.coolBurnFuelDecreaseMax * challengeScore);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
-
-        print("Cool Burn Performed: " + challengeScore );
+        burned = true;
+        print("Cool Burn Performed: " + challengeScore);
     }
 
     private void completeHotBurn(float challengeScore)
@@ -248,7 +304,7 @@ public class Sector : MonoBehaviour
             
         fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin * challengeScore, Manager.hotBurnFuelDecreaseMax * challengeScore);
         growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin , Manager.hotBurnGrowthDecreaseMax);
-
+        burned = true;
         print("Hot Burn Performed");
     }
 
