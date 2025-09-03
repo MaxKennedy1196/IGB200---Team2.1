@@ -6414,6 +6414,12 @@ MonoBehaviour:
   mapSectorBM: {fileID: 1575301400}
   mapSectorBR: {fileID: 984934362}
   rangerBookOpen: 0
+  centre: {fileID: 0}
+  communityCentreMenu: {fileID: 0}
+  communityCentreButton: {fileID: 0}
+  awarenessAPCost: 0
+  awarenessButton: {fileID: 0}
+  awarenessLevelText: {fileID: 0}
 --- !u!4 &2003298847
 Transform:
   m_ObjectHideFlags: 0

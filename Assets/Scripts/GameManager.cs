@@ -111,6 +111,19 @@ public class GameManager : MonoBehaviour
     public Image mapSectorBM;
     public Image mapSectorBR;
 
+
+    public GameObject playerSectorTL;
+    public GameObject playerSectorTM;
+    public GameObject playerSectorTR;
+
+    public GameObject playerSectorML;
+    public GameObject playerSectorMM;
+    public GameObject playerSectorMR;
+
+    public GameObject playerSectorBL;
+    public GameObject playerSectorBM;
+    public GameObject playerSectorBR;
+
     public bool rangerBookOpen;
 
     [Header("Community Centre Variables")]
@@ -126,6 +139,7 @@ public class GameManager : MonoBehaviour
     public Button awarenessButton;
     public TextMeshProUGUI awarenessLevelText;
     int awarenessLevel;
+
 
     void Awake()
     {
@@ -172,6 +186,7 @@ public class GameManager : MonoBehaviour
         checkCommunityCentreAvailable();//check whether the player is in range of the community centre
 
         updateMiniMapColours();//updates the minimaps fire rating
+        updatePlayerMiniMapPosition();
 
         updateCommunityCentreText();
 
@@ -188,6 +203,99 @@ public class GameManager : MonoBehaviour
             }
         }
         return null;
+    }
+
+    private void updatePlayerMiniMapPosition()
+    {
+        if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == 1)
+        {
+            playerSectorTL.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != 1)
+        {
+            playerSectorTL.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == 1)
+        {
+            playerSectorTM.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != 1)
+        {
+            playerSectorTM.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == 1)
+        {
+            playerSectorTR.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != 1)
+        {
+            playerSectorTR.SetActive(false);
+        }
+
+
+
+
+        if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == 0)
+        {
+            playerSectorML.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != 0)
+        {
+            playerSectorML.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == 0)
+        {
+            playerSectorMM.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != 0)
+        {
+            playerSectorMM.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == 0)
+        {
+            playerSectorMR.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != 0)
+        {
+            playerSectorMR.SetActive(false);
+        }
+
+
+
+
+        if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == -1)
+        {
+            playerSectorBL.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != -1)
+        {
+            playerSectorBL.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == -1)
+        {
+            playerSectorBM.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != -1)
+        {
+            playerSectorBM.SetActive(false);
+        }
+
+        if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == -1)
+        {
+            playerSectorBR.SetActive(true);
+        }
+        if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != -1)
+        {
+            playerSectorBR.SetActive(false);
+        }
+
+
+
     }
 
     private void updateMiniMapColours()
@@ -224,7 +332,7 @@ public class GameManager : MonoBehaviour
         float growthValueML = (sectorML.growthLevel / 250f) - fuelValueML;
         float growthValueMM = (sectorMM.growthLevel / 250f) - fuelValueMM;
         float growthValueMR = (sectorMR.growthLevel / 250f) - fuelValueMR;
-        
+
         float growthValueBL = (sectorBL.growthLevel / 250f) - fuelValueBL;
         float growthValueBM = (sectorBM.growthLevel / 250f) - fuelValueBM;
         float growthValueBR = (sectorBR.growthLevel / 250f) - fuelValueBR;
