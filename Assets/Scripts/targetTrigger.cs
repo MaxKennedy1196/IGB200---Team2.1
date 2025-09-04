@@ -15,6 +15,10 @@ public class targetTrigger : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
 
+    public AudioSource audioSource;
+
+    public AudioClip activatedClip;
+
     void Start()
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
@@ -24,6 +28,8 @@ public class targetTrigger : MonoBehaviour
         sector = gameObject.GetComponentInParent<Sector>();
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+
+
     }
 
     // Update is called once per frame
@@ -36,6 +42,7 @@ public class targetTrigger : MonoBehaviour
 
             if (playerDistance <= 2f)
             {
+                audioSource.PlayOneShot(activatedClip);
                 sector.nextChallengePhase();
             }
         }

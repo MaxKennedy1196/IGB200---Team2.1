@@ -14,7 +14,7 @@ public class EnvironmentalTreeVisuals : MonoBehaviour
     public Sprite CoolBurn;
     public Sprite Burned;
 
-    int growthTurns = 6;
+    int growthTurns = 8;
 
 
 

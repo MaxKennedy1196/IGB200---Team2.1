@@ -42,5 +42,8 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: MiniGameOverlay
+    uniqueID: 3919949845
+    locked: 0
   m_RenderingLayers:
   - Default

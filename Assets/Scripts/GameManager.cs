@@ -160,7 +160,7 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent = actionPointsMax;
     }
 
-    void rangerBookMenuCheck()
+    public void rangerBookMenuCheck()
     {
         if (rangerBookOpen == false)
         {
