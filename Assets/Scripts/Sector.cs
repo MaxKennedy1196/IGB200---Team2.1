@@ -52,6 +52,7 @@ public class Sector : MonoBehaviour
     public GameObject tileMapBurnedOverlay;
 
     public bool burned;
+    public bool coolBurned;
 
     
 
@@ -170,7 +171,7 @@ public class Sector : MonoBehaviour
         {
             tileMapHealthy.SetActive(true);
         }
-        if (burned == true)
+        if (burned == true || coolBurned == true)
         {
             tileMapBurnedOverlay.SetActive(true);
         }
@@ -188,6 +189,7 @@ public class Sector : MonoBehaviour
     public void nextMonth()
     {
         burned = false;
+        coolBurned = false;
 
         plannedTurns -= 1;
         if (plannedTurns <= 0)
@@ -286,7 +288,7 @@ public class Sector : MonoBehaviour
 
         fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScore, Manager.coolBurnFuelDecreaseMax * challengeScore);
         growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
-        burned = true;
+        coolBurned = true;
         print("Cool Burn Performed: " + challengeScore);
     }
 

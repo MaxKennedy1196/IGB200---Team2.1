@@ -140,6 +140,9 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI awarenessLevelText;
     int awarenessLevel;
 
+    [Header ("Tree List")]
+
+    public List<EnvironmentalTreeVisuals> treeList = new List<EnvironmentalTreeVisuals>();//List of all trees in the game
 
     void Awake()
     {
@@ -354,6 +357,11 @@ public class GameManager : MonoBehaviour
     public void beginNextMonth()
     {
         scoreUpdate();
+
+        foreach (EnvironmentalTreeVisuals tree in treeList)
+        {
+            tree.nextTurn();
+        }
 
         actionPointsCurrent += actionPointsIncreaseRate;
 
