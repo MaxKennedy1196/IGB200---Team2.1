@@ -10682,10 +10682,17 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Open map with E. Red Sectors in the map mean they are more likely to burn.
-    Try to Increase Growth Levels on your sectors as much as possible while keeping
-    fuel Levels Low. Use the actions on the right side of the screen to Accomplish
-    your goals. Good Luck!
+  m_text: 'How to Play:
+
+
+    Move = WASD
+
+
+    Open Map = E
+
+
+    Prevent the bushland
+    from catching on fire '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
