@@ -1454,6 +1454,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2600806431473714165, guid: 076f21039cc7c4a46b82e1a636ff6605, type: 3}
   m_PrefabInstance: {fileID: 122840347}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &128503887 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2680840997040220269, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+  m_PrefabInstance: {fileID: 198712517631412740}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07975406524cb0d448aa318bef4e275b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &149589478
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2830,7 +2841,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &269192417
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2865,6 +2876,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6955a9abaa8488b468268ce7519de4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneController: {fileID: 128503887}
 --- !u!1001 &281108881
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3005,7 +3017,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &288851692
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3040,6 +3052,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6955a9abaa8488b468268ce7519de4d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sceneController: {fileID: 0}
 --- !u!1001 &291485037
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10669,10 +10682,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Welcome to Firesticks! Move the player Using WASD. Open map with E. Red
-    Sectors in the map mean they are more likely to burn. Try to Increase Growth
-    Levels on your sectors as much as possible while keeping fuel Levels Low. Use
-    the actions on the right side of the screen to Accomplish your goals. Good Luck!
+  m_text: Open map with E. Red Sectors in the map mean they are more likely to burn.
+    Try to Increase Growth Levels on your sectors as much as possible while keeping
+    fuel Levels Low. Use the actions on the right side of the screen to Accomplish
+    your goals. Good Luck!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
@@ -14055,7 +14068,7 @@ MonoBehaviour:
   m_text: BACK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -19414,6 +19427,63 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2600806431473714165, guid: 076f21039cc7c4a46b82e1a636ff6605, type: 3}
   m_PrefabInstance: {fileID: 2131229655}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &198712517631412740
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -2.15366
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.72609
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 760241218220546083, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5213137542735440503, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: m_Name
+      value: SceneController
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
 --- !u!1 &1317464911024443755
 GameObject:
   m_ObjectHideFlags: 0
@@ -25446,3 +25516,4 @@ SceneRoots:
   - {fileID: 432169371}
   - {fileID: 260369583}
   - {fileID: 1219571533}
+  - {fileID: 198712517631412740}

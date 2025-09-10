@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public Player player;
     Controls controls;
     public List<Sector> sectorList = new List<Sector>();//List of all sectors in the game
+    [SerializeField]
+
+    private SceneController sceneController;
 
     [Header("Fuel Variables")]
     public float fuelSpawnMin;
@@ -550,6 +553,9 @@ public class GameManager : MonoBehaviour
         if (month == 3)
         {
             seasonName = "Autumn";
+            // scene fade in autumn ui image here
+            
+
         }
         if (month == 4)
         {
@@ -562,6 +568,7 @@ public class GameManager : MonoBehaviour
         if (month == 6)
         {
             seasonName = "Winter";
+            // scene fade in winter ui image here
         }
         if (month == 7)
         {
@@ -574,6 +581,7 @@ public class GameManager : MonoBehaviour
         if (month == 9)
         {
             seasonName = "Spring";
+            // scene fade in spring ui image here
         }
         if (month == 10)
         {
@@ -586,6 +594,7 @@ public class GameManager : MonoBehaviour
         if (month == 12)
         {
             seasonName = "Summer";
+            // scene fade in sumnmer ui image here
         }
 
         //update monthName
