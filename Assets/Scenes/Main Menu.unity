@@ -19482,6 +19482,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2680840997040220269, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
+      propertyPath: sceneFadeDuration
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5213137542735440503, guid: 72d09fd98110d7a4fa5559f48ad9879a, type: 3}
       propertyPath: m_Name
       value: SceneController

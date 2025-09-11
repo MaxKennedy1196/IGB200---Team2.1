@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
 using Unity.VisualScripting;
+using UnityEditor.ShaderKeywordFilter;
+using Mono.Cecil.Cil;
 
 public class GameManager : MonoBehaviour
 {
@@ -11,8 +13,8 @@ public class GameManager : MonoBehaviour
     public List<Sector> sectorList = new List<Sector>();//List of all sectors in the game
     [SerializeField]
 
-    private SceneController sceneController;
-
+    public GameObject[] Seasons = new GameObject[4];
+     
     [Header("Fuel Variables")]
     public float fuelSpawnMin;
     public float fuelSpawnMax;
@@ -384,12 +386,40 @@ public class GameManager : MonoBehaviour
             month = 1;
         }
 
+
+        // note to fix currently plays the month before
+
+
+        float lastmonth = month;
+
+        if (lastmonth == 3)
+        {
+            StartCoroutine(Seasons[1].GetComponent<FadeUI>().FadeInAndOut(Seasons[1].gameObject));
+        }
+
+        else if (lastmonth == 6)
+        {
+            StartCoroutine(Seasons[2].GetComponent<FadeUI>().FadeInAndOut(Seasons[2].gameObject));
+        }
+
+        else if (lastmonth == 9)
+        {
+            StartCoroutine(Seasons[3].GetComponent<FadeUI>().FadeInAndOut(Seasons[3].gameObject));
+        }
+
+        else if (lastmonth == 12)
+        {
+            StartCoroutine(Seasons[0].GetComponent<FadeUI>().FadeInAndOut(Seasons[0].gameObject));
+        }
+
         updateSeasonMonthNames();
 
+        
         foreach (Sector sector in sectorList)
         {
             sector.nextMonth();
         }
+
 
     }
 
@@ -552,11 +582,7 @@ public class GameManager : MonoBehaviour
         }
         if (month == 3)
         {
-            seasonName = "Autumn";
-            // scene fade in autumn ui image here
-
-                       
-
+            seasonName = "Autumn";            
         }
         if (month == 4)
         {
@@ -569,7 +595,6 @@ public class GameManager : MonoBehaviour
         if (month == 6)
         {
             seasonName = "Winter";
-            // scene fade in winter ui image here
         }
         if (month == 7)
         {
@@ -582,7 +607,6 @@ public class GameManager : MonoBehaviour
         if (month == 9)
         {
             seasonName = "Spring";
-            // scene fade in spring ui image here
         }
         if (month == 10)
         {
@@ -595,7 +619,6 @@ public class GameManager : MonoBehaviour
         if (month == 12)
         {
             seasonName = "Summer";
-            // scene fade in sumnmer ui image here
         }
 
         //update monthName
