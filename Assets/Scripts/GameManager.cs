@@ -554,7 +554,8 @@ public class GameManager : MonoBehaviour
         {
             seasonName = "Autumn";
             // scene fade in autumn ui image here
-            
+
+                       
 
         }
         if (month == 4)
