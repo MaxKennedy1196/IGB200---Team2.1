@@ -8,8 +8,6 @@ public class FadeUI : MonoBehaviour
 {
     [SerializeField] private Image SeasonUI;
     [SerializeField] public float fadeDuration;
-    [SerializeField] private bool fadeIn = false;
-    [SerializeField] private bool fadeOut = false;
 
     // fade in the correct canvas group depending on the season
     // called from game manager when season changes

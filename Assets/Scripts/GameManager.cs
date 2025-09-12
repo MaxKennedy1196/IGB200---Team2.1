@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField]
 
     public GameObject[] Seasons = new GameObject[4];
-     
+
     [Header("Fuel Variables")]
     public float fuelSpawnMin;
     public float fuelSpawnMax;
@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
     public Image mapSectorML;
     public Image mapSectorMM;
     public Image mapSectorMR;
-    
+
     public Image mapSectorBL;
     public Image mapSectorBM;
     public Image mapSectorBR;
@@ -145,9 +145,14 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI awarenessLevelText;
     int awarenessLevel;
 
-    [Header ("Tree List")]
+    [Header("Tree List")]
 
     public List<EnvironmentalTreeVisuals> treeList = new List<EnvironmentalTreeVisuals>();//List of all trees in the game
+
+    [Header("UI Elements")]
+
+    // Attention lord Xavier, I am adding this variable to hide UI when needed
+    public bool UIActive;
 
     void Awake()
     {
@@ -567,7 +572,6 @@ public class GameManager : MonoBehaviour
         }
 
         scoreText.text = "Score: " + score.ToString();
-        scoreHighText.text = "High Score: " + scoreHigh.ToString();
     }
 
     private void updateSeasonMonthNames()
