@@ -1,0 +1,203 @@
+fileFormatVersion: 2
+guid: af0abbbb7a8393446af789576fcbc942
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6311850721622942326
+    second: water_tileset2_0
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 16
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 512
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: water_tileset2_33
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 964df579b7f39a742bf0e48c6006e5ba
+      internalID: -1708526574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 361c3bb2f073dba4ea765fb0c8bbeb08
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":16.0,"y":16.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":1,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      water_tileset2_0: -6311850721622942326
+      water_tileset2_1: 2064648611
+      water_tileset2_10: -1279442592
+      water_tileset2_11: -1728154481
+      water_tileset2_12: 576434865
+      water_tileset2_13: -1306664609
+      water_tileset2_14: -1429650734
+      water_tileset2_15: 1981737460
+      water_tileset2_16: 1930655719
+      water_tileset2_17: 1797869479
+      water_tileset2_18: 130073820
+      water_tileset2_19: -1479530180
+      water_tileset2_2: -1990210218
+      water_tileset2_20: 942287989
+      water_tileset2_21: 1869176176
+      water_tileset2_22: -466153391
+      water_tileset2_23: -2118811749
+      water_tileset2_24: -525493866
+      water_tileset2_25: 357535268
+      water_tileset2_26: 1652493625
+      water_tileset2_27: 2030168806
+      water_tileset2_28: -1463089943
+      water_tileset2_29: 292402874
+      water_tileset2_3: -594999654
+      water_tileset2_30: 756098904
+      water_tileset2_31: 1269453214
+      water_tileset2_32: -726502695
+      water_tileset2_33: -1708526574
+      water_tileset2_34: -445529428
+      water_tileset2_35: 1097569718
+      water_tileset2_36: -1624448542
+      water_tileset2_37: 1209489528
+      water_tileset2_38: 82601090
+      water_tileset2_39: -28778930
+      water_tileset2_4: -596194311
+      water_tileset2_40: -1466550051
+      water_tileset2_41: -1841334154
+      water_tileset2_42: 1181183205
+      water_tileset2_43: -307150618
+      water_tileset2_44: 167599335
+      water_tileset2_45: 1153352616
+      water_tileset2_5: 835009839
+      water_tileset2_6: 84744050
+      water_tileset2_7: 202393973
+      water_tileset2_8: -1006886719
+      water_tileset2_9: -1156569104
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

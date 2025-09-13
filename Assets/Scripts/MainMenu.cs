@@ -12,6 +12,10 @@ public class MainMenu : MonoBehaviour
     {
         sceneController.LoadScene("Game");
     }
+    public void TutorialStart()
+    {
+        sceneController.LoadScene("Tutorial");
+    }
 
     public void QuitGame()
     {
