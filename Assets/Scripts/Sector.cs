@@ -54,7 +54,9 @@ public class Sector : MonoBehaviour
     public bool burned;
     public bool coolBurned;
 
-    
+    public bool randomInital;
+
+    public bool isTownCentre;
 
     float[,] currentPattern;
 
@@ -104,9 +106,7 @@ public class Sector : MonoBehaviour
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
         Manager.sectorList.Add(gameObject.GetComponent<Sector>());//Add this sector to SectorList in the GameManager 
 
-        fuelLevel += Random.Range(Manager.fuelSpawnMin, Manager.fuelSpawnMax);
-        growthLevel += Random.Range(Manager.growthSpawnMin, Manager.growthSpawnMax);
-
+        randomizeFuelGrowth();
         sectorInit();
 
 
@@ -121,6 +121,16 @@ public class Sector : MonoBehaviour
         //}
         
 
+    }
+
+    void randomizeFuelGrowth()
+    {
+        if (randomInital == true)
+        {
+            fuelLevel += Random.Range(Manager.fuelSpawnMin, Manager.fuelSpawnMax);
+            growthLevel += Random.Range(Manager.growthSpawnMin, Manager.growthSpawnMax);
+        }
+            
     }
 
     void Update()
@@ -222,8 +232,12 @@ public class Sector : MonoBehaviour
         }
         if (wildfire == false)
         {
-            fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
-            growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
+            if (isTownCentre == false)
+            {
+                fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
+                growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
+            }
+                
 
             if (Manager.seasonName == "Spring")
             {
