@@ -76,7 +76,24 @@ public class Sector : MonoBehaviour
                          { 6 , 2.5f },
                          { -3 , 8 }};
 
+    float[,] pattern4 = {{ -5, -5},
+                         { -2.5f, 5},
+                         {  0,   -5},
+                         {  2.5f, 5},
+                         {  5, -5}}; 
 
+    float[,] pattern5 = {{ -5, 5},
+                         { -2.5f, -5},
+                         {  0,   5},
+                         {  2.5f, -5},
+                         {  5, 5}}; 
+
+    float[,] pattern6 = {{-7, 7  },
+                         {-7, -7  },
+                         {7, -7  },
+                         {7, 7 },
+                         {0, 0 }}; 
+ 
     float challengeScoreBonus = 0.4f;
 
     float challengeScoreBonusPlanned = 1f;
@@ -336,10 +353,10 @@ public class Sector : MonoBehaviour
         challengePhase = 1;
         challengeTimer = 0f;
     }
-    
+
     private void randomizeChallengePattern()
     {
-        int randomizer = Random.Range(1, 4);
+        int randomizer = Random.Range(1, 7);
 
         if (randomizer == 1)
         {
@@ -352,6 +369,18 @@ public class Sector : MonoBehaviour
         if (randomizer == 3)
         {
             currentPattern = pattern3;
+        }
+        if (randomizer == 4)
+        {
+            currentPattern = pattern4;
+        }
+        if (randomizer == 5)
+        {
+            currentPattern = pattern5;
+        }
+        if (randomizer == 6)
+        {
+            currentPattern = pattern6;
         }
     }
 
