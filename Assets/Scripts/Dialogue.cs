@@ -11,11 +11,21 @@ public class Dialogue : MonoBehaviour
 
     private int index;
 
+    public GameManager Manager;
+    public Player player;
+
+    void Awake()
+    {
+        Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
+        player = Manager.player;
+    }
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         textComponent.text = string.Empty;
         StartDialogue();
+
     }
 
     // Update is called once per frame
@@ -39,6 +49,7 @@ public class Dialogue : MonoBehaviour
     {
         index = 0;
         StartCoroutine(TypeLine());
+        player.lockPlayer();
     }
 
     IEnumerator TypeLine()
@@ -60,6 +71,7 @@ public class Dialogue : MonoBehaviour
         }
         else
         {
+            player.unlockPlayer();
             gameObject.SetActive(false);
         }
     }

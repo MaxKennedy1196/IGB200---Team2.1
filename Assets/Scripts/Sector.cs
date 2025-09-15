@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 
+
+
 public class Sector : MonoBehaviour
 {
     //Script for describing a sector and all related functions 
@@ -14,14 +16,19 @@ public class Sector : MonoBehaviour
     public int xPos;//x Position of this sector
     public int yPos;//y Position of this sector
 
-    public float fuelLevel;//Current Fuel Level
-    public float growthLevel;//Current Growth Level
 
-    public float fuelLevelPercent;//Current Fuel Level
-    public float growthLevelPercent;//Current Growth Level
 
-    public TextMeshProUGUI fuelText;
-    public TextMeshProUGUI growthText;
+    public enum Status
+    {
+        incinerated,
+        hotBurn,
+        coolBurn,
+        healthy,
+        dry,
+        veryDry
+    }
+
+    public Status currentStatus;
 
     [Header("Planning Variables")]
 
@@ -29,7 +36,7 @@ public class Sector : MonoBehaviour
 
     [Header("Wildfire Variables")]
     public Image fireImage;
-
+    
     public bool wildfire;
 
     [Header("Environmental Challenge Variables")]
@@ -44,14 +51,12 @@ public class Sector : MonoBehaviour
     public List<GameObject> challengeTargetList = new List<GameObject>();
     public List<targetTrigger> challengeTriggerList = new List<targetTrigger>();
 
-
-
     public GameObject tileMapHealthy;
     public GameObject tileMapYellow;
     public GameObject tileMapOrange;
     public GameObject tileMapBurnedOverlay;
 
-    public bool burned;
+    public bool incinerated;
     public bool coolBurned;
 
     public bool randomInital;
@@ -64,13 +69,13 @@ public class Sector : MonoBehaviour
                          { -2.5f, 0},
                          {  0,   0},
                          {  2.5f, 0},
-                         {  5, 0}}; 
+                         {  5, 0}};
 
     float[,] pattern2 = {{ -5, -4},
                          { -2.5f, -2},
                          {  0,   0},
                          {  2.5f, 2},
-                         {  5, 4}}; 
+                         {  5, 4}};
 
     float[,] pattern3 = {{ 5 , 4},
                          { -2 , 1.5f},
@@ -82,20 +87,20 @@ public class Sector : MonoBehaviour
                          { -2.5f, 5},
                          {  0,   -5},
                          {  2.5f, 5},
-                         {  5, -5}}; 
+                         {  5, -5}};
 
     float[,] pattern5 = {{ -5, 5},
                          { -2.5f, -5},
                          {  0,   5},
                          {  2.5f, -5},
-                         {  5, 5}}; 
+                         {  5, 5}};
 
     float[,] pattern6 = {{-7, 7  },
                          {-7, -7  },
                          {7, -7  },
                          {7, 7 },
-                         {0, 0 }}; 
- 
+                         {0, 0 }};
+
     float challengeScoreBonus = 0.4f;
 
     float challengeScoreBonusPlanned = 1f;
@@ -106,7 +111,7 @@ public class Sector : MonoBehaviour
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
         Manager.sectorList.Add(gameObject.GetComponent<Sector>());//Add this sector to SectorList in the GameManager 
 
-        randomizeFuelGrowth();
+
         sectorInit();
 
 
@@ -119,44 +124,20 @@ public class Sector : MonoBehaviour
         //{
         //    trigger.sector = gameObject.GetComponent<Sector>();
         //}
-        
+
 
     }
 
-    void randomizeFuelGrowth()
-    {
-        if (randomInital == true)
-        {
-            fuelLevel += Random.Range(Manager.fuelSpawnMin, Manager.fuelSpawnMax);
-            growthLevel += Random.Range(Manager.growthSpawnMin, Manager.growthSpawnMax);
-        }
-            
-    }
+
 
     void Update()
     {
-        fuelText.text = "Fuel:" + Mathf.RoundToInt(fuelLevel);
-        growthText.text = "Growth:" + Mathf.RoundToInt(growthLevel);
-
-        if (fuelLevel <= 0f)//cap min fuel
+        if (isTownCentre == true)
         {
-            fuelLevel = 0f;
+            currentStatus = Status.healthy;
+            wildfire = false;
         }
 
-        if (fuelLevel >= 100f)//cap max fuel
-        {
-            fuelLevel = 100f;
-        }
-
-        if (growthLevel <= 0f)//cap min growth
-        {
-            growthLevel = 0f;
-        }
-
-        if (growthLevel >= 250f)//cap max growth
-        {
-            growthLevel = 250f;
-        }
 
         if (wildfire == true)
         {
@@ -170,35 +151,31 @@ public class Sector : MonoBehaviour
         updateDisplayTiles();
 
         environmentalChallenge();//handles all environmental challenge logic
+
+        
     }
 
     private void updateDisplayTiles()
     {
-        fuelLevelPercent = fuelLevel / 100f;
-        growthLevelPercent = growthLevel / 250f;
-
 
         tileMapOrange.SetActive(false);
         tileMapYellow.SetActive(false);
         tileMapHealthy.SetActive(false);
         tileMapBurnedOverlay.SetActive(false);
 
-
-
-
-        if (fuelLevelPercent > 0.8f)
+        if (currentStatus == Status.veryDry)
         {
             tileMapOrange.SetActive(true);
         }
-        if (fuelLevelPercent > 0.6f)
+        if (currentStatus == Status.dry)
         {
             tileMapYellow.SetActive(true);
         }
-        if (growthLevelPercent >= 0.3f)
+        if (currentStatus == Status.healthy)
         {
             tileMapHealthy.SetActive(true);
         }
-        if (burned == true || coolBurned == true)
+        if (currentStatus == Status.incinerated)
         {
             tileMapBurnedOverlay.SetActive(true);
         }
@@ -206,16 +183,49 @@ public class Sector : MonoBehaviour
 
     void sectorInit()
     {
-        fuelText.text = "Fuel:" + Mathf.RoundToInt(fuelLevel);
-        growthText.text = "Growth:" + Mathf.RoundToInt(growthLevel);
+        currentStatus = Status.healthy;
+
+        dryRandomise();
 
         wildfire = false;
         fireImage.enabled = false;
     }
 
+    void dryRandomise()
+    {
+        float randomiser = Random.Range(0f, 100f);
+
+        if (randomiser <= Manager.dryChance)
+        {
+            currentStatus = Status.dry;
+        }
+    }
+
+    void veryDryRandomise()
+    {
+        float randomiser = Random.Range(0f, 100f);
+
+        if (randomiser <= Manager.veryDryChance)
+        {
+            currentStatus = Status.veryDry;
+        }
+    }
+
+    void healthyRandomise()
+    {
+        float randomiser = Random.Range(0f, 100f);
+
+        if (randomiser <= Manager.healthyChance)
+        {
+            currentStatus = Status.healthy;
+        }
+    }
+
+    
+
     public void nextMonth()
     {
-        burned = false;
+        incinerated = false;
         coolBurned = false;
 
         plannedTurns -= 1;
@@ -232,27 +242,35 @@ public class Sector : MonoBehaviour
         }
         if (wildfire == false)
         {
-            if (isTownCentre == false)
+            if (currentStatus == Status.coolBurn)
             {
-                fuelLevel += Random.Range(Manager.fuelIncreaseRateMin, Manager.fuelIncreaseRateMax);
-                growthLevel += Random.Range(Manager.growthIncreaseRateMin, Manager.growthIncreaseRateMax);
+                healthyRandomise();   
             }
-                
+            if (currentStatus == Status.healthy)
+            {
+                dryRandomise();
+            }
+            if (currentStatus == Status.dry)
+            {
+                veryDryRandomise();   
+            }
+
+
 
             if (Manager.seasonName == "Spring")
             {
-                float wildfireChance = Random.Range(80f, 100f);
+                float randomiser = Random.Range(0f, 100f);
 
-                if (wildfireChance <= fuelLevel)
+                if (randomiser <= Manager.wildfireChanceSpring)
                 {
                     startWildFire();
                 }
             }
             if (Manager.seasonName == "Summer")
             {
-                float wildfireChance = Random.Range(60f, 100f);
+                float randomiser = Random.Range(0f, 100f);
 
-                if (wildfireChance <= fuelLevel)
+                if (randomiser <= Manager.wildfireChanceSummer)
                 {
                     startWildFire();
                 }
@@ -280,7 +298,7 @@ public class Sector : MonoBehaviour
     public void startHotBurn()
     {
         currentAction = "hotBurn";
-        
+
         beginEnvironmentalChallenge();
     }
 
@@ -299,10 +317,8 @@ public class Sector : MonoBehaviour
 
     private void completeWildfire()
     {
-        fuelLevel = 0f;
-        growthLevel = 0f;
         wildfire = false;
-        burned = true;
+        currentStatus = Status.incinerated;
     }
 
     private void completeCoolBurn(float challengeScore)
@@ -317,9 +333,7 @@ public class Sector : MonoBehaviour
             plannedTurns = 0;
         }
 
-        fuelLevel -= Random.Range(Manager.coolBurnFuelDecreaseMin * challengeScore, Manager.coolBurnFuelDecreaseMax * challengeScore);
-        growthLevel -= Random.Range(Manager.coolBurnGrowthDecreaseMin, Manager.coolBurnGrowthDecreaseMax);
-        coolBurned = true;
+        currentStatus = Status.coolBurn;
         print("Cool Burn Performed: " + challengeScore);
     }
 
@@ -334,10 +348,8 @@ public class Sector : MonoBehaviour
             challengeScore += challengeScoreBonusPlanned;
             plannedTurns = 0;
         }
-            
-        fuelLevel -= Random.Range(Manager.hotBurnFuelDecreaseMin * challengeScore, Manager.hotBurnFuelDecreaseMax * challengeScore);
-        growthLevel -= Random.Range(Manager.hotBurnGrowthDecreaseMin , Manager.hotBurnGrowthDecreaseMax);
-        burned = true;
+
+        currentStatus = Status.hotBurn;
         print("Hot Burn Performed");
     }
 
@@ -350,11 +362,7 @@ public class Sector : MonoBehaviour
 
     private void completeExtinguish(float challengeScore)
     {
-        fuelLevel -= Random.Range(Manager.extinguishFuelDecreaseMin, Manager.extinguishFuelDecreaseMax);
-        growthLevel -= Random.Range(Manager.extinguishGrowthDecreaseMin, Manager.extinguishGrowthDecreaseMax);
-
         wildfire = false;
-
         print("Extinguish Performed");
     }
 
@@ -519,13 +527,13 @@ public class Sector : MonoBehaviour
             trigger.isActive = false;
         }
     }
-    
+
     public void nextChallengePhase()
     {
         challengePhase += 1;
     }
 
-    
+
 
 
 }

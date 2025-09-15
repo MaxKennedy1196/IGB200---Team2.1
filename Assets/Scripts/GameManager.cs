@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using Unity.VisualScripting;
 using UnityEditor.ShaderKeywordFilter;
 using Mono.Cecil.Cil;
+using UnityEditor.PackageManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,41 +16,24 @@ public class GameManager : MonoBehaviour
 
     public GameObject[] Seasons = new GameObject[4];
 
-    [Header("Fuel Variables")]
-    public float fuelSpawnMin;
-    public float fuelSpawnMax;
+    [Header("Status Change Chances")]
+    public float healthyChance;
+    public float dryChance;
+    public float veryDryChance;
 
-    public float fuelIncreaseRateMin;
-    public float fuelIncreaseRateMax;
-
-    [Header("Growth Variables")]
-    public float growthSpawnMin;
-    public float growthSpawnMax;
-
-    public float growthIncreaseRateMin;
-    public float growthIncreaseRateMax;
+    [Header("Wildfire Occuring Chances")]
+    public float wildfireChanceSpring;
+    public float wildfireChanceSummer;
 
 
     [Header("Cool Burn Variables")]
     public Button coolBurnButton;
-
-    public float coolBurnFuelDecreaseMin;
-    public float coolBurnFuelDecreaseMax;
-
-    public float coolBurnGrowthDecreaseMin;
-    public float coolBurnGrowthDecreaseMax;
 
     public int coolBurnAPCost;
 
 
     [Header("Hot Burn Variables")]
     public Button hotBurnButton;
-
-    public float hotBurnFuelDecreaseMin;
-    public float hotBurnFuelDecreaseMax;
-
-    public float hotBurnGrowthDecreaseMin;
-    public float hotBurnGrowthDecreaseMax;
 
     public int hotBurnAPCost;
 
@@ -65,11 +49,6 @@ public class GameManager : MonoBehaviour
     [Header("Extinguish Variables")]
     public Button extinguishButton;
 
-    public float extinguishFuelDecreaseMin;
-    public float extinguishFuelDecreaseMax;
-
-    public float extinguishGrowthDecreaseMin;
-    public float extinguishGrowthDecreaseMax;
 
     public int extinguishAPCost;
 
@@ -152,7 +131,15 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
 
     // Attention lord Xavier, I am adding this variable to hide UI when needed
-    public bool UIActive;
+    public bool UIActive;//this pleases lord xavier
+
+    Color incineratedColor = new Color(0f, 0f, 0f, 1f);
+    Color hotBurnedColor = new Color(0f, 0f, 0f, 1f);
+    Color coolBurnedColor = new Color(0f, 0.25f, 0f, 1f);
+    Color healthyColor = new Color(0.43F, 0.57f, 0.24f, 1f);
+    Color dryColor = new Color(0.83f, 0.8f, 0.46f, 1f);
+    Color verDryColor = new Color(1f, 0.5f, 0f, 1f);
+    Color wildFireColor = new Color(1f, 0f, 0f, 1f);
 
     void Awake()
     {
@@ -249,7 +236,6 @@ public class GameManager : MonoBehaviour
 
 
 
-
         if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == 0)
         {
             playerSectorML.SetActive(true);
@@ -276,7 +262,6 @@ public class GameManager : MonoBehaviour
         {
             playerSectorMR.SetActive(false);
         }
-
 
 
 
@@ -307,8 +292,6 @@ public class GameManager : MonoBehaviour
             playerSectorBR.SetActive(false);
         }
 
-
-
     }
 
     private void updateMiniMapColours()
@@ -325,43 +308,253 @@ public class GameManager : MonoBehaviour
         Sector sectorBM = locateSectorInList(0, -1);
         Sector sectorBR = locateSectorInList(1, -1);
 
-        float fuelValueTL = sectorTL.fuelLevel / 100f;
-        float fuelValueTM = sectorTM.fuelLevel / 100f;
-        float fuelValueTR = sectorTR.fuelLevel / 100f;
+        Sector.Status statusTL = sectorTL.currentStatus;
+        Sector.Status statusTM = sectorTM.currentStatus;
+        Sector.Status statusTR = sectorTR.currentStatus;
 
-        float fuelValueML = sectorML.fuelLevel / 100f;
-        float fuelValueMM = sectorMM.fuelLevel / 100f;
-        float fuelValueMR = sectorMR.fuelLevel / 100f;
+        Sector.Status statusML = sectorML.currentStatus;
+        Sector.Status statusMM = sectorMM.currentStatus;
+        Sector.Status statusMR = sectorMR.currentStatus;
 
-        float fuelValueBL = sectorBL.fuelLevel / 100f;
-        float fuelValueBM = sectorBM.fuelLevel / 100f;
-        float fuelValueBR = sectorBR.fuelLevel / 100f;
+        Sector.Status statusBL = sectorBL.currentStatus;
+        Sector.Status statusBM = sectorBM.currentStatus;
+        Sector.Status statusBR = sectorBR.currentStatus;
 
+        //TL
+        if (statusTL == Sector.Status.incinerated)
+        {
+            mapSectorTL.color = incineratedColor;
+        }
+        if (statusTL == Sector.Status.hotBurn)
+        {
+            mapSectorTL.color = hotBurnedColor;
+        }
+        if (statusTL == Sector.Status.coolBurn)
+        {
+            mapSectorTL.color = coolBurnedColor;
+        }
+        if (statusTL == Sector.Status.healthy)
+        {
+            mapSectorTL.color = healthyColor;
+        }
+        if (statusTL == Sector.Status.dry)
+        {
+            mapSectorTL.color = dryColor;
+        }
+        if (statusTL == Sector.Status.veryDry)
+        {
+            mapSectorTL.color = verDryColor;
+        }
 
-        float growthValueTL = (sectorTL.growthLevel / 250f) - fuelValueTL;
-        float growthValueTM = (sectorTM.growthLevel / 250f) - fuelValueTM;
-        float growthValueTR = (sectorTR.growthLevel / 250f) - fuelValueTR;
+        //TM
+        if (statusTM == Sector.Status.incinerated)
+        {
+            mapSectorTM.color = incineratedColor;
+        }
+        if (statusTM == Sector.Status.hotBurn)
+        {
+            mapSectorTM.color = hotBurnedColor;
+        }
+        if (statusTM == Sector.Status.coolBurn)
+        {
+            mapSectorTM.color = coolBurnedColor;
+        }
+        if (statusTM == Sector.Status.healthy)
+        {
+            mapSectorTM.color = healthyColor;
+        }
+        if (statusTM == Sector.Status.dry)
+        {
+            mapSectorTM.color = dryColor;
+        }
+        if (statusTM == Sector.Status.veryDry)
+        {
+            mapSectorTM.color = verDryColor;
+        }
 
-        float growthValueML = (sectorML.growthLevel / 250f) - fuelValueML;
-        float growthValueMM = (sectorMM.growthLevel / 250f) - fuelValueMM;
-        float growthValueMR = (sectorMR.growthLevel / 250f) - fuelValueMR;
+        //TR
+        if (statusTR == Sector.Status.incinerated)
+        {
+            mapSectorTR.color = incineratedColor;
+        }
+        if (statusTR == Sector.Status.hotBurn)
+        {
+            mapSectorTR.color = hotBurnedColor;
+        }
+        if (statusTR == Sector.Status.coolBurn)
+        {
+            mapSectorTR.color = coolBurnedColor;
+        }
+        if (statusTR == Sector.Status.healthy)
+        {
+            mapSectorTR.color = healthyColor;
+        }
+        if (statusTR == Sector.Status.dry)
+        {
+            mapSectorTR.color = dryColor;
+        }
+        if (statusTR == Sector.Status.veryDry)
+        {
+            mapSectorTR.color = verDryColor;
+        }
 
-        float growthValueBL = (sectorBL.growthLevel / 250f) - fuelValueBL;
-        float growthValueBM = (sectorBM.growthLevel / 250f) - fuelValueBM;
-        float growthValueBR = (sectorBR.growthLevel / 250f) - fuelValueBR;
+        //ML
+        if (statusML == Sector.Status.incinerated)
+        {
+            mapSectorML.color = incineratedColor;
+        }
+        if (statusML == Sector.Status.hotBurn)
+        {
+            mapSectorML.color = hotBurnedColor;
+        }
+        if (statusML == Sector.Status.coolBurn)
+        {
+            mapSectorML.color = coolBurnedColor;
+        }
+        if (statusML == Sector.Status.healthy)
+        {
+            mapSectorML.color = healthyColor;
+        }
+        if (statusML == Sector.Status.dry)
+        {
+            mapSectorML.color = dryColor;
+        }
+        if (statusML == Sector.Status.veryDry)
+        {
+            mapSectorML.color = verDryColor;
+        }
 
+        //MM
+        if (statusMM == Sector.Status.incinerated)
+        {
+            mapSectorMM.color = incineratedColor;
+        }
+        if (statusMM == Sector.Status.hotBurn)
+        {
+            mapSectorMM.color = hotBurnedColor;
+        }
+        if (statusMM == Sector.Status.coolBurn)
+        {
+            mapSectorMM.color = coolBurnedColor;
+        }
+        if (statusMM == Sector.Status.healthy)
+        {
+            mapSectorMM.color = healthyColor;
+        }
+        if (statusMM == Sector.Status.dry)
+        {
+            mapSectorMM.color = dryColor;
+        }
+        if (statusMM == Sector.Status.veryDry)
+        {
+            mapSectorMM.color = verDryColor;
+        }
 
-        mapSectorTL.color = new Color(fuelValueTL, growthValueTL, 0, 1f);
-        mapSectorTM.color = new Color(fuelValueTM, growthValueTM, 0, 1f);
-        mapSectorTR.color = new Color(fuelValueTR, growthValueTR, 0, 1f);
+        //MR
+        if (statusMR == Sector.Status.incinerated)
+        {
+            mapSectorMR.color = incineratedColor;
+        }
+        if (statusMR == Sector.Status.hotBurn)
+        {
+            mapSectorMR.color = hotBurnedColor;
+        }
+        if (statusMR == Sector.Status.coolBurn)
+        {
+            mapSectorMR.color = coolBurnedColor;
+        }
+        if (statusMR == Sector.Status.healthy)
+        {
+            mapSectorMR.color = healthyColor;
+        }
+        if (statusMR == Sector.Status.dry)
+        {
+            mapSectorMR.color = dryColor;
+        }
+        if (statusMR == Sector.Status.veryDry)
+        {
+            mapSectorMR.color = verDryColor;
+        }
 
-        mapSectorML.color = new Color(fuelValueML, growthValueML, 0, 1f);
-        mapSectorMM.color = new Color(fuelValueMM, growthValueMM, 0, 1f);
-        mapSectorMR.color = new Color(fuelValueMR, growthValueMR, 0, 1f);
+        //BL
+        if (statusBL == Sector.Status.incinerated)
+        {
+            mapSectorBL.color = incineratedColor;
+        }
+        if (statusBL == Sector.Status.hotBurn)
+        {
+            mapSectorBL.color = hotBurnedColor;
+        }
+        if (statusBL == Sector.Status.coolBurn)
+        {
+            mapSectorBL.color = coolBurnedColor;
+        }
+        if (statusBL == Sector.Status.healthy)
+        {
+            mapSectorBL.color = healthyColor;
+        }
+        if (statusBL == Sector.Status.dry)
+        {
+            mapSectorBL.color = dryColor;
+        }
+        if (statusBL == Sector.Status.veryDry)
+        {
+            mapSectorBL.color = verDryColor;
+        }
 
-        mapSectorBL.color = new Color(fuelValueBL, growthValueBL, 0, 1f);
-        mapSectorBM.color = new Color(fuelValueBM, growthValueBM, 0, 1f);
-        mapSectorBR.color = new Color(fuelValueBR, growthValueBR, 0, 1f);
+        //BM
+        if (statusBM == Sector.Status.incinerated)
+        {
+            mapSectorBM.color = incineratedColor;
+        }
+        if (statusBM == Sector.Status.hotBurn)
+        {
+            mapSectorBM.color = hotBurnedColor;
+        }
+        if (statusBM == Sector.Status.coolBurn)
+        {
+            mapSectorBM.color = coolBurnedColor;
+        }
+        if (statusBM == Sector.Status.healthy)
+        {
+            mapSectorBM.color = healthyColor;
+        }
+        if (statusBM == Sector.Status.dry)
+        {
+            mapSectorBM.color = dryColor;
+        }
+        if (statusBM == Sector.Status.veryDry)
+        {
+            mapSectorBM.color = verDryColor;
+        }
+
+        //BR
+        if (statusBR == Sector.Status.incinerated)
+        {
+            mapSectorBR.color = incineratedColor;
+        }
+        if (statusBR == Sector.Status.hotBurn)
+        {
+            mapSectorBR.color = hotBurnedColor;
+        }
+        if (statusBR == Sector.Status.coolBurn)
+        {
+            mapSectorBR.color = coolBurnedColor;
+        }
+        if (statusBR == Sector.Status.healthy)
+        {
+            mapSectorBR.color = healthyColor;
+        }
+        if (statusBR == Sector.Status.dry)
+        {
+            mapSectorBR.color = dryColor;
+        }
+        if (statusBR == Sector.Status.veryDry)
+        {
+            mapSectorBR.color = verDryColor;
+        }
+        
+
     }
 
     public void beginNextMonth()
@@ -560,17 +753,6 @@ public class GameManager : MonoBehaviour
 
     void scoreUpdate()
     {
-
-        foreach (Sector sector in sectorList)
-        {
-            score += Mathf.RoundToInt(sector.growthLevel);
-        }
-
-        if (score >= scoreHigh)
-        {
-            scoreHigh = score;
-        }
-
         scoreText.text = "Score: " + score.ToString();
     }
 

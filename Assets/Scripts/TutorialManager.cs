@@ -21,6 +21,7 @@ public class TutorialManager : MonoBehaviour
     int tutorialPhase = 0;
 
     public Sector Sector9;
+    public GameObject TownBorders;
 
     void Start()
     {
@@ -32,6 +33,15 @@ public class TutorialManager : MonoBehaviour
     void Update()
     {
         communityCentreDist = Vector3.Distance(communityCentrePos.position, player.transform.position);
+
+        if (tutorialPhase <= 2)
+        {
+            TownBorders.SetActive(true);
+        }
+        if (tutorialPhase > 2)
+        {
+            TownBorders.SetActive(false);
+        }
 
         if (communityCentreDist < 5f && tutorialPhase == 0)
         {

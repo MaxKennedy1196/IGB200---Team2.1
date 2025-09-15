@@ -6,6 +6,7 @@ public class Player : MonoBehaviour
     public GameManager Manager;
 
     float speed = 10f;// How fast the player is 
+    float maxSpeed = 10f;
 
     public SpriteRenderer spriteRenderer;//
 
@@ -24,6 +25,8 @@ public class Player : MonoBehaviour
     [Header("Animation Variables")]
     public Animator anim;
 
+    bool isLocked = false;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -41,8 +44,19 @@ public class Player : MonoBehaviour
 
     void Update()
     {
+        if (isLocked == true)
+        {
+            playerMovementInput = new Vector2(0, 0);
+            speed = 0f;
+        }
+        if (isLocked == false)
+        {
+            speed = maxSpeed;
+            
+        }
 
         rb.linearVelocity = playerMovementInput * speed;
+
         detectCurrentSector();
 
         anim.SetFloat("Horizontal", playerMovementInput.x);
@@ -51,14 +65,14 @@ public class Player : MonoBehaviour
         if (playerMovementInput != Vector2.zero)
         {
             anim.SetFloat("LastHorizontal", playerMovementInput.x);
-            anim.SetFloat("LastVertical",playerMovementInput.y);
+            anim.SetFloat("LastVertical", playerMovementInput.y);
         }
-            
+
     }
 
     void detectCurrentSector()
     {
-        Debug.DrawRay(transform.position, transform.forward * sectorDetectionRaycastDistance, Color.red); 
+        Debug.DrawRay(transform.position, transform.forward * sectorDetectionRaycastDistance, Color.red);
         if (Physics.Raycast(transform.position, transform.forward, out sectorDetectionHit, sectorDetectionRaycastDistance))
         {
             GameObject sectorGameObject = sectorDetectionHit.collider.gameObject;
@@ -70,14 +84,23 @@ public class Player : MonoBehaviour
             //Debug.Log("Nothing Detected");
         }
     }
-    
+
     void OnEnable()
     {
         controls.GamePlay.Enable();
-    } 
+    }
 
     void OnDisable()
     {
         controls.GamePlay.Disable();
-    } 
+    }
+
+    public void lockPlayer()
+    {
+        isLocked = true;
+    }
+    public void unlockPlayer()
+    {
+        isLocked = false;
+    }
 }

@@ -31,11 +31,11 @@ public class EnvironmentalTreeVisuals : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (sectorCurrent.burned == true)
+        if (sectorCurrent.currentStatus == Sector.Status.incinerated)
         {
             growthTurns = 0;
         }
-        if (sectorCurrent.coolBurned == true)
+        if (sectorCurrent.currentStatus == Sector.Status.coolBurn)
         {
             growthTurns = 3;
         }
