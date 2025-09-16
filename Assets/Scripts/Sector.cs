@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
+using System.Data;
 
 
 
@@ -80,8 +81,8 @@ public class Sector : MonoBehaviour
     float[,] pattern3 = {{ 5 , 4},
                          { -2 , 1.5f},
                          { 0 , -3 },
-                         { 6 , 2.5f },
-                         { -3 , 8 }};
+                         { 5 , 2.5f },
+                         { -3 , 5 }};
 
     float[,] pattern4 = {{ -5, -5},
                          { -2.5f, 5},
@@ -95,10 +96,10 @@ public class Sector : MonoBehaviour
                          {  2.5f, -5},
                          {  5, 5}};
 
-    float[,] pattern6 = {{-7, 7  },
-                         {-7, -7  },
-                         {7, -7  },
-                         {7, 7 },
+    float[,] pattern6 = {{-5, 5  },
+                         {-5, -5  },
+                         {5, -5  },
+                         {5, 5 },
                          {0, 0 }};
 
     float challengeScoreBonus = 0.4f;
@@ -211,16 +212,35 @@ public class Sector : MonoBehaviour
         }
     }
 
-    void healthyRandomise()
+    void healthyRandomiseFromCoolBurn()
     {
         float randomiser = Random.Range(0f, 100f);
 
-        if (randomiser <= Manager.healthyChance)
+        if (randomiser <= Manager.healthyChanceFromCoolBurn)
         {
             currentStatus = Status.healthy;
         }
     }
 
+    void healthyRandomiseFromHotBurn()
+    {
+        float randomiser = Random.Range(0f, 100f);
+
+        if (randomiser <= Manager.healthyChanceFromHotBurn)
+        {
+            currentStatus = Status.healthy;
+        }
+    }
+
+    void healthyRandomiseFromIncinerated()
+    {
+        float randomiser = Random.Range(0f, 100f);
+
+        if (randomiser <= Manager.healthyChanceFromIncinerated)
+        {
+            currentStatus = Status.healthy;
+        }
+    }
     
 
     public void nextMonth()
@@ -242,18 +262,7 @@ public class Sector : MonoBehaviour
         }
         if (wildfire == false)
         {
-            if (currentStatus == Status.coolBurn)
-            {
-                healthyRandomise();   
-            }
-            if (currentStatus == Status.healthy)
-            {
-                dryRandomise();
-            }
-            if (currentStatus == Status.dry)
-            {
-                veryDryRandomise();   
-            }
+            updateStatus();
 
 
             if (currentStatus == Status.veryDry)
@@ -281,6 +290,35 @@ public class Sector : MonoBehaviour
             return;
         }
 
+    }
+
+    void updateStatus()
+    {
+        if (currentStatus == Status.coolBurn)
+        {
+            healthyRandomiseFromCoolBurn();
+            return;
+        }
+        if (currentStatus == Status.hotBurn)
+        {
+            healthyRandomiseFromHotBurn();
+            return;
+        }
+        if (currentStatus == Status.incinerated)
+        {
+            healthyRandomiseFromIncinerated();
+            return;
+        }
+        if (currentStatus == Status.healthy)
+        {
+            dryRandomise();
+            return;
+        }
+        if (currentStatus == Status.dry)
+        {
+            veryDryRandomise();
+            return;
+        }
     }
 
     private void startWildFire()

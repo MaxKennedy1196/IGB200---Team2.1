@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
     public GameObject[] Seasons = new GameObject[4];
 
     [Header("Status Change Chances")]
-    public float healthyChance;
+    public float healthyChanceFromCoolBurn;
+    public float healthyChanceFromHotBurn;
+    public float healthyChanceFromIncinerated;
     public float dryChance;
     public float veryDryChance;
 
@@ -134,8 +136,8 @@ public class GameManager : MonoBehaviour
     public bool UIActive;//this pleases lord xavier
 
     Color incineratedColor = new Color(0f, 0f, 0f, 1f);
-    Color hotBurnedColor = new Color(0f, 0f, 0f, 1f);
-    Color coolBurnedColor = new Color(0f, 0.2f, 0f, 1f);
+    Color hotBurnedColor = new Color(0f, 0.1f, 0f, 1f);
+    Color coolBurnedColor = new Color(0f, 0.3f, 0f, 1f);
     Color healthyColor = new Color(0.2f, 0.8f, 0.2f, 1f);
     Color dryColor = new Color(1f, 1f, 0.2f, 1f);
     Color verDryColor = new Color(0.8f, 0.4f, 0f, 1f);
