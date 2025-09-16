@@ -30,12 +30,14 @@ public class GameManager : MonoBehaviour
 
     [Header("Cool Burn Variables")]
     public Button coolBurnButton;
+    public GameObject coolBurnButtonGameObject;
 
     public int coolBurnAPCost;
 
 
     [Header("Hot Burn Variables")]
     public Button hotBurnButton;
+    public GameObject hotBurnButtonGameObject;
 
     public int hotBurnAPCost;
 
@@ -44,6 +46,8 @@ public class GameManager : MonoBehaviour
     public Button planningButton;
 
     public int planningDuration;
+
+    public int planningAPDiscount;
 
     public int planningAPCost;
 
@@ -178,8 +182,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
-
         checkCoolBurnAvailable();//check if this action can be performed
         checkHotBurnAvailable();//check if this action can be performed
         checkExtinguishAvailable();//check if this action can be performed
@@ -662,13 +664,30 @@ public class GameManager : MonoBehaviour
     public void beginCoolBurn()
     {
         player.sectorCurrent.startCoolBurn();
-        actionPointsCurrent -= coolBurnAPCost;
+        if (player.sectorCurrent.plannedTurns != 0)
+        {
+            actionPointsCurrent -= (coolBurnAPCost - planningAPDiscount);
+
+        }
+        if (player.sectorCurrent.plannedTurns == 0)
+        {
+            actionPointsCurrent -= coolBurnAPCost;
+        }
+            
     }
 
     public void beginHotBurn()
     {
         player.sectorCurrent.startHotBurn();
-        actionPointsCurrent -= hotBurnAPCost;
+        if (player.sectorCurrent.plannedTurns != 0)
+        {
+            actionPointsCurrent -= (hotBurnAPCost - planningAPDiscount);
+            
+        }
+        if (player.sectorCurrent.plannedTurns == 0)
+        {
+            actionPointsCurrent -= hotBurnAPCost;
+        }
     }
 
     public void beginPlanning()
@@ -682,37 +701,58 @@ public class GameManager : MonoBehaviour
         player.sectorCurrent.startExtinguish();
         actionPointsCurrent -= extinguishAPCost;
     }
-    
+
 
     void checkCoolBurnAvailable()
     {
-        if (actionPointsCurrent < coolBurnAPCost)
-        {
-            coolBurnButton.interactable = false;
-        }
-        if (actionPointsCurrent >= coolBurnAPCost)
-        {
-            coolBurnButton.interactable = true;
-        }
+        
         if (seasonName == "Spring" || seasonName == "Summer")
         {
-            coolBurnButton.interactable = false;
+            coolBurnButtonGameObject.SetActive(false);
+        }
+        if (seasonName == "Autumn" || seasonName == "Winter")
+        {
+            coolBurnButtonGameObject.SetActive(true);
+            if (actionPointsCurrent < coolBurnAPCost)
+            {
+                coolBurnButton.interactable = false;
+            }
+            if (actionPointsCurrent >= coolBurnAPCost)
+            {
+                coolBurnButton.interactable = true;
+            }
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+            {
+                coolBurnButton.interactable = false;
+            }
         }
     }
 
     void checkHotBurnAvailable()
     {
-        if (actionPointsCurrent < hotBurnAPCost)
+
+
+
+        if (seasonName == "Spring" || seasonName == "Summer")
         {
-            hotBurnButton.interactable = false;
-        }
-        if (actionPointsCurrent >= hotBurnAPCost)
-        {
-            hotBurnButton.interactable = true;
+            hotBurnButtonGameObject.SetActive(true);
+            if (actionPointsCurrent < hotBurnAPCost)
+            {
+                hotBurnButton.interactable = false;
+            }
+            if (actionPointsCurrent >= hotBurnAPCost)
+            {
+                hotBurnButton.interactable = true;
+            }
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+            {
+                hotBurnButton.interactable = false;
+            }
         }
         if (seasonName == "Autumn" || seasonName == "Winter")
         {
-            hotBurnButton.interactable = false;
+            hotBurnButtonGameObject.SetActive(false);
+
         }
     }
 
@@ -757,7 +797,6 @@ public class GameManager : MonoBehaviour
         if (centre.playerInRange == true)
         {
             communityCentreButtonGameObject.SetActive(true);
-            
         }
         if (centre.playerInRange == false)
         {

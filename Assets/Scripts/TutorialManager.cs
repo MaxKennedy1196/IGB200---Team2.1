@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -8,16 +9,22 @@ public class TutorialManager : MonoBehaviour
     public Player player;
     public float communityCentreDist;
 
-    public Transform communityCentrePos;
+    public Button nextMonthButton;
 
+    public Transform communityCentrePos;
+    //public GameObject communityCentreMenuObj;
+    
+    [Header("Tutorial Text Game Objects")]
     public GameObject CommunityCentreIntroduction;
     public GameObject OpenMapIntroduction;
     public GameObject FieldGuideIntroduction;
     public GameObject CoolBurnIntroduction;
     public GameObject CoolBurnReaction;
+    public GameObject GoYellowSquare;
 
     int tutorialPhase = 0;
 
+    [Header("Planning Variables")]
     public Sector Sector9;
     public GameObject TownBorders;
 
@@ -30,6 +37,11 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (tutorialPhase <= 5)
+        {
+            nextMonthButton.interactable = false;
+        }
+
         communityCentreDist = Vector3.Distance(communityCentrePos.position, player.transform.position);
 
         if (tutorialPhase <= 2)
@@ -74,6 +86,13 @@ public class TutorialManager : MonoBehaviour
             CoolBurnReaction.SetActive(true);
 
             tutorialPhase = 5;
+        }
+
+        if (Manager.rangerBookOpen && tutorialPhase == 5)
+        {
+            GoYellowSquare.SetActive(true);
+
+            tutorialPhase = 6;
         }
 
     }
