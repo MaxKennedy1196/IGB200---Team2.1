@@ -256,25 +256,28 @@ public class Sector : MonoBehaviour
             }
 
 
-
-            if (Manager.seasonName == "Spring")
+            if (currentStatus == Status.veryDry)
             {
-                float randomiser = Random.Range(0f, 100f);
-
-                if (randomiser <= Manager.wildfireChanceSpring)
+                if (Manager.seasonName == "Spring")
                 {
-                    startWildFire();
+                    float randomiser = Random.Range(0f, 100f);
+
+                    if (randomiser <= Manager.wildfireChanceSpring)
+                    {
+                        startWildFire();
+                    }
+                }
+                if (Manager.seasonName == "Summer")
+                {
+                    float randomiser = Random.Range(0f, 100f);
+
+                    if (randomiser <= Manager.wildfireChanceSummer)
+                    {
+                        startWildFire();
+                    }
                 }
             }
-            if (Manager.seasonName == "Summer")
-            {
-                float randomiser = Random.Range(0f, 100f);
 
-                if (randomiser <= Manager.wildfireChanceSummer)
-                {
-                    startWildFire();
-                }
-            }
             return;
         }
 

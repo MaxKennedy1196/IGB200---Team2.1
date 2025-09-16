@@ -135,10 +135,10 @@ public class GameManager : MonoBehaviour
 
     Color incineratedColor = new Color(0f, 0f, 0f, 1f);
     Color hotBurnedColor = new Color(0f, 0f, 0f, 1f);
-    Color coolBurnedColor = new Color(0f, 0.25f, 0f, 1f);
-    Color healthyColor = new Color(0.43F, 0.57f, 0.24f, 1f);
-    Color dryColor = new Color(0.83f, 0.8f, 0.46f, 1f);
-    Color verDryColor = new Color(1f, 0.5f, 0f, 1f);
+    Color coolBurnedColor = new Color(0f, 0.2f, 0f, 1f);
+    Color healthyColor = new Color(0.2f, 0.8f, 0.2f, 1f);
+    Color dryColor = new Color(1f, 1f, 0.2f, 1f);
+    Color verDryColor = new Color(0.8f, 0.4f, 0f, 1f);
     Color wildFireColor = new Color(1f, 0f, 0f, 1f);
 
     void Awake()
@@ -345,6 +345,10 @@ public class GameManager : MonoBehaviour
         {
             mapSectorTL.color = verDryColor;
         }
+        if (sectorTL.wildfire == true)
+        {
+            mapSectorTL.color = wildFireColor;
+        }
 
         //TM
         if (statusTM == Sector.Status.incinerated)
@@ -370,6 +374,10 @@ public class GameManager : MonoBehaviour
         if (statusTM == Sector.Status.veryDry)
         {
             mapSectorTM.color = verDryColor;
+        }
+        if (sectorTM.wildfire == true)
+        {
+            mapSectorTM.color = wildFireColor;
         }
 
         //TR
@@ -397,6 +405,10 @@ public class GameManager : MonoBehaviour
         {
             mapSectorTR.color = verDryColor;
         }
+        if (sectorTR.wildfire == true)
+        {
+            mapSectorTR.color = wildFireColor;
+        }
 
         //ML
         if (statusML == Sector.Status.incinerated)
@@ -422,6 +434,10 @@ public class GameManager : MonoBehaviour
         if (statusML == Sector.Status.veryDry)
         {
             mapSectorML.color = verDryColor;
+        }
+        if (sectorML.wildfire == true)
+        {
+            mapSectorML.color = wildFireColor;
         }
 
         //MM
@@ -449,6 +465,10 @@ public class GameManager : MonoBehaviour
         {
             mapSectorMM.color = verDryColor;
         }
+        if (sectorMM.wildfire == true)
+        {
+            mapSectorMM.color = wildFireColor;
+        }
 
         //MR
         if (statusMR == Sector.Status.incinerated)
@@ -474,6 +494,10 @@ public class GameManager : MonoBehaviour
         if (statusMR == Sector.Status.veryDry)
         {
             mapSectorMR.color = verDryColor;
+        }
+        if (sectorMR.wildfire == true)
+        {
+            mapSectorMR.color = wildFireColor;
         }
 
         //BL
@@ -501,6 +525,10 @@ public class GameManager : MonoBehaviour
         {
             mapSectorBL.color = verDryColor;
         }
+        if (sectorBL.wildfire == true)
+        {
+            mapSectorBL.color = wildFireColor;
+        }
 
         //BM
         if (statusBM == Sector.Status.incinerated)
@@ -527,6 +555,10 @@ public class GameManager : MonoBehaviour
         {
             mapSectorBM.color = verDryColor;
         }
+        if (sectorBM.wildfire == true)
+        {
+            mapSectorBM.color = wildFireColor;
+        }
 
         //BR
         if (statusBR == Sector.Status.incinerated)
@@ -552,6 +584,10 @@ public class GameManager : MonoBehaviour
         if (statusBR == Sector.Status.veryDry)
         {
             mapSectorBR.color = verDryColor;
+        }
+        if (sectorBR.wildfire == true)
+        {
+            mapSectorBR.color = wildFireColor;
         }
         
 

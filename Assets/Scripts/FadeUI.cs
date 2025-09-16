@@ -14,7 +14,7 @@ public class FadeUI : MonoBehaviour
     
     public IEnumerator FadeInAndOut(GameObject fadingObject)
     {
-        Debug.Log("RAAAAH");
+        //Debug.Log("RAAAAH");
         fadingObject.SetActive(true);
         /*
         var seasonColor = fadingObject.GetComponent<Image>().color;

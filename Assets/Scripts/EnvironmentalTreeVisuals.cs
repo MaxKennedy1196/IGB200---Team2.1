@@ -35,6 +35,10 @@ public class EnvironmentalTreeVisuals : MonoBehaviour
         {
             growthTurns = 0;
         }
+        if (sectorCurrent.currentStatus == Sector.Status.hotBurn)
+        {
+            growthTurns = 0;
+        }
         if (sectorCurrent.currentStatus == Sector.Status.coolBurn)
         {
             growthTurns = 3;
