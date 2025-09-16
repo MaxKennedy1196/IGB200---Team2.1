@@ -184,12 +184,16 @@ public class Sector : MonoBehaviour
 
     void sectorInit()
     {
-        currentStatus = Status.healthy;
+        if (randomInital == true)
+        {
+            currentStatus = Status.healthy;
 
-        dryRandomise();
+            dryRandomise();
 
-        wildfire = false;
-        fireImage.enabled = false;
+            wildfire = false;
+            fireImage.enabled = false;
+        }
+            
     }
 
     void dryRandomise()

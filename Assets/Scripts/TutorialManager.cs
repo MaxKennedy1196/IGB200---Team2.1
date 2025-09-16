@@ -11,12 +11,10 @@ public class TutorialManager : MonoBehaviour
     public Transform communityCentrePos;
 
     public GameObject CommunityCentreIntroduction;
-
     public GameObject OpenMapIntroduction;
-
     public GameObject FieldGuideIntroduction;
-
     public GameObject CoolBurnIntroduction;
+    public GameObject CoolBurnReaction;
 
     int tutorialPhase = 0;
 
@@ -43,14 +41,14 @@ public class TutorialManager : MonoBehaviour
             TownBorders.SetActive(false);
         }
 
-        if (communityCentreDist < 5f && tutorialPhase == 0)
+        if (communityCentreDist < 2f && tutorialPhase == 0)
         {
             CommunityCentreIntroduction.SetActive(true);
 
             tutorialPhase = 1;
         }
 
-        if (communityCentreDist > 10f && tutorialPhase == 1)
+        if (communityCentreDist > 3f && tutorialPhase == 1)
         {
             OpenMapIntroduction.SetActive(true);
 
@@ -63,12 +61,19 @@ public class TutorialManager : MonoBehaviour
 
             tutorialPhase = 3;
         }
-        
+
         if (player.sectorCurrent == Sector9 && tutorialPhase == 3)
         {
             CoolBurnIntroduction.SetActive(true);
 
             tutorialPhase = 4;
+        }
+
+        if (Sector9.currentStatus == Sector.Status.coolBurn && tutorialPhase == 4)
+        {
+            CoolBurnReaction.SetActive(true);
+
+            tutorialPhase = 5;
         }
 
     }

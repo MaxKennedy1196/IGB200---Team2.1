@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
     public CommunityCentre centre;
 
     public GameObject communityCentreMenu;
-    public Button communityCentreButton;
+    public GameObject communityCentreButtonGameObject;
 
     [Header("Awareness Campaign Variables")]
 
@@ -756,11 +756,12 @@ public class GameManager : MonoBehaviour
     {
         if (centre.playerInRange == true)
         {
-            communityCentreButton.interactable = true;
+            communityCentreButtonGameObject.SetActive(true);
+            
         }
         if (centre.playerInRange == false)
         {
-            communityCentreButton.interactable = false;
+            communityCentreButtonGameObject.SetActive(false);
             closeCommunityCentre();
         }
     }
