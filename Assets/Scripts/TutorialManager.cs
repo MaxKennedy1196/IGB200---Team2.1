@@ -21,11 +21,24 @@ public class TutorialManager : MonoBehaviour
     public GameObject CoolBurnIntroduction;
     public GameObject CoolBurnReaction;
     public GameObject GoYellowSquare;
+    public GameObject PlanningCoolBurn;
+    public GameObject CoolBurn2;
+    public GameObject ColdSeasonEnd;
+    public GameObject SpringStart;
+    public GameObject GotoHotBurn;
+    public GameObject PlanHotBurn;
+    public GameObject DoHotBurn;
+    public GameObject HotBurnReaction;
+    public GameObject BUSHFIRE;
+    public GameObject SuppressBushfire;
+    public GameObject BushfireReaction;
+    public GameObject FiresticksLovesYou;
 
     int tutorialPhase = 0;
 
     [Header("Planning Variables")]
     public Sector Sector9;
+    public Sector Sector4;
     public GameObject TownBorders;
 
     void Start()
@@ -93,6 +106,25 @@ public class TutorialManager : MonoBehaviour
             GoYellowSquare.SetActive(true);
 
             tutorialPhase = 6;
+        }
+
+        if (player.sectorCurrent == Sector4 && tutorialPhase == 6)
+        {
+            PlanningCoolBurn.SetActive(true);
+
+            tutorialPhase = 7;
+        }
+
+        if (Sector4.plannedTurns != 0 && tutorialPhase == 7)
+        {
+            CoolBurn2.SetActive(true);
+            tutorialPhase = 8;
+        }
+
+        if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 8)
+        {
+            ColdSeasonEnd.SetActive(true);
+            tutorialPhase = 9;
         }
 
     }
