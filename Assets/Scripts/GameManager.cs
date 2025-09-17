@@ -68,12 +68,12 @@ public class GameManager : MonoBehaviour
 
 
     [Header("Scoring Variables")]
-    public int score;
-    public int scoreHigh;
+    public float score;
 
     public TextMeshProUGUI scoreText;
-    public TextMeshProUGUI scoreHighText;
 
+    public float planningScoreMuliplier;
+    public float scoreMultiplier;
 
     [Header("Month + Season Variables")]
     public string monthName = "";// Displays the name of the current month Updated by updateSeasonMonthNames()
@@ -202,6 +202,8 @@ public class GameManager : MonoBehaviour
         updatePlayerMiniMapPosition();
 
         updateCommunityCentreText();
+
+        scoreTextUpdate();
 
         actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
     }
@@ -608,7 +610,7 @@ public class GameManager : MonoBehaviour
 
     public void beginNextMonth()
     {
-        scoreTextUpdate();
+        
 
         foreach (EnvironmentalTreeVisuals tree in treeList)
         {
@@ -837,7 +839,8 @@ public class GameManager : MonoBehaviour
 
     void scoreTextUpdate()
     {
-        scoreText.text = "Score: " + score.ToString();
+        int scoreInt = Mathf.RoundToInt(score);
+        scoreText.text = "Score: " + scoreInt.ToString();
     }
 
     private void updateSeasonMonthNames()
@@ -945,7 +948,7 @@ public class GameManager : MonoBehaviour
         seasonText.text = "Season: " + seasonName;
     }
 
-    public void scoreIncrease(int input)
+    public void scoreIncrease(float input)
     {
         score += input;
     }

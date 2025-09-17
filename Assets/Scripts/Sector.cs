@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Tilemaps;
 using System.Data;
+using UnityEngine.SocialPlatforms.Impl;
 
 
 
@@ -102,9 +103,7 @@ public class Sector : MonoBehaviour
                          {5, 5 },
                          {0, 0 }};
 
-    float challengeScoreBonus = 0.4f;
-
-    float challengeScoreBonusPlanned = 1f;
+    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -140,14 +139,14 @@ public class Sector : MonoBehaviour
         }
 
 
-        if (wildfire == true)
-        {
-            fireImage.enabled = true;
-        }
-        if (wildfire == false)
-        {
-            fireImage.enabled = false;
-        }
+        //if (wildfire == true)
+        //{
+        //    fireImage.enabled = true;
+        //}
+        //if (wildfire == false)
+        //{
+        //    fireImage.enabled = false;
+        //}
 
         updateDisplayTiles();
 
@@ -191,7 +190,7 @@ public class Sector : MonoBehaviour
             dryRandomise();
 
             wildfire = false;
-            fireImage.enabled = false;
+            //fireImage.enabled = false;
         }
             
     }
@@ -390,29 +389,42 @@ public class Sector : MonoBehaviour
 
     private void completeCoolBurn(float challengeScore)
     {
-        if (plannedTurns == 0)
+        float finalScore = 0;
+        if (challengeScore < 0)
         {
-            challengeScore += challengeScoreBonus;
+            challengeScore = 0;
         }
+
+        if (plannedTurns == 0)
+            {
+                finalScore = challengeScore * Manager.scoreMultiplier;
+                Manager.scoreIncrease(finalScore);
+            }
         if (plannedTurns != 0)
         {
-            challengeScore += challengeScoreBonusPlanned;
+            finalScore = challengeScore * Manager.scoreMultiplier * Manager.planningScoreMuliplier;
+            Manager.scoreIncrease(finalScore);
             plannedTurns = 0;
         }
 
         currentStatus = Status.coolBurn;
-        print("Cool Burn Performed: " + challengeScore);
+        print("Cool Burn Performed: " + finalScore);
     }
 
     private void completeHotBurn(float challengeScore)
     {
+        if (challengeScore < 0)
+        {
+            challengeScore = 0;
+        }
+
         if (plannedTurns == 0)
         {
-            challengeScore += challengeScoreBonus;
+            Manager.scoreIncrease(challengeScore * Manager.scoreMultiplier);
         }
         if (plannedTurns != 0)
         {
-            challengeScore += challengeScoreBonusPlanned;
+            Manager.scoreIncrease(challengeScore * Manager.scoreMultiplier * Manager.planningScoreMuliplier);
             plannedTurns = 0;
         }
 
@@ -422,6 +434,11 @@ public class Sector : MonoBehaviour
 
     private void completePlanning(float challengeScore)
     {
+        if (challengeScore < 0)
+        {
+            challengeScore = 0;
+        }
+
         plannedTurns = Manager.planningDuration;
 
         print("Planning Complete");
@@ -429,6 +446,11 @@ public class Sector : MonoBehaviour
 
     private void completeExtinguish(float challengeScore)
     {
+        if (challengeScore < 0)
+        {
+            challengeScore = 0;
+        }
+
         wildfire = false;
         print("Extinguish Performed");
     }
