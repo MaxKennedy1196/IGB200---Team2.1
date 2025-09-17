@@ -249,6 +249,14 @@ public class Sector : MonoBehaviour
 
     public void nextMonth()
     {
+        if (currentStatus == Status.hotBurn)
+        {
+            Manager.scoreIncrease(Manager.pointsHotBurned);
+        }
+        if (currentStatus == Status.coolBurn)
+        {
+            Manager.scoreIncrease(Manager.pointsCoolBurned);
+        }
         if (currentStatus == Status.healthy)
         {
             Manager.scoreIncrease(Manager.pointsHealthy);
