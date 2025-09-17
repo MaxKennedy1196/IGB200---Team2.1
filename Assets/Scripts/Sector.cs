@@ -245,10 +245,23 @@ public class Sector : MonoBehaviour
             currentStatus = Status.healthy;
         }
     }
-    
+
 
     public void nextMonth()
     {
+        if (currentStatus == Status.healthy)
+        {
+            Manager.scoreIncrease(Manager.pointsHealthy);
+        }
+        if (currentStatus == Status.dry)
+        {
+            Manager.scoreIncrease(Manager.pointsDry);
+        }
+        if (currentStatus == Status.veryDry)
+        {
+            Manager.scoreIncrease(Manager.pointsVerDry);
+        }
+
         incinerated = false;
         coolBurned = false;
 
@@ -257,7 +270,6 @@ public class Sector : MonoBehaviour
         {
             plannedTurns = 0;
         }
-
 
         if (wildfire == true)
         {
@@ -293,6 +305,8 @@ public class Sector : MonoBehaviour
 
             return;
         }
+        
+
 
     }
 

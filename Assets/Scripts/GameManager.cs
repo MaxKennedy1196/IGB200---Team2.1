@@ -126,6 +126,7 @@ public class GameManager : MonoBehaviour
     [Header("Awareness Campaign Variables")]
 
     public int awarenessAPCost;
+    public int awarenessAPGain;
     public Button awarenessButton;
     public TextMeshProUGUI awarenessLevelText;
     int awarenessLevel;
@@ -146,6 +147,14 @@ public class GameManager : MonoBehaviour
     Color dryColor = new Color(1f, 1f, 0.2f, 1f);
     Color verDryColor = new Color(0.8f, 0.4f, 0f, 1f);
     Color wildFireColor = new Color(1f, 0f, 0f, 1f);
+
+    [Header("Scoring based on Stuatus")]
+
+    public int pointsHotBurned;
+    public int pointsCoolBurned;
+    public int pointsHealthy;
+    public int pointsDry;
+    public int pointsVerDry;
 
     void Awake()
     {
@@ -599,7 +608,7 @@ public class GameManager : MonoBehaviour
 
     public void beginNextMonth()
     {
-        scoreUpdate();
+        scoreTextUpdate();
 
         foreach (EnvironmentalTreeVisuals tree in treeList)
         {
@@ -608,7 +617,7 @@ public class GameManager : MonoBehaviour
 
         actionPointsCurrent += actionPointsIncreaseRate;
 
-        actionPointsCurrent += 25 * awarenessLevel;
+        actionPointsCurrent += awarenessAPGain * awarenessLevel;
         awarenessLevel = 0;
 
         if (actionPointsCurrent >= actionPointsMax)
@@ -730,9 +739,6 @@ public class GameManager : MonoBehaviour
 
     void checkHotBurnAvailable()
     {
-
-
-
         if (seasonName == "Spring" || seasonName == "Summer")
         {
             hotBurnButtonGameObject.SetActive(true);
@@ -829,7 +835,7 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void scoreUpdate()
+    void scoreTextUpdate()
     {
         scoreText.text = "Score: " + score.ToString();
     }
@@ -937,6 +943,11 @@ public class GameManager : MonoBehaviour
 
         monthText.text = "Month: " + monthName;
         seasonText.text = "Season: " + seasonName;
+    }
+
+    public void scoreIncrease(int input)
+    {
+        score += input;
     }
 
     void OnEnable()
