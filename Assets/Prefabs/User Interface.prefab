@@ -892,8 +892,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Community Awareness Campaign: Gives you an exta 25 AP at the start of
-    next turn. Costs: 20 AP. Level Resets at the start of every turn.'
+  m_text: 'Community Awareness Campaign: Gives you an extra 2 AP at the start of
+    next turn. Costs: 5 AP. Level Resets at the start of every turn.'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
