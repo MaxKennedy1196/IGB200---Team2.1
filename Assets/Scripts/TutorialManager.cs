@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -44,6 +45,7 @@ public class TutorialManager : MonoBehaviour
     public Sector Sector9;
     public Sector Sector4;
     public Sector Sector2;
+    public Sector Sector7;
     public GameObject TownBorders;
 
     void Start()
@@ -168,6 +170,7 @@ public class TutorialManager : MonoBehaviour
             Sector4.currentStatus = Sector.Status.healthy;
             Sector9.currentStatus = Sector.Status.healthy;
             Sector2.currentStatus = Sector.Status.veryDry;
+            Sector7.currentStatus = Sector.Status.veryDry;
 
             Manager.timeProgressionRate = 4;
             nextMonthButton.interactable = false;
@@ -195,7 +198,37 @@ public class TutorialManager : MonoBehaviour
             HotBurnReaction.SetActive(true);
 
             tutorialPhase = 16;
+            nextMonthButton.interactable = true;
+        }
+
+        if (Manager.month == 10 && tutorialPhase == 16)
+        {
+            BUSHFIRE.SetActive(true);
+            Sector7.wildfire = true;
+
+            tutorialPhase = 17;
             nextMonthButton.interactable = false;
+        }
+
+        if (player.sectorCurrent == Sector7 && tutorialPhase == 17)
+        {
+            SuppressBushfire.SetActive(true);
+
+            tutorialPhase = 18;
+            nextMonthButton.interactable = false;
+        }
+
+        if (Sector7.currentStatus == Sector.Status.veryDry && Sector7.wildfire == false && tutorialPhase == 18)
+        {
+            BushfireReaction.SetActive(true);
+
+            tutorialPhase = 19;
+            nextMonthButton.interactable = false;
+        }
+
+        if (BushfireReaction.activeInHierarchy == false && tutorialPhase == 19)
+        {
+            SceneManager.LoadScene("Tutorial2Game");
         }
 
 
