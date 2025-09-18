@@ -2,10 +2,6 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
-using Unity.VisualScripting;
-using UnityEditor.ShaderKeywordFilter;
-using Mono.Cecil.Cil;
-using UnityEditor.PackageManager;
 
 public class GameManager : MonoBehaviour
 {
@@ -44,6 +40,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Planning Variables")]
     public Button planningButton;
+    public TextMeshProUGUI plannedTurnsText;
+    public GameObject plannedTurnsTextGameObject;
 
     public int planningDuration;
 
@@ -177,12 +175,14 @@ public class GameManager : MonoBehaviour
         if (rangerBookOpen == false)
         {
             RangerBook.SetActive(true);
+            player.lockPlayer();
             rangerBookOpen = true;
             return;
         }
         if (rangerBookOpen == true)
         {
             RangerBook.SetActive(false);
+            player.unlockPlayer();
             rangerBookOpen = false;
             return;
         }
@@ -204,8 +204,9 @@ public class GameManager : MonoBehaviour
         updateCommunityCentreText();
 
         scoreTextUpdate();
+        plannedTurnsTextUpdate();
 
-        actionPointsRemainingText.text = "Action Points Remaining: " + actionPointsCurrent;
+        actionPointsRemainingText.text = "Action Points: " + actionPointsCurrent;
     }
 
     private Sector locateSectorInList(int XPos, int YPos)
@@ -716,7 +717,7 @@ public class GameManager : MonoBehaviour
 
     void checkCoolBurnAvailable()
     {
-        
+
         if (seasonName == "Spring" || seasonName == "Summer")
         {
             coolBurnButtonGameObject.SetActive(false);
@@ -737,6 +738,13 @@ public class GameManager : MonoBehaviour
                 coolBurnButton.interactable = false;
             }
         }
+
+        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true)
+        {
+            coolBurnButton.interactable = false;
+        }
+
+
     }
 
     void checkHotBurnAvailable()
@@ -762,6 +770,11 @@ public class GameManager : MonoBehaviour
             hotBurnButtonGameObject.SetActive(false);
 
         }
+
+        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true)
+        {
+            hotBurnButton.interactable = false;
+        }
     }
 
     void checkPlanningAvailable()
@@ -773,6 +786,11 @@ public class GameManager : MonoBehaviour
         if (actionPointsCurrent >= planningAPCost)
         {
             planningButton.interactable = true;
+        }
+
+        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+        {
+            planningButton.interactable = false;
         }
     }
 
@@ -843,6 +861,20 @@ public class GameManager : MonoBehaviour
         scoreText.text = "Score: " + scoreInt.ToString();
     }
 
+    void plannedTurnsTextUpdate()
+    {
+        if (player.sectorCurrent.plannedTurns != 0)
+        {
+            plannedTurnsTextGameObject.SetActive(true);
+            plannedTurnsText.text = "Planned Turns Remaining: " + player.sectorCurrent.plannedTurns.ToString();
+        }
+        if (player.sectorCurrent.plannedTurns == 0)
+        {
+            plannedTurnsTextGameObject.SetActive(false);
+        }
+            
+    }
+
     private void updateSeasonMonthNames()
     {
         if (month == 1)
@@ -855,7 +887,7 @@ public class GameManager : MonoBehaviour
         }
         if (month == 3)
         {
-            seasonName = "Autumn";            
+            seasonName = "Autumn";
         }
         if (month == 4)
         {

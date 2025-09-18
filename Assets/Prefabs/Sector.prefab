@@ -13083,7 +13083,7 @@ GameObject:
   - component: {fileID: 6672071100218832062}
   - component: {fileID: 3134768379718730044}
   m_Layer: 6
-  m_Name: Tilemap_BurnOverlay
+  m_Name: Tilemap_Incinerated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26061,12 +26061,12 @@ GameObject:
   - component: {fileID: 7740935749699046141}
   - component: {fileID: 5573768688789625847}
   m_Layer: 6
-  m_Name: Tilemap_BurnedBacking
+  m_Name: Tilemap_CoolBurn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4579312220370736956
 Transform:
   m_ObjectHideFlags: 0
@@ -32004,12 +32004,12 @@ GameObject:
   - component: {fileID: 905310771153781287}
   - component: {fileID: 9042886625357828247}
   m_Layer: 6
-  m_Name: Tilemap_Wilfire
+  m_Name: Tilemap_Wildfire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2880861206261620841
 Transform:
   m_ObjectHideFlags: 0
@@ -37999,7 +37999,7 @@ MonoBehaviour:
   yPos: 0
   currentStatus: 0
   plannedTurns: 0
-  fireImage: {fileID: 0}
+  wildfireGraphics: {fileID: 8030390722864169349}
   wildfire: 0
   challengeEnabled: 0
   challengeBorders: {fileID: 9104894724039524769}
@@ -38013,7 +38013,8 @@ MonoBehaviour:
   tileMapHealthy: {fileID: 5765456306698994834}
   tileMapYellow: {fileID: 4136594405399474662}
   tileMapOrange: {fileID: 3813034848323414203}
-  tileMapBurnedOverlay: {fileID: 4758651636629140552}
+  tileMapIncineratedOverlay: {fileID: 4758651636629140552}
+  tileMapCoolBurnedOverlay: {fileID: 7897205136357928866}
   incinerated: 0
   coolBurned: 0
   randomInital: 0

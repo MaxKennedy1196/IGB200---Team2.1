@@ -37,7 +37,7 @@ public class Sector : MonoBehaviour
     public int plannedTurns;
 
     [Header("Wildfire Variables")]
-    public Image fireImage;
+    public GameObject wildfireGraphics;
     
     public bool wildfire;
 
@@ -56,7 +56,8 @@ public class Sector : MonoBehaviour
     public GameObject tileMapHealthy;
     public GameObject tileMapYellow;
     public GameObject tileMapOrange;
-    public GameObject tileMapBurnedOverlay;
+    public GameObject tileMapIncineratedOverlay;
+    public GameObject tileMapCoolBurnedOverlay;
 
     public bool incinerated;
     public bool coolBurned;
@@ -139,14 +140,14 @@ public class Sector : MonoBehaviour
         }
 
 
-        //if (wildfire == true)
-        //{
-        //    fireImage.enabled = true;
-        //}
-        //if (wildfire == false)
-        //{
-        //    fireImage.enabled = false;
-        //}
+        if (wildfire == true)
+        {
+            wildfireGraphics.SetActive(true);
+        }
+        if (wildfire == false)
+        {
+            wildfireGraphics.SetActive(false);
+        }
 
         updateDisplayTiles();
 
@@ -161,7 +162,8 @@ public class Sector : MonoBehaviour
         tileMapOrange.SetActive(false);
         tileMapYellow.SetActive(false);
         tileMapHealthy.SetActive(false);
-        tileMapBurnedOverlay.SetActive(false);
+        tileMapIncineratedOverlay.SetActive(false);
+        tileMapCoolBurnedOverlay.SetActive(false);
 
         if (currentStatus == Status.veryDry)
         {
@@ -177,7 +179,15 @@ public class Sector : MonoBehaviour
         }
         if (currentStatus == Status.incinerated)
         {
-            tileMapBurnedOverlay.SetActive(true);
+            tileMapIncineratedOverlay.SetActive(true);
+        }
+        if (currentStatus == Status.hotBurn)
+        {
+            tileMapIncineratedOverlay.SetActive(true);
+        }
+        if (currentStatus == Status.coolBurn)
+        {
+            tileMapCoolBurnedOverlay.SetActive(true);
         }
     }
 
@@ -190,7 +200,7 @@ public class Sector : MonoBehaviour
             dryRandomise();
 
             wildfire = false;
-            //fireImage.enabled = false;
+            //wildfireGraphics.enabled = false;
         }
             
     }
@@ -348,7 +358,7 @@ public class Sector : MonoBehaviour
 
     private void startWildFire()
     {
-        fireImage.enabled = true;
+        wildfireGraphics.SetActive(true);
         wildfire = true;
 
         print("WILDFIRE!!!");
