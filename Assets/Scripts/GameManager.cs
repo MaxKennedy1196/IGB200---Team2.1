@@ -74,13 +74,14 @@ public class GameManager : MonoBehaviour
     public float scoreMultiplier;
 
     [Header("Month + Season Variables")]
+    [HideInInspector] public int timeProgressionRate;
     public string monthName = "";// Displays the name of the current month Updated by updateSeasonMonthNames()
     public string seasonName = "";// Displays the name of the current Season Updated by updateSeasonMonthNames()
 
     public TextMeshProUGUI monthText;
     public TextMeshProUGUI seasonText;
 
-    int month = 3;//Current Month Number 
+    public int month = 3;//Current Month Number 
     int monthsTotal = 1; //Total months Ellapsed
 
     [Header("Ranger Book Variables")]
@@ -165,6 +166,7 @@ public class GameManager : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        timeProgressionRate = 1;
         updateSeasonMonthNames();
 
         actionPointsCurrent = actionPointsMax;
@@ -628,7 +630,7 @@ public class GameManager : MonoBehaviour
             actionPointsCurrent = actionPointsMax;
         }
 
-        month += 1;
+        month += timeProgressionRate;
         monthsTotal += 1;
 
         if (month >= 13)

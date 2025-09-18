@@ -10,6 +10,9 @@ public class TutorialManager : MonoBehaviour
     public float communityCentreDist;
 
     public Button nextMonthButton;
+    public Button coolBurnButton;
+    public Button hotBurnButton;
+    public Button planningButton;
 
     public Transform communityCentrePos;
     //public GameObject communityCentreMenuObj;
@@ -22,6 +25,8 @@ public class TutorialManager : MonoBehaviour
     public GameObject CoolBurnReaction;
     public GameObject GoYellowSquare;
     public GameObject PlanningCoolBurn;
+    public GameObject PlanningComplete;
+    public GameObject NextMonth;
     public GameObject CoolBurn2;
     public GameObject ColdSeasonEnd;
     public GameObject SpringStart;
@@ -34,11 +39,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject BushfireReaction;
     public GameObject FiresticksLovesYou;
 
-    int tutorialPhase = 0;
+    public int tutorialPhase;
 
     [Header("Planning Variables")]
     public Sector Sector9;
     public Sector Sector4;
+    public Sector Sector2;
     public GameObject TownBorders;
 
     void Start()
@@ -50,10 +56,7 @@ public class TutorialManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (tutorialPhase <= 5)
-        {
-            nextMonthButton.interactable = false;
-        }
+
 
         communityCentreDist = Vector3.Distance(communityCentrePos.position, player.transform.position);
 
@@ -71,6 +74,7 @@ public class TutorialManager : MonoBehaviour
             CommunityCentreIntroduction.SetActive(true);
 
             tutorialPhase = 1;
+            nextMonthButton.interactable = false;
         }
 
         if (communityCentreDist > 3f && tutorialPhase == 1)
@@ -78,6 +82,7 @@ public class TutorialManager : MonoBehaviour
             OpenMapIntroduction.SetActive(true);
 
             tutorialPhase = 2;
+            nextMonthButton.interactable = false;
         }
 
         if (Manager.rangerBookOpen && tutorialPhase == 2)
@@ -85,6 +90,7 @@ public class TutorialManager : MonoBehaviour
             FieldGuideIntroduction.SetActive(true);
 
             tutorialPhase = 3;
+            nextMonthButton.interactable = false;
         }
 
         if (player.sectorCurrent == Sector9 && tutorialPhase == 3)
@@ -92,6 +98,7 @@ public class TutorialManager : MonoBehaviour
             CoolBurnIntroduction.SetActive(true);
 
             tutorialPhase = 4;
+            nextMonthButton.interactable = false;
         }
 
         if (Sector9.currentStatus == Sector.Status.coolBurn && tutorialPhase == 4)
@@ -99,6 +106,7 @@ public class TutorialManager : MonoBehaviour
             CoolBurnReaction.SetActive(true);
 
             tutorialPhase = 5;
+            nextMonthButton.interactable = false;
         }
 
         if (Manager.rangerBookOpen && tutorialPhase == 5)
@@ -106,6 +114,7 @@ public class TutorialManager : MonoBehaviour
             GoYellowSquare.SetActive(true);
 
             tutorialPhase = 6;
+            nextMonthButton.interactable = false;
         }
 
         if (player.sectorCurrent == Sector4 && tutorialPhase == 6)
@@ -113,19 +122,67 @@ public class TutorialManager : MonoBehaviour
             PlanningCoolBurn.SetActive(true);
 
             tutorialPhase = 7;
+            nextMonthButton.interactable = false;
         }
 
         if (Sector4.plannedTurns != 0 && tutorialPhase == 7)
         {
-            CoolBurn2.SetActive(true);
+            PlanningComplete.SetActive(true);
             tutorialPhase = 8;
+            nextMonthButton.interactable = false;
         }
 
-        if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 8)
+        if (communityCentreDist < 2f && tutorialPhase == 8)
+        {
+            NextMonth.SetActive(true);
+            tutorialPhase = 9;
+            nextMonthButton.interactable = true;
+        }
+
+        if (communityCentreDist < 2f && tutorialPhase == 9)
+        {
+            NextMonth.SetActive(true);
+            tutorialPhase = 10;
+            nextMonthButton.interactable = true;
+        }
+
+        if (Manager.month == 4 && tutorialPhase == 10)
+        {
+            CoolBurn2.SetActive(true);
+            tutorialPhase = 11;
+            nextMonthButton.interactable = false;
+        }
+
+        if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 11)
         {
             ColdSeasonEnd.SetActive(true);
-            tutorialPhase = 9;
+            tutorialPhase = 12;
+            nextMonthButton.interactable = true;
+            Manager.timeProgressionRate = 5;
         }
+
+        if (Manager.month == 9 && tutorialPhase == 12)
+        {
+            SpringStart.SetActive(true);
+            tutorialPhase = 13;
+
+            Sector4.currentStatus = Sector.Status.healthy;
+            Sector9.currentStatus = Sector.Status.healthy;
+            Sector2.currentStatus = Sector.Status.veryDry;
+
+            Manager.timeProgressionRate = 4;
+            nextMonthButton.interactable = false;
+        }
+
+        if (Manager.rangerBookOpen == true && tutorialPhase == 13)
+        {
+            GotoHotBurn.SetActive(true);
+            tutorialPhase = 14;
+
+            Manager.timeProgressionRate = 1;
+            nextMonthButton.interactable = false;
+        }
+
 
     }
     
