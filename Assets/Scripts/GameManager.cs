@@ -735,7 +735,7 @@ public class GameManager : MonoBehaviour
             {
                 coolBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
             {
                 coolBurnButton.interactable = false;
             }
@@ -762,7 +762,7 @@ public class GameManager : MonoBehaviour
             {
                 hotBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
             {
                 hotBurnButton.interactable = false;
             }

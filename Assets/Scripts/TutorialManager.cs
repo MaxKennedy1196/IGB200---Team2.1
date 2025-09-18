@@ -31,7 +31,6 @@ public class TutorialManager : MonoBehaviour
     public GameObject ColdSeasonEnd;
     public GameObject SpringStart;
     public GameObject GotoHotBurn;
-    public GameObject PlanHotBurn;
     public GameObject DoHotBurn;
     public GameObject HotBurnReaction;
     public GameObject BUSHFIRE;
@@ -180,6 +179,22 @@ public class TutorialManager : MonoBehaviour
             tutorialPhase = 14;
 
             Manager.timeProgressionRate = 1;
+            nextMonthButton.interactable = false;
+        }
+
+        if (player.sectorCurrent == Sector2 && tutorialPhase == 14)
+        {
+            DoHotBurn.SetActive(true);
+
+            tutorialPhase = 15;
+            nextMonthButton.interactable = false;
+        }
+
+        if (Sector2.currentStatus == Sector.Status.hotBurn && tutorialPhase == 15)
+        {
+            HotBurnReaction.SetActive(true);
+
+            tutorialPhase = 16;
             nextMonthButton.interactable = false;
         }
 
