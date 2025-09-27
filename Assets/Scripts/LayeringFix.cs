@@ -9,6 +9,8 @@ public class LayeringFix : MonoBehaviour
     public float yPos;
     public int orderPos;
 
+    public int layerOffset;
+
     void Start()
     {
         //Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find gamemanager
@@ -30,6 +32,7 @@ public class LayeringFix : MonoBehaviour
         yPos = Mathf.Round(yPos);
         orderPos = (int)yPos;
         spriteRenderer.sortingOrder = orderPos * -1;
+        spriteRenderer.sortingOrder = spriteRenderer.sortingOrder + layerOffset;
     }
 
 }
