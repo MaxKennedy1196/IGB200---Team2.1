@@ -17,8 +17,9 @@ public class TutorialManager : MonoBehaviour
 
     public Transform communityCentrePos;
     //public GameObject communityCentreMenuObj;
-    
+
     [Header("Tutorial Text Game Objects")]
+    public GameObject WelcomeToFiresticks;
     public GameObject CommunityCentreIntroduction;
     public GameObject OpenMapIntroduction;
     public GameObject FieldGuideIntroduction;
@@ -140,21 +141,15 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = true;
         }
 
-        if (communityCentreDist < 2f && tutorialPhase == 9)
-        {
-            NextMonth.SetActive(true);
-            tutorialPhase = 10;
-            nextMonthButton.interactable = true;
-        }
 
-        if (Manager.month == 4 && tutorialPhase == 10)
+        if (Manager.month == 4 && tutorialPhase == 9)
         {
             CoolBurn2.SetActive(true);
             tutorialPhase = 11;
             nextMonthButton.interactable = false;
         }
 
-        if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 11)
+        if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 10)
         {
             ColdSeasonEnd.SetActive(true);
             tutorialPhase = 12;
@@ -162,7 +157,7 @@ public class TutorialManager : MonoBehaviour
             Manager.timeProgressionRate = 5;
         }
 
-        if (Manager.month == 9 && tutorialPhase == 12)
+        if (Manager.month == 9 && tutorialPhase == 11)
         {
             SpringStart.SetActive(true);
             tutorialPhase = 13;
@@ -176,7 +171,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (Manager.rangerBookOpen == true && tutorialPhase == 13)
+        if (Manager.rangerBookOpen == true && tutorialPhase == 12)
         {
             GotoHotBurn.SetActive(true);
             tutorialPhase = 14;
@@ -185,7 +180,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (player.sectorCurrent == Sector2 && tutorialPhase == 14)
+        if (player.sectorCurrent == Sector2 && tutorialPhase == 13)
         {
             DoHotBurn.SetActive(true);
 
@@ -193,7 +188,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (Sector2.currentStatus == Sector.Status.hotBurn && tutorialPhase == 15)
+        if (Sector2.currentStatus == Sector.Status.hotBurn && tutorialPhase == 14)
         {
             HotBurnReaction.SetActive(true);
 
@@ -201,7 +196,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = true;
         }
 
-        if (Manager.month == 10 && tutorialPhase == 16)
+        if (Manager.month == 10 && tutorialPhase == 15)
         {
             BUSHFIRE.SetActive(true);
             Sector7.wildfire = true;
@@ -210,7 +205,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (player.sectorCurrent == Sector7 && tutorialPhase == 17)
+        if (player.sectorCurrent == Sector7 && tutorialPhase == 16)
         {
             SuppressBushfire.SetActive(true);
 
@@ -218,7 +213,7 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (Sector7.currentStatus == Sector.Status.veryDry && Sector7.wildfire == false && tutorialPhase == 18)
+        if (Sector7.currentStatus == Sector.Status.veryDry && Sector7.wildfire == false && tutorialPhase == 17)
         {
             BushfireReaction.SetActive(true);
 
@@ -226,12 +221,110 @@ public class TutorialManager : MonoBehaviour
             nextMonthButton.interactable = false;
         }
 
-        if (BushfireReaction.activeInHierarchy == false && tutorialPhase == 19)
+        if (BushfireReaction.activeInHierarchy == false && tutorialPhase == 18)
         {
             SceneManager.LoadScene("Tutorial2Game");
         }
+    }
 
+    public void repeatMessage()
+    {
+        print("REPEAT MESSAGE");
 
+        if (tutorialPhase == 0)
+        {
+            WelcomeToFiresticks.SetActive(true);
+        }
+
+        if (tutorialPhase == 1)
+        {
+            CommunityCentreIntroduction.SetActive(true);
+        }
+
+        if (tutorialPhase == 2)
+        {
+            OpenMapIntroduction.SetActive(true);
+        }
+
+        if (tutorialPhase == 3)
+        {
+            FieldGuideIntroduction.SetActive(true);
+        }
+
+        if (tutorialPhase == 4)
+        {
+            CoolBurnIntroduction.SetActive(true);
+        }
+
+        if (tutorialPhase == 5)
+        {
+            CoolBurnReaction.SetActive(true);
+        }
+
+        if (tutorialPhase == 6)
+        {
+            GoYellowSquare.SetActive(true);
+        }
+
+        if (tutorialPhase == 7)
+        {
+            PlanningCoolBurn.SetActive(true);
+        }
+
+        if (tutorialPhase == 8)
+        {
+            PlanningComplete.SetActive(true);
+        }
+
+        if (tutorialPhase == 9)
+        {
+            NextMonth.SetActive(true);
+        }
+
+        if (tutorialPhase == 10)
+        {
+            CoolBurn2.SetActive(true);
+        }
+
+        if (tutorialPhase == 11)
+        {
+            ColdSeasonEnd.SetActive(true);
+        }
+
+        if (tutorialPhase == 12)
+        {
+            SpringStart.SetActive(true);
+        }
+
+        if (tutorialPhase == 13)
+        {
+            GotoHotBurn.SetActive(true);
+        }
+
+        if (tutorialPhase == 14)
+        {
+            DoHotBurn.SetActive(true);
+        }
+
+        if (tutorialPhase == 15)
+        {
+            HotBurnReaction.SetActive(true);
+        }
+
+        if (tutorialPhase == 16)
+        {
+            BUSHFIRE.SetActive(true);
+        }
+
+        if (tutorialPhase == 17)
+        {
+            SuppressBushfire.SetActive(true);
+        }
+
+        if (tutorialPhase == 18)
+        {
+            BushfireReaction.SetActive(true);
+        }
     }
     
 

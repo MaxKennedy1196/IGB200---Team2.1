@@ -30,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public int coolBurnAPCost;
 
+    public TextMeshProUGUI coolBurnButtonText;
+
 
     [Header("Hot Burn Variables")]
     public Button hotBurnButton;
@@ -37,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public int hotBurnAPCost;
 
+    public TextMeshProUGUI hotBurnButtonText;
 
     [Header("Planning Variables")]
     public Button planningButton;
@@ -49,13 +52,15 @@ public class GameManager : MonoBehaviour
 
     public int planningAPCost;
 
+    public TextMeshProUGUI planningButtonText;
+
 
     [Header("Extinguish Variables")]
     public Button extinguishButton;
 
-
     public int extinguishAPCost;
 
+    public TextMeshProUGUI extinguishButtonText;
 
     [Header("Action Point Variables")]
     public int actionPointsMax;
@@ -63,6 +68,7 @@ public class GameManager : MonoBehaviour
     public int actionPointsCurrent;
 
     public TextMeshProUGUI actionPointsRemainingText;
+    
 
 
     [Header("Scoring Variables")]
@@ -205,8 +211,9 @@ public class GameManager : MonoBehaviour
 
         updateCommunityCentreText();
 
-        scoreTextUpdate();
-        plannedTurnsTextUpdate();
+        updateScoreText();
+        updatePlannedTurnsText();
+        updateActionButtonText();
 
         actionPointsRemainingText.text = "Action Points: " + actionPointsCurrent;
     }
@@ -790,7 +797,7 @@ public class GameManager : MonoBehaviour
             planningButton.interactable = true;
         }
 
-        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
         {
             planningButton.interactable = false;
         }
@@ -857,18 +864,18 @@ public class GameManager : MonoBehaviour
     }
 
 
-    void scoreTextUpdate()
+    void updateScoreText()
     {
         int scoreInt = Mathf.RoundToInt(score);
         scoreText.text = "Score: " + scoreInt.ToString();
     }
 
-    void plannedTurnsTextUpdate()
+    void updatePlannedTurnsText()
     {
         if (player.sectorCurrent.plannedTurns != 0)
         {
             plannedTurnsTextGameObject.SetActive(true);
-            plannedTurnsText.text = "Planned Turns Remaining: " + player.sectorCurrent.plannedTurns.ToString();
+            plannedTurnsText.text = "Burn Planned. " + player.sectorCurrent.plannedTurns.ToString() + " months left to utilise planning." ;
         }
         if (player.sectorCurrent.plannedTurns == 0)
         {
@@ -980,6 +987,28 @@ public class GameManager : MonoBehaviour
 
         monthText.text = "Month: " + monthName;
         seasonText.text = "Season: " + seasonName;
+    }
+
+    private void updateActionButtonText()
+    {
+        if (player.sectorCurrent.plannedTurns == 0)
+        {
+            coolBurnButtonText.text = "COOL BURN \n COST: " + coolBurnAPCost;
+            hotBurnButtonText.text = "HOT BURN \n COST: " + hotBurnAPCost;
+        }
+        if (player.sectorCurrent.plannedTurns != 0)
+        {
+            int totalCostCool = coolBurnAPCost - planningAPDiscount;
+            coolBurnButtonText.text = "COOL BURN \n COST: " + totalCostCool;
+
+            int totalCostHot = hotBurnAPCost - planningAPDiscount;
+            hotBurnButtonText.text = "HOT BURN \n COST: " + totalCostHot;
+        }
+
+        planningButtonText.text = "PLAN BURN \n COST: " + planningAPCost;
+
+        extinguishButtonText.text = "EXTINGUISH FIRE \n COST: " + extinguishAPCost;
+
     }
 
     public void scoreIncrease(float input)

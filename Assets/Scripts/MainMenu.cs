@@ -8,11 +8,11 @@ public class MainMenu : MonoBehaviour
     [SerializeField]
     private SceneController sceneController;
 
-    public void PlayGame()
+    public void StartGame()
     {
         sceneController.LoadScene("Game");
     }
-    public void TutorialStart()
+    public void StartTutorial()
     {
         sceneController.LoadScene("Tutorial");
     }

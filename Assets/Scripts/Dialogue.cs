@@ -14,6 +14,8 @@ public class Dialogue : MonoBehaviour
     public GameManager Manager;
     public Player player;
 
+    int framesActive = 60;
+
     void Awake()
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
@@ -31,21 +33,38 @@ public class Dialogue : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (gameObject.activeInHierarchy)
         {
-            if(textComponent.text == lines[index])
-            {
-                NextLine();
-            }
-            else
-            {
-                StopAllCoroutines();
-                textComponent.text = lines[index];
-            }
+            framesActive += 1;
         }
+        else
+        {
+            framesActive = 0;
+        }
+
+        if (framesActive == 1)
+        {
+            textComponent.text = string.Empty;
+            index = 0;
+            StartCoroutine(TypeLine());
+            player.lockPlayer();
+        }
+
+        if (Input.GetMouseButtonDown(0))
+            {
+                if (textComponent.text == lines[index])
+                {
+                    NextLine();
+                }
+                else
+                {
+                    StopAllCoroutines();
+                    textComponent.text = lines[index];
+                }
+            }
     }
 
-    void StartDialogue()
+    public void StartDialogue()
     {
         index = 0;
         StartCoroutine(TypeLine());
@@ -72,6 +91,8 @@ public class Dialogue : MonoBehaviour
         else
         {
             player.unlockPlayer();
+            textComponent.text = string.Empty;
+            index = 0;
             gameObject.SetActive(false);
         }
     }

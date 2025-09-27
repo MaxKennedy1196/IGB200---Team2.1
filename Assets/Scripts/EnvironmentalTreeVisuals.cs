@@ -15,47 +15,54 @@ public class EnvironmentalTreeVisuals : MonoBehaviour
     public Sprite Burned;
 
     int growthTurns = 8;
-
-
-
+    public bool isInMenu;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         detectCurrentSector();
-        Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
-
-        Manager.treeList.Add(gameObject.GetComponent<EnvironmentalTreeVisuals>());
+        if (isInMenu == false)
+        {
+            Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
+            Manager.treeList.Add(gameObject.GetComponent<EnvironmentalTreeVisuals>());
+        }
+            
+        
+            
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (sectorCurrent.currentStatus == Sector.Status.incinerated)
+        if (sectorCurrent != null)
         {
-            growthTurns = 0;
-        }
-        if (sectorCurrent.currentStatus == Sector.Status.hotBurn)
-        {
-            growthTurns = 0;
-        }
-        if (sectorCurrent.currentStatus == Sector.Status.coolBurn)
-        {
-            growthTurns = 3;
-        }
+            if (sectorCurrent.currentStatus == Sector.Status.incinerated)
+            {
+                growthTurns = 0;
+            }
+            if (sectorCurrent.currentStatus == Sector.Status.hotBurn)
+            {
+                growthTurns = 0;
+            }
+            if (sectorCurrent.currentStatus == Sector.Status.coolBurn)
+            {
+                growthTurns = 3;
+            }
 
-        if (growthTurns < 3)
-        {
-            spriteRenderer.sprite = Burned;
+            if (growthTurns < 3)
+            {
+                spriteRenderer.sprite = Burned;
+            }
+            if (growthTurns >= 3 && growthTurns < 7)
+            {
+                spriteRenderer.sprite = CoolBurn;
+            }
+            if (growthTurns >= 7)
+            {
+                spriteRenderer.sprite = Healthy;
+            }
         }
-        if (growthTurns >= 3 && growthTurns < 7)
-        {
-            spriteRenderer.sprite = CoolBurn;
-        }
-        if (growthTurns >= 7)
-        {
-            spriteRenderer.sprite = Healthy;
-        }
+            
     }
 
     void detectCurrentSector()
@@ -63,13 +70,17 @@ public class EnvironmentalTreeVisuals : MonoBehaviour
         Debug.DrawRay(transform.position, transform.forward * sectorDetectionRaycastDistance, Color.red);
         if (Physics.Raycast(transform.position, transform.forward, out sectorDetectionHit, sectorDetectionRaycastDistance))
         {
-            GameObject sectorGameObject = sectorDetectionHit.collider.gameObject;
-            sectorCurrent = sectorGameObject.GetComponent<Sector>();
-            // Debug.Log("Raycast sectorDetectionHit: " + sectorDetectionHit.collider.gameObject.name);
+            if (sectorDetectionHit.collider.gameObject != null)
+            {
+                GameObject sectorGameObject = sectorDetectionHit.collider.gameObject;
+                sectorCurrent = sectorGameObject.GetComponent<Sector>();
+            }
+                
+
         }
         else
         {
-            //Debug.Log("Nothing Detected");
+
         }
     }
 

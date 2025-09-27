@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     public Animator anim;
 
     bool isLocked = false;
+    public bool isInMenu;
 
     void Awake()
     {
@@ -39,7 +40,10 @@ public class Player : MonoBehaviour
 
     void Start()
     {
-        Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
+        if (isInMenu == false)
+        {
+            Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
+        }
     }
 
     void Update()
@@ -52,10 +56,11 @@ public class Player : MonoBehaviour
         if (isLocked == false)
         {
             speed = maxSpeed;
+            rb.linearVelocity = playerMovementInput * speed;
             
         }
 
-        rb.linearVelocity = playerMovementInput * speed;
+        
 
         detectCurrentSector();
 
@@ -98,6 +103,9 @@ public class Player : MonoBehaviour
     public void lockPlayer()
     {
         isLocked = true;
+        playerMovementInput = new Vector2(0, 0);
+        speed = 0f;
+        rb.linearVelocity = playerMovementInput * speed;
     }
     public void unlockPlayer()
     {
