@@ -49,21 +49,20 @@ public class Dialogue : MonoBehaviour
             StartCoroutine(TypeLine());
             player.lockPlayer();
         }
-
-        if (Input.GetMouseButtonDown(0))
-            {
-                if (textComponent.text == lines[index])
-                {
-                    NextLine();
-                }
-                else
-                {
-                    StopAllCoroutines();
-                    textComponent.text = lines[index];
-                }
-            }
     }
 
+    public void NextButton()
+    {
+        if (textComponent.text == lines[index])
+        {
+            NextLine();
+        }
+        else
+        {
+            StopAllCoroutines();
+            textComponent.text = lines[index];
+        }
+    }
     public void StartDialogue()
     {
         index = 0;
