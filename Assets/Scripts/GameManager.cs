@@ -234,7 +234,7 @@ public class GameManager : MonoBehaviour
         updatePlannedTurnsText();
         updateActionButtonText();
 
-        actionPointsRemainingText.text = "Action Points: " + actionPointsCurrent;
+        actionPointsRemainingText.text = "" + actionPointsCurrent;
     }
 
     private Sector locateSectorInList(int XPos, int YPos)
