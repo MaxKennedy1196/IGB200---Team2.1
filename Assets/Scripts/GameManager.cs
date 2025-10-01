@@ -177,6 +177,10 @@ public class GameManager : MonoBehaviour
     public int pointsDry;
     public int pointsVerDry;
 
+    [Header("Minigame Variables")]
+    public TextMeshProUGUI TimeTakenText;
+    public GameObject MinigameInstruction;
+
     void Awake()
     {
         controls = new Controls();
