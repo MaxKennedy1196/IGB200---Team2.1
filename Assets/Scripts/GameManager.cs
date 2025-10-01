@@ -8,9 +8,7 @@ public class GameManager : MonoBehaviour
     public Player player;
     Controls controls;
     public List<Sector> sectorList = new List<Sector>();//List of all sectors in the game
-    [SerializeField]
-
-    public GameObject[] Seasons = new GameObject[4];
+    [SerializeField] public GameObject[] Seasons = new GameObject[4];
 
     [Header("Status Change Chances")]
     public float healthyChanceFromCoolBurn;
@@ -32,6 +30,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI coolBurnButtonText;
 
+    public bool coolBurnInteractableOverride;
+
 
     [Header("Hot Burn Variables")]
     public Button hotBurnButton;
@@ -40,6 +40,8 @@ public class GameManager : MonoBehaviour
     public int hotBurnAPCost;
 
     public TextMeshProUGUI hotBurnButtonText;
+
+    public bool hotBurnInteractableOverride;
 
     [Header("Planning Variables")]
     public Button planningButton;
@@ -54,6 +56,8 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI planningButtonText;
 
+    public bool planningInteractableOverride;
+
 
     [Header("Extinguish Variables")]
     public Button extinguishButton;
@@ -62,6 +66,21 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI extinguishButtonText;
 
+    public bool extinguishInteractableOverride;
+
+    [Header("Awareness Campaign Variables")]
+
+    public int awarenessAPCost;
+    public int awarenessAPGain;
+    public Button awarenessButton;
+    public TextMeshProUGUI awarenessLevelText;
+    public bool awarenessRaised;
+
+    public bool awarenessInteractableOverride;
+
+
+    
+
     [Header("Action Point Variables")]
     public int actionPointsMax;
     public int actionPointsIncreaseRate;
@@ -69,7 +88,6 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI actionPointsRemainingText;
     
-
 
     [Header("Scoring Variables")]
     public float score;
@@ -80,15 +98,19 @@ public class GameManager : MonoBehaviour
     public float scoreMultiplier;
 
     [Header("Month + Season Variables")]
-    [HideInInspector] public int timeProgressionRate;
+    
     public string monthName = "";// Displays the name of the current month Updated by updateSeasonMonthNames()
     public string seasonName = "";// Displays the name of the current Season Updated by updateSeasonMonthNames()
 
     public TextMeshProUGUI monthText;
     public TextMeshProUGUI seasonText;
 
-    public int month = 3;//Current Month Number 
+    public int month;//Current Month Number 
     int monthsTotal = 1; //Total months Ellapsed
+    [HideInInspector] public int timeProgressionRate;
+
+    public bool nextMonthInteractableOverride;
+    public Button nextMonthButton;
 
     [Header("Ranger Book Variables")]
 
@@ -128,13 +150,7 @@ public class GameManager : MonoBehaviour
     public GameObject communityCentreMenu;
     public GameObject communityCentreButtonGameObject;
 
-    [Header("Awareness Campaign Variables")]
-
-    public int awarenessAPCost;
-    public int awarenessAPGain;
-    public Button awarenessButton;
-    public TextMeshProUGUI awarenessLevelText;
-    int awarenessLevel;
+    
 
     [Header("Tree List")]
 
@@ -199,6 +215,7 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        checkNextMonthAvailable();
         checkCoolBurnAvailable();//check if this action can be performed
         checkHotBurnAvailable();//check if this action can be performed
         checkExtinguishAvailable();//check if this action can be performed
@@ -208,8 +225,6 @@ public class GameManager : MonoBehaviour
 
         updateMiniMapColours();//updates the minimaps fire rating
         updatePlayerMiniMapPosition();
-
-        updateCommunityCentreText();
 
         updateScoreText();
         updatePlannedTurnsText();
@@ -629,8 +644,12 @@ public class GameManager : MonoBehaviour
 
         actionPointsCurrent += actionPointsIncreaseRate;
 
-        actionPointsCurrent += awarenessAPGain * awarenessLevel;
-        awarenessLevel = 0;
+        if (awarenessRaised)
+        {
+            actionPointsCurrent += awarenessAPGain;
+            awarenessRaised = false;
+        }
+            
 
         if (actionPointsCurrent >= actionPointsMax)
         {
@@ -742,7 +761,7 @@ public class GameManager : MonoBehaviour
             {
                 coolBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.wildfire == true)
             {
                 coolBurnButton.interactable = false;
             }
@@ -753,6 +772,10 @@ public class GameManager : MonoBehaviour
             coolBurnButton.interactable = false;
         }
 
+        if (coolBurnInteractableOverride == false)
+        {
+            coolBurnButton.interactable = false;
+        }
 
     }
 
@@ -769,7 +792,7 @@ public class GameManager : MonoBehaviour
             {
                 hotBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.wildfire == true)
             {
                 hotBurnButton.interactable = false;
             }
@@ -784,6 +807,12 @@ public class GameManager : MonoBehaviour
         {
             hotBurnButton.interactable = false;
         }
+
+        if (hotBurnInteractableOverride == false)
+        {
+            hotBurnButton.interactable = false;
+        }
+
     }
 
     void checkPlanningAvailable()
@@ -797,7 +826,12 @@ public class GameManager : MonoBehaviour
             planningButton.interactable = true;
         }
 
-        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.wildfire == true)
+        {
+            planningButton.interactable = false;
+        }
+
+        if (planningInteractableOverride == false)
         {
             planningButton.interactable = false;
         }
@@ -813,17 +847,41 @@ public class GameManager : MonoBehaviour
         {
             extinguishButton.interactable = true;
         }
+
+        if (extinguishInteractableOverride == false)
+        {
+            extinguishButton.interactable = false;
+        }
     }
 
     void checkAwarenessAvailable()
     {
-        if (actionPointsCurrent < awarenessAPCost)
-        {
-            awarenessButton.interactable = false;
-        }
+
         if (actionPointsCurrent >= awarenessAPCost)
         {
             awarenessButton.interactable = true;
+        }
+        if (actionPointsCurrent < awarenessAPCost || awarenessRaised == true)
+        {
+            awarenessButton.interactable = false;
+        }
+
+        if (awarenessInteractableOverride == false)
+        {
+            awarenessButton.interactable = false;
+        }
+    }
+
+    void checkNextMonthAvailable()
+    {
+        if (nextMonthInteractableOverride == false)
+        {
+            nextMonthButton.interactable = false;
+        }
+
+        if (nextMonthInteractableOverride == true)
+        {
+            nextMonthButton.interactable = true;
         }
     }
 
@@ -854,14 +912,11 @@ public class GameManager : MonoBehaviour
 
     public void raiseAwareness()
     {
-        awarenessLevel += 1;
+        awarenessRaised = true;
         actionPointsCurrent -= awarenessAPCost;
     }
 
-    void updateCommunityCentreText()
-    {
-        awarenessLevelText.text = "Level: " + awarenessLevel.ToString();
-    }
+
 
 
     void updateScoreText()

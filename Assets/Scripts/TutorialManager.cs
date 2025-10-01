@@ -14,6 +14,7 @@ public class TutorialManager : MonoBehaviour
     public Button coolBurnButton;
     public Button hotBurnButton;
     public Button planningButton;
+    public Button awarenessButton;
 
     public Transform communityCentrePos;
     //public GameObject communityCentreMenuObj;
@@ -76,15 +77,28 @@ public class TutorialManager : MonoBehaviour
             CommunityCentreIntroduction.SetActive(true);
 
             tutorialPhase = 1;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = true;
+            Manager.extinguishInteractableOverride = false;
+
         }
 
-        if (communityCentreDist > 3f && tutorialPhase == 1)
+        if (Manager.awarenessRaised == true && tutorialPhase == 1)
         {
             OpenMapIntroduction.SetActive(true);
 
             tutorialPhase = 2;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Manager.rangerBookOpen && tutorialPhase == 2)
@@ -92,7 +106,13 @@ public class TutorialManager : MonoBehaviour
             FieldGuideIntroduction.SetActive(true);
 
             tutorialPhase = 3;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (player.sectorCurrent == Sector9 && tutorialPhase == 3)
@@ -100,7 +120,13 @@ public class TutorialManager : MonoBehaviour
             CoolBurnIntroduction.SetActive(true);
 
             tutorialPhase = 4;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = true;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Sector9.currentStatus == Sector.Status.coolBurn && tutorialPhase == 4)
@@ -108,7 +134,13 @@ public class TutorialManager : MonoBehaviour
             CoolBurnReaction.SetActive(true);
 
             tutorialPhase = 5;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Manager.rangerBookOpen && tutorialPhase == 5)
@@ -117,6 +149,13 @@ public class TutorialManager : MonoBehaviour
 
             tutorialPhase = 6;
             nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (player.sectorCurrent == Sector4 && tutorialPhase == 6)
@@ -125,42 +164,73 @@ public class TutorialManager : MonoBehaviour
 
             tutorialPhase = 7;
             nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = true;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Sector4.plannedTurns != 0 && tutorialPhase == 7)
         {
             PlanningComplete.SetActive(true);
             tutorialPhase = 8;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (communityCentreDist < 2f && tutorialPhase == 8)
         {
             NextMonth.SetActive(true);
             tutorialPhase = 9;
-            nextMonthButton.interactable = true;
+
+            Manager.nextMonthInteractableOverride = true;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
 
-        if (Manager.month == 4 && tutorialPhase == 9)
+        if (Manager.month == 8 && tutorialPhase == 9)
         {
             CoolBurn2.SetActive(true);
-            tutorialPhase = 11;
-            nextMonthButton.interactable = false;
+            tutorialPhase = 10;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = true;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Sector4.currentStatus == Sector.Status.coolBurn && tutorialPhase == 10)
         {
             ColdSeasonEnd.SetActive(true);
-            tutorialPhase = 12;
-            nextMonthButton.interactable = true;
-            Manager.timeProgressionRate = 5;
+            tutorialPhase = 11;
+            //Manager.timeProgressionRate = 5;
+
+            Manager.nextMonthInteractableOverride = true;
+            Manager.coolBurnInteractableOverride = true;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Manager.month == 9 && tutorialPhase == 11)
         {
             SpringStart.SetActive(true);
-            tutorialPhase = 13;
+            tutorialPhase = 12;
 
             Sector4.currentStatus = Sector.Status.healthy;
             Sector9.currentStatus = Sector.Status.healthy;
@@ -168,32 +238,56 @@ public class TutorialManager : MonoBehaviour
             Sector7.currentStatus = Sector.Status.veryDry;
 
             Manager.timeProgressionRate = 4;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Manager.rangerBookOpen == true && tutorialPhase == 12)
         {
             GotoHotBurn.SetActive(true);
-            tutorialPhase = 14;
+            tutorialPhase = 13;
 
             Manager.timeProgressionRate = 1;
-            nextMonthButton.interactable = false;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (player.sectorCurrent == Sector2 && tutorialPhase == 13)
         {
             DoHotBurn.SetActive(true);
 
-            tutorialPhase = 15;
-            nextMonthButton.interactable = false;
+            tutorialPhase = 14;
+
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = true;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Sector2.currentStatus == Sector.Status.hotBurn && tutorialPhase == 14)
         {
             HotBurnReaction.SetActive(true);
 
-            tutorialPhase = 16;
-            nextMonthButton.interactable = true;
+            tutorialPhase = 15;
+
+            Manager.nextMonthInteractableOverride = true;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (Manager.month == 10 && tutorialPhase == 15)
@@ -201,24 +295,39 @@ public class TutorialManager : MonoBehaviour
             BUSHFIRE.SetActive(true);
             Sector7.wildfire = true;
 
-            tutorialPhase = 17;
-            nextMonthButton.interactable = false;
+            tutorialPhase = 16;
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (player.sectorCurrent == Sector7 && tutorialPhase == 16)
         {
             SuppressBushfire.SetActive(true);
 
-            tutorialPhase = 18;
-            nextMonthButton.interactable = false;
+            tutorialPhase = 17;
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = true;
         }
 
         if (Sector7.currentStatus == Sector.Status.veryDry && Sector7.wildfire == false && tutorialPhase == 17)
         {
             BushfireReaction.SetActive(true);
 
-            tutorialPhase = 19;
-            nextMonthButton.interactable = false;
+            tutorialPhase = 18;
+            Manager.nextMonthInteractableOverride = false;
+            Manager.coolBurnInteractableOverride = false;
+            Manager.hotBurnInteractableOverride = false;
+            Manager.planningInteractableOverride = false;
+            Manager.awarenessInteractableOverride = false;
+            Manager.extinguishInteractableOverride = false;
         }
 
         if (BushfireReaction.activeInHierarchy == false && tutorialPhase == 18)
