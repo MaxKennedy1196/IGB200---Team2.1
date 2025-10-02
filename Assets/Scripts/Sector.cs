@@ -68,41 +68,107 @@ public class Sector : MonoBehaviour
 
     float[,] currentPattern;
 
-    float[,] pattern1 = {{ -5, 0},
-                         { -2.5f, 0},
-                         {  0,   0},
-                         {  2.5f, 0},
-                         {  5, 0}};
+    float[,] pattern1 =  {{-5f  , 0f  },
+                          {-2.5f, 0f  },
+                          { 0f  , 0f  },
+                          { 2.5f, 0f  },
+                          { 5f  , 0f  }};
+ 
+    float[,] pattern2 =  {{ 5f  , 0f  },
+                          { 2.5f, 0f  },
+                          { 0f  , 0f  },
+                          {-2.5f, 0f  },
+                          {-5f  , 0f  }};
+ 
+    float[,] pattern3 =  {{ 0f  , 5   },
+                          { 0f  , 2.5f},
+                          { 0f  , 0   },
+                          { 0f  ,-2.5f},
+                          { 0f  ,-5   }};
+ 
+    float[,] pattern4 =  {{ 0f  ,-5   },
+                          { 0f  ,-2.5f},
+                          { 0f  , 0   },
+                          { 0f  , 2.5f},
+                          { 0f  , 5   }}; 
+ 
+    float[,] pattern5 =  {{-5   ,-5   },
+                          {-2.5f,-2.5f},
+                          { 0   , 0   },
+                          { 2.5f, 2.5f},
+                          { 5   , 5   }};
+ 
+    float[,] pattern6 =  {{ 5   , 5   },
+                          { 2.5f, 2.5f},
+                          { 0   , 0   },
+                          {-2.5f,-2.5f},
+                          {-5   ,-5   }};
+ 
+    float[,] pattern7 =  {{ 5   ,-5   },
+                          { 2.5f,-2.5f},
+                          { 0   , 0   },
+                          {-2.5f, 2.5f},
+                          {-5   , 5   }}; 
 
-    float[,] pattern2 = {{ -5, -4},
-                         { -2.5f, -2},
-                         {  0,   0},
-                         {  2.5f, 2},
-                         {  5, 4}};
+    float[,] pattern8 =  {{-5   , 5   },
+                          {-2.5f, 2.5f},
+                          { 0   , 0   },
+                          { 2.5f,-2.5f},
+                          { 5   ,-5   }};                                         
 
-    float[,] pattern3 = {{ 5 , 4},
-                         { -2 , 1.5f},
-                         { 0 , -3 },
-                         { 5 , 2.5f },
-                         { -3 , 5 }};
 
-    float[,] pattern4 = {{ -5, -5},
-                         { -2.5f, 5},
-                         {  0,   -5},
-                         {  2.5f, 5},
-                         {  5, -5}};
+    float[,] pattern9 =  {{-5f  ,-5f  },
+                          {-2.5f, 5f  },
+                          { 0f  ,-5f  },
+                          { 2.5f, 5f  },
+                          { 5f  ,-5f  }};
 
-    float[,] pattern5 = {{ -5, 5},
-                         { -2.5f, -5},
-                         {  0,   5},
-                         {  2.5f, -5},
-                         {  5, 5}};
+    float[,] pattern10 = {{-5f  , 5f  },
+                          {-2.5f,-5f  },
+                          { 0f  , 5f  },
+                          { 2.5f,-5f  },
+                          { 5f  , 5f  }};
 
-    float[,] pattern6 = {{-5, 5  },
-                         {-5, -5  },
-                         {5, -5  },
-                         {5, 5 },
-                         {0, 0 }};
+    float[,] pattern11 = {{ 5f  ,-5f  },
+                          { 2.5f, 5f  },
+                          { 0f  ,-5f  },
+                          {-2.5f, 5f  },
+                          {-5f  ,-5f  }};
+     
+    float[,] pattern12 = {{ 5f  , 5f  },
+                          { 2.5f,-5f  },
+                          { 0f  , 5f  },
+                          {-2.5f,-5f  },
+                          {-5f  , 5f  }};                      
+
+
+    float[,] pattern13 = {{ 5f  ,-5f  },
+                          {-5f  ,-2.5f},
+                          { 5f  , 0f  },
+                          {-5f  , 2.5f},
+                          { 5f  , 5f  }};
+
+    float[,] pattern14 = {{-5f  ,-5f  },
+                          { 5f  ,-2.5f},
+                          {-5f  , 0f  },
+                          { 5f  , 2.5f},
+                          {-5f  , 5f  }};                                       
+
+    float[,] pattern15 = {{ 5f  , 5f  },
+                          {-5f  , 2.5f},
+                          { 5f  , 0f  },
+                          {-5f  ,-2.5f},
+                          { 5f  ,-5f  }};
+
+    float[,] pattern16 = {{-5f  , 5f  },
+                          { 5f  , 2.5f},
+                          {-5f  , 0f  },
+                          { 5f  ,-2.5f},
+                          {-5f  ,-5f  }};
+
+
+                        
+
 
     
 
@@ -477,31 +543,59 @@ public class Sector : MonoBehaviour
 
     private void randomizeChallengePattern()
     {
-        int randomizer = Random.Range(1, 7);
+        int randomizer = Random.Range(1, 17);
 
-        if (randomizer == 1)
+        switch (randomizer)
         {
-            currentPattern = pattern1;
-        }
-        if (randomizer == 2)
-        {
-            currentPattern = pattern2;
-        }
-        if (randomizer == 3)
-        {
-            currentPattern = pattern3;
-        }
-        if (randomizer == 4)
-        {
-            currentPattern = pattern4;
-        }
-        if (randomizer == 5)
-        {
-            currentPattern = pattern5;
-        }
-        if (randomizer == 6)
-        {
-            currentPattern = pattern6;
+            case 1:
+                currentPattern = pattern1;
+                break;
+            case 2:
+                currentPattern = pattern2;
+                break;
+            case 3:
+                currentPattern = pattern3;
+                break;
+            case 4:
+                currentPattern = pattern4;
+                break;
+            case 5:
+                currentPattern = pattern5;
+                break;
+            case 6:
+                currentPattern = pattern6;
+                break;
+            case 7:
+                currentPattern = pattern7;
+                break;
+            case 8:
+                currentPattern = pattern8;
+                break;
+            case 9:
+                currentPattern = pattern9;
+                break;
+            case 10:
+                currentPattern = pattern10;
+                break;
+            case 11:
+                currentPattern = pattern11;
+                break;
+            case 12:
+                currentPattern = pattern12;
+                break;
+            case 13:
+                currentPattern = pattern13;
+                break;
+            case 14:
+                currentPattern = pattern14;
+                break;
+            case 15:
+                currentPattern = pattern15;
+                break;
+            case 16:
+                currentPattern = pattern16;
+                break;             
+            
         }
     }
 

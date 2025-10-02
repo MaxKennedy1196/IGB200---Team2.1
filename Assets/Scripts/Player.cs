@@ -60,8 +60,6 @@ public class Player : MonoBehaviour
             
         }
 
-        
-
         detectCurrentSector();
 
         anim.SetFloat("Horizontal", playerMovementInput.x);
