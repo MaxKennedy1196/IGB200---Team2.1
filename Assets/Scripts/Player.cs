@@ -46,6 +46,8 @@ public class Player : MonoBehaviour
         }
     }
 
+
+
     void Update()
     {
         if (isLocked == true)

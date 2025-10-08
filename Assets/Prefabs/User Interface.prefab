@@ -2876,6 +2876,7 @@ GameObject:
   - component: {fileID: 1115502053562546882}
   - component: {fileID: 5299377354420583536}
   - component: {fileID: 3686571765616357296}
+  - component: {fileID: 5786296627245107574}
   m_Layer: 0
   m_Name: PlayerDown
   m_TagString: Untagged
@@ -2985,6 +2986,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &5786296627245107574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2295176050751287528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/s
 --- !u!1 &2379523794514829262
 GameObject:
   m_ObjectHideFlags: 0
@@ -4338,9 +4352,9 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2502658285281652443}
-  - {fileID: 3307620438925922325}
   - {fileID: 1823429667969678581}
   - {fileID: 5351450507877719531}
+  - {fileID: 3307620438925922325}
   m_Father: {fileID: 9056934246394020741}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -6261,6 +6275,7 @@ GameObject:
   - component: {fileID: 8941995642514972314}
   - component: {fileID: 7708688255121270418}
   - component: {fileID: 1500102699116950970}
+  - component: {fileID: 4332732921042615465}
   m_Layer: 0
   m_Name: PlayerRight
   m_TagString: Untagged
@@ -6370,6 +6385,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4332732921042615465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6457290273316888912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/d
 --- !u!1 &6550524445496426389
 GameObject:
   m_ObjectHideFlags: 0
@@ -7804,6 +7832,7 @@ GameObject:
   - component: {fileID: 8913982265351309682}
   - component: {fileID: 2843539583482407532}
   - component: {fileID: 2868792399315983598}
+  - component: {fileID: 8142558907652562202}
   m_Layer: 0
   m_Name: PlayerUp
   m_TagString: Untagged
@@ -7913,6 +7942,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &8142558907652562202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7984778520325700355}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/w
 --- !u!1 &8406448022568888409
 GameObject:
   m_ObjectHideFlags: 0
@@ -7925,6 +7967,7 @@ GameObject:
   - component: {fileID: 192924345148380551}
   - component: {fileID: 2227095976517705742}
   - component: {fileID: 6373606930080992031}
+  - component: {fileID: 7493265135287719704}
   m_Layer: 0
   m_Name: PlayerLeft
   m_TagString: Untagged
@@ -8034,6 +8077,19 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &7493265135287719704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8406448022568888409}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d54531977ecb194c95e2d3aa7a5d72a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ControlPath: <Keyboard>/a
 --- !u!1 &8429818900336643993
 GameObject:
   m_ObjectHideFlags: 0

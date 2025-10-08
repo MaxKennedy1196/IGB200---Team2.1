@@ -19,6 +19,19 @@ public class targetTrigger : MonoBehaviour
 
     public AudioClip activatedClip;
 
+    public GameObject fireSprite;
+
+    public GameObject planningFlag;
+
+    public enum state
+    {
+        preActivation,
+        activated,
+        postActivation,
+    }
+
+    public state currentState;
+
     void Start()
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
@@ -29,15 +42,20 @@ public class targetTrigger : MonoBehaviour
 
         spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
 
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (isActive == true)
+        if (currentState == state.preActivation)
         {
-            spriteRenderer.color = new Color(1, 0, 0, 1);
+            spriteRenderer.color = new Color(1, 1, 1, 0.5f);
+        }
+        if (currentState == state.activated)
+        {
+            spriteRenderer.color = new Color(1, 1, 1, 1);
             playerDistance = Vector3.Distance(playerTransform.position, transform.position);
 
             if (playerDistance <= 2f)
@@ -46,9 +64,10 @@ public class targetTrigger : MonoBehaviour
                 sector.nextChallengePhase();
             }
         }
-        if (isActive == false)
+        if (currentState == state.postActivation)
         {
-            spriteRenderer.color = new Color(1, 0, 0, 0.5f);
+            spriteRenderer.color = new Color(1, 1, 1, 0f);
         }
+        
     }
 }

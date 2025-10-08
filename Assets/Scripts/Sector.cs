@@ -51,6 +51,7 @@ public class Sector : MonoBehaviour
 
     public GameObject challengeBorders;
     public List<GameObject> challengeTargetList = new List<GameObject>();
+    public List<GameObject> planningTargetList = new List<GameObject>();
     public List<targetTrigger> challengeTriggerList = new List<targetTrigger>();
 
     public GameObject tileMapHealthy;
@@ -116,7 +117,6 @@ public class Sector : MonoBehaviour
                           { 2.5f,-2.5f},
                           { 5   ,-5   }};                                         
 
-
     float[,] pattern9 =  {{-5f  ,-5f  },
                           {-2.5f, 5f  },
                           { 0f  ,-5f  },
@@ -140,7 +140,6 @@ public class Sector : MonoBehaviour
                           { 0f  , 5f  },
                           {-2.5f,-5f  },
                           {-5f  , 5f  }};                      
-
 
     float[,] pattern13 = {{ 5f  ,-5f  },
                           {-5f  ,-2.5f},
@@ -167,10 +166,10 @@ public class Sector : MonoBehaviour
                           {-5f  ,-5f  }};
 
 
-                        
 
 
-    
+
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -192,6 +191,18 @@ public class Sector : MonoBehaviour
         //    trigger.sector = gameObject.GetComponent<Sector>();
         //}
 
+        challengeTriggerList[0].fireSprite.SetActive(false);
+        challengeTriggerList[1].fireSprite.SetActive(false);
+        challengeTriggerList[2].fireSprite.SetActive(false);
+        challengeTriggerList[3].fireSprite.SetActive(false);
+        challengeTriggerList[4].fireSprite.SetActive(false);
+    
+
+        challengeTriggerList[0].planningFlag.SetActive(false);
+        challengeTriggerList[1].planningFlag.SetActive(false);
+        challengeTriggerList[2].planningFlag.SetActive(false);
+        challengeTriggerList[3].planningFlag.SetActive(false);
+        challengeTriggerList[4].planningFlag.SetActive(false);
 
     }
 
@@ -616,50 +627,167 @@ public class Sector : MonoBehaviour
                 iterator += 1;
                 target.SetActive(true);
             }
+            
+            iterator = 0;
+            foreach (GameObject target in planningTargetList)
+            {
+                target.transform.position = transform.position + new Vector3(currentPattern[iterator, 0], currentPattern[iterator, 1]);
+                iterator += 1;
+                //target.SetActive(true);
+            }
 
             if (challengePhase == 1)
             {
-                challengeTriggerList[0].isActive = true;
-                challengeTriggerList[1].isActive = false;
-                challengeTriggerList[2].isActive = false;
-                challengeTriggerList[3].isActive = false;
-                challengeTriggerList[4].isActive = false;
+                challengeTriggerList[0].currentState = targetTrigger.state.activated;
+                challengeTriggerList[1].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[2].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[3].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[4].currentState = targetTrigger.state.preActivation;
+
+                if (currentAction == "coolBurn" || currentAction == "hotBurn")
+                {
+                    challengeTriggerList[0].fireSprite.SetActive(false);
+                    challengeTriggerList[1].fireSprite.SetActive(false);
+                    challengeTriggerList[2].fireSprite.SetActive(false);
+                    challengeTriggerList[3].fireSprite.SetActive(false);
+                    challengeTriggerList[4].fireSprite.SetActive(false);
+                }
+
+                if (currentAction == "planning")
+                {
+                    challengeTriggerList[0].planningFlag.SetActive(false);
+                    challengeTriggerList[1].planningFlag.SetActive(false);
+                    challengeTriggerList[2].planningFlag.SetActive(false);
+                    challengeTriggerList[3].planningFlag.SetActive(false);
+                    challengeTriggerList[4].planningFlag.SetActive(false);
+                }
+
             }
 
             if (challengePhase == 2)
             {
-                challengeTriggerList[0].isActive = false;
-                challengeTriggerList[1].isActive = true;
-                challengeTriggerList[2].isActive = false;
-                challengeTriggerList[3].isActive = false;
-                challengeTriggerList[4].isActive = false;
+                challengeTriggerList[0].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[1].currentState = targetTrigger.state.activated;
+                challengeTriggerList[2].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[3].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[4].currentState = targetTrigger.state.preActivation;
+
+                if (currentAction == "coolBurn" || currentAction == "hotBurn")
+                {
+                    challengeTriggerList[0].fireSprite.SetActive(true);
+                    challengeTriggerList[1].fireSprite.SetActive(false);
+                    challengeTriggerList[2].fireSprite.SetActive(false);
+                    challengeTriggerList[3].fireSprite.SetActive(false);
+                    challengeTriggerList[4].fireSprite.SetActive(false);
+                }
+
+                if (currentAction == "planning")
+                {
+                    challengeTriggerList[0].planningFlag.SetActive(true);
+                    challengeTriggerList[1].planningFlag.SetActive(false);
+                    challengeTriggerList[2].planningFlag.SetActive(false);
+                    challengeTriggerList[3].planningFlag.SetActive(false);
+                    challengeTriggerList[4].planningFlag.SetActive(false);
+                }
             }
 
             if (challengePhase == 3)
             {
-                challengeTriggerList[0].isActive = false;
-                challengeTriggerList[1].isActive = false;
-                challengeTriggerList[2].isActive = true;
-                challengeTriggerList[3].isActive = false;
-                challengeTriggerList[4].isActive = false;
+                challengeTriggerList[0].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[1].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[2].currentState = targetTrigger.state.activated;
+                challengeTriggerList[3].currentState = targetTrigger.state.preActivation;
+                challengeTriggerList[4].currentState = targetTrigger.state.preActivation;
+
+                if (currentAction == "coolBurn" || currentAction == "hotBurn")
+                {
+                    challengeTriggerList[0].fireSprite.SetActive(true);
+                    challengeTriggerList[1].fireSprite.SetActive(true);
+                    challengeTriggerList[2].fireSprite.SetActive(false);
+                    challengeTriggerList[3].fireSprite.SetActive(false);
+                    challengeTriggerList[4].fireSprite.SetActive(false);
+                }
+
+                if (currentAction == "planning")
+                {
+                    challengeTriggerList[0].planningFlag.SetActive(true);
+                    challengeTriggerList[1].planningFlag.SetActive(true);
+                    challengeTriggerList[2].planningFlag.SetActive(false);
+                    challengeTriggerList[3].planningFlag.SetActive(false);
+                    challengeTriggerList[4].planningFlag.SetActive(false);
+                }
             }
 
             if (challengePhase == 4)
             {
-                challengeTriggerList[0].isActive = false;
-                challengeTriggerList[1].isActive = false;
-                challengeTriggerList[2].isActive = false;
-                challengeTriggerList[3].isActive = true;
-                challengeTriggerList[4].isActive = false;
+                challengeTriggerList[0].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[1].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[2].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[3].currentState = targetTrigger.state.activated;
+                challengeTriggerList[4].currentState = targetTrigger.state.preActivation;
+
+                if (currentAction == "coolBurn" || currentAction == "hotBurn")
+                {
+                    challengeTriggerList[0].fireSprite.SetActive(true);
+                    challengeTriggerList[1].fireSprite.SetActive(true);
+                    challengeTriggerList[2].fireSprite.SetActive(true);
+                    challengeTriggerList[3].fireSprite.SetActive(false);
+                    challengeTriggerList[4].fireSprite.SetActive(false);
+                }
+
+                if (currentAction == "planning")
+                {
+                    challengeTriggerList[0].planningFlag.SetActive(true);
+                    challengeTriggerList[1].planningFlag.SetActive(true);
+                    challengeTriggerList[2].planningFlag.SetActive(true);
+                    challengeTriggerList[3].planningFlag.SetActive(false);
+                    challengeTriggerList[4].planningFlag.SetActive(false);
+                }
             }
 
             if (challengePhase == 5)
             {
-                challengeTriggerList[0].isActive = false;
-                challengeTriggerList[1].isActive = false;
-                challengeTriggerList[2].isActive = false;
-                challengeTriggerList[3].isActive = false;
-                challengeTriggerList[4].isActive = true;
+                challengeTriggerList[0].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[1].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[2].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[3].currentState = targetTrigger.state.postActivation;
+                challengeTriggerList[4].currentState = targetTrigger.state.activated;
+
+                if (currentAction == "coolBurn" || currentAction == "hotBurn")
+                {
+                    challengeTriggerList[0].fireSprite.SetActive(true);
+                    challengeTriggerList[1].fireSprite.SetActive(true);
+                    challengeTriggerList[2].fireSprite.SetActive(true);
+                    challengeTriggerList[3].fireSprite.SetActive(true);
+                    challengeTriggerList[4].fireSprite.SetActive(false);
+                }
+
+                if (currentAction == "planning")
+                {
+                    challengeTriggerList[0].planningFlag.SetActive(true);
+                    challengeTriggerList[1].planningFlag.SetActive(true);
+                    challengeTriggerList[2].planningFlag.SetActive(true);
+                    challengeTriggerList[3].planningFlag.SetActive(true);
+                    challengeTriggerList[4].planningFlag.SetActive(false);
+                }
+            }
+
+            if (currentAction == "planning" || currentAction == "extinguish")
+            {
+                challengeTriggerList[0].fireSprite.SetActive(false);
+                challengeTriggerList[1].fireSprite.SetActive(false);
+                challengeTriggerList[2].fireSprite.SetActive(false);
+                challengeTriggerList[3].fireSprite.SetActive(false);
+                challengeTriggerList[4].fireSprite.SetActive(false);
+            }
+
+            if (currentAction == "coolBurn" || currentAction == "hotBurn")
+            {
+                challengeTriggerList[0].planningFlag.SetActive(false);
+                challengeTriggerList[1].planningFlag.SetActive(false);
+                challengeTriggerList[2].planningFlag.SetActive(false);
+                challengeTriggerList[3].planningFlag.SetActive(false);
+                challengeTriggerList[4].planningFlag.SetActive(false);
             }
 
             if (currentAction == "coolBurn" && challengePhase > challengeTriggerList.Count)
@@ -696,11 +824,20 @@ public class Sector : MonoBehaviour
 
                 completePlanning(challengeScoreInverted);
                 environmentalChallengeReset();
+
+                challengeTriggerList[0].planningFlag.SetActive(true);
+                challengeTriggerList[1].planningFlag.SetActive(true);
+                challengeTriggerList[2].planningFlag.SetActive(true);
+                challengeTriggerList[3].planningFlag.SetActive(true);
+                challengeTriggerList[4].planningFlag.SetActive(true);
             }
         }
         if (challengeEnabled == false)
         {
             challengeBorders.SetActive(false);
+
+            
+            
         }
     }
 
