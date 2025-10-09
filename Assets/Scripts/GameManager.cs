@@ -129,17 +129,29 @@ public class GameManager : MonoBehaviour
     public Image mapSectorBR;
 
 
-    public GameObject playerSectorTL;
-    public GameObject playerSectorTM;
-    public GameObject playerSectorTR;
+    public GameObject playerIconTL;
+    public GameObject playerIconTM;
+    public GameObject playerIconTR;
 
-    public GameObject playerSectorML;
-    public GameObject playerSectorMM;
-    public GameObject playerSectorMR;
+    public GameObject playerIconML;
+    public GameObject playerIconMM;
+    public GameObject playerIconMR;
 
-    public GameObject playerSectorBL;
-    public GameObject playerSectorBM;
-    public GameObject playerSectorBR;
+    public GameObject playerIconBL;
+    public GameObject playerIconBM;
+    public GameObject playerIconBR;
+
+    public GameObject planningIconTL;
+    public GameObject planningIconTM;
+    public GameObject planningIconTR;
+
+    public GameObject planningIconML;
+    public GameObject planningIconMM;
+    public GameObject planningIconMR;
+
+    public GameObject planningIconBL;
+    public GameObject planningIconBM;
+    public GameObject planningIconBR;
 
     public bool rangerBookOpen;
 
@@ -229,10 +241,13 @@ public class GameManager : MonoBehaviour
 
         updateMiniMapColours();//updates the minimaps fire rating
         updatePlayerMiniMapPosition();
+        updatePlanningIconMiniMap();
 
         updateScoreText();
         updatePlannedTurnsText();
         updateActionButtonText();
+
+        updateMinigameInstructions();
 
         actionPointsRemainingText.text = "" + actionPointsCurrent;
     }
@@ -253,89 +268,191 @@ public class GameManager : MonoBehaviour
     {
         if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == 1)
         {
-            playerSectorTL.SetActive(true);
+            playerIconTL.SetActive(true);
         }
         if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != 1)
         {
-            playerSectorTL.SetActive(false);
+            playerIconTL.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == 1)
         {
-            playerSectorTM.SetActive(true);
+            playerIconTM.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != 1)
         {
-            playerSectorTM.SetActive(false);
+            playerIconTM.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == 1)
         {
-            playerSectorTR.SetActive(true);
+            playerIconTR.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != 1)
         {
-            playerSectorTR.SetActive(false);
+            playerIconTR.SetActive(false);
         }
 
 
 
         if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == 0)
         {
-            playerSectorML.SetActive(true);
+            playerIconML.SetActive(true);
         }
         if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != 0)
         {
-            playerSectorML.SetActive(false);
+            playerIconML.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == 0)
         {
-            playerSectorMM.SetActive(true);
+            playerIconMM.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != 0)
         {
-            playerSectorMM.SetActive(false);
+            playerIconMM.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == 0)
         {
-            playerSectorMR.SetActive(true);
+            playerIconMR.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != 0)
         {
-            playerSectorMR.SetActive(false);
+            playerIconMR.SetActive(false);
         }
 
 
 
         if (player.sectorCurrent.xPos == -1 && player.sectorCurrent.yPos == -1)
         {
-            playerSectorBL.SetActive(true);
+            playerIconBL.SetActive(true);
         }
         if (player.sectorCurrent.xPos != -1 || player.sectorCurrent.yPos != -1)
         {
-            playerSectorBL.SetActive(false);
+            playerIconBL.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 0 && player.sectorCurrent.yPos == -1)
         {
-            playerSectorBM.SetActive(true);
+            playerIconBM.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 0 || player.sectorCurrent.yPos != -1)
         {
-            playerSectorBM.SetActive(false);
+            playerIconBM.SetActive(false);
         }
 
         if (player.sectorCurrent.xPos == 1 && player.sectorCurrent.yPos == -1)
         {
-            playerSectorBR.SetActive(true);
+            playerIconBR.SetActive(true);
         }
         if (player.sectorCurrent.xPos != 1 || player.sectorCurrent.yPos != -1)
         {
-            playerSectorBR.SetActive(false);
+            playerIconBR.SetActive(false);
         }
 
+    }
+
+    private void updatePlanningIconMiniMap()
+    {
+        Sector sectorTL = locateSectorInList(-1, 1);
+        Sector sectorTM = locateSectorInList(0, 1);
+        Sector sectorTR = locateSectorInList(1, 1);
+
+        Sector sectorML = locateSectorInList(-1, 0);
+        Sector sectorMM = locateSectorInList(0, 0);
+        Sector sectorMR = locateSectorInList(1, 0);
+
+        Sector sectorBL = locateSectorInList(-1, -1);
+        Sector sectorBM = locateSectorInList(0, -1);
+        Sector sectorBR = locateSectorInList(1, -1);
+
+        if (sectorTL.plannedTurns != 0)
+        {
+            planningIconTL.SetActive(true);
+        }
+        if (sectorTL.plannedTurns == 0)
+        {
+            planningIconTL.SetActive(false);
+        }
+
+        if (sectorTM.plannedTurns != 0)
+        {
+            planningIconTM.SetActive(true);
+        }
+        if (sectorTM.plannedTurns == 0)
+        {
+            planningIconTM.SetActive(false);
+        }
+
+        if (sectorTR.plannedTurns != 0)
+        {
+            planningIconTR.SetActive(true);
+        }
+        if (sectorTR.plannedTurns == 0)
+        {
+            planningIconTR.SetActive(false);
+        }
+
+
+
+        if (sectorML.plannedTurns != 0)
+        {
+            planningIconML.SetActive(true);
+        }
+        if (sectorML.plannedTurns == 0)
+        {
+            planningIconML.SetActive(false);
+        }
+
+        if (sectorMM.plannedTurns != 0)
+        {
+            planningIconMM.SetActive(true);
+        }
+        if (sectorMM.plannedTurns == 0)
+        {
+            planningIconMM.SetActive(false);
+        }
+
+        if (sectorMR.plannedTurns != 0)
+        {
+            planningIconMR.SetActive(true);
+        }
+        if (sectorMR.plannedTurns == 0)
+        {
+            planningIconMR.SetActive(false);
+        }
+        
+
+
+        if (sectorBL.plannedTurns != 0)
+        {
+            planningIconBL.SetActive(true);
+        }
+        if (sectorBL.plannedTurns == 0)
+        {
+            planningIconBL.SetActive(false);
+        }
+
+        if (sectorBM.plannedTurns != 0)
+        {
+            planningIconBM.SetActive(true);
+        }
+        if (sectorBM.plannedTurns == 0)
+        {
+            planningIconBM.SetActive(false);
+        }
+
+        if (sectorBR.plannedTurns != 0)
+        {
+            planningIconBR.SetActive(true);
+        }
+        if (sectorBR.plannedTurns == 0)
+        {
+            planningIconBR.SetActive(false);
+        }
+
+        
     }
 
     private void updateMiniMapColours()
@@ -633,7 +750,7 @@ public class GameManager : MonoBehaviour
         {
             mapSectorBR.color = wildFireColor;
         }
-        
+
 
     }
 
@@ -921,8 +1038,6 @@ public class GameManager : MonoBehaviour
     }
 
 
-
-
     void updateScoreText()
     {
         int scoreInt = Mathf.RoundToInt(score);
@@ -1068,6 +1183,18 @@ public class GameManager : MonoBehaviour
 
         extinguishButtonText.text = "EXTINGUISH FIRE \n COST: " + extinguishAPCost;
 
+    }
+
+    private void updateMinigameInstructions()
+    {
+        if (player.sectorCurrent.challengeEnabled == true)
+        {
+            MinigameInstruction.SetActive(true);
+        }
+        if (player.sectorCurrent.challengeEnabled == false)
+        {
+            MinigameInstruction.SetActive(false);
+        }
     }
 
     public void scoreIncrease(float input)
