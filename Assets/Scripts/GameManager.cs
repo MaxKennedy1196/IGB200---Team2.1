@@ -181,6 +181,10 @@ public class GameManager : MonoBehaviour
     Color verDryColor = new Color(0.8f, 0.4f, 0f, 1f);
     Color wildFireColor = new Color(1f, 0f, 0f, 1f);
 
+    public GameObject MinigameInstruction;
+
+    public RectTransform seasonArrow; 
+
     [Header("Scoring based on Stuatus")]
 
     public int pointsHotBurned;
@@ -189,9 +193,9 @@ public class GameManager : MonoBehaviour
     public int pointsDry;
     public int pointsVerDry;
 
-    [Header("Minigame Variables")]
-    public TextMeshProUGUI TimeTakenText;
-    public GameObject MinigameInstruction;
+    
+
+
 
     void Awake()
     {
@@ -246,6 +250,7 @@ public class GameManager : MonoBehaviour
         updateScoreText();
         updatePlannedTurnsText();
         updateActionButtonText();
+        updateMonthArrowPosition();
 
         updateMinigameInstructions();
 
@@ -1194,6 +1199,50 @@ public class GameManager : MonoBehaviour
         if (player.sectorCurrent.challengeEnabled == false)
         {
             MinigameInstruction.SetActive(false);
+        }
+    }
+
+    private void updateMonthArrowPosition()
+    {
+        seasonArrow.rotation = Quaternion.Euler(0f, 0f, -15f);   
+        switch (month)
+        {
+            case 1:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -315f); 
+                break;
+            case 2:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -345f); 
+                break;
+            case 3:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -15f); 
+                break;
+            case 4:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -45f); 
+                break;
+            case 5:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -75f); 
+                break;
+            case 6:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -105f); 
+                break;
+            case 7:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -135f); 
+                break;
+            case 8:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -165f); 
+                break;
+            case 9:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -195f); 
+                break;
+            case 10:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -225f); 
+                break;
+            case 11:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -255f); 
+                break;
+            case 12:
+                seasonArrow.rotation = Quaternion.Euler(0f, 0f, -285f);
+                break;
         }
     }
 
