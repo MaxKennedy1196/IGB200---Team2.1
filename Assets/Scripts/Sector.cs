@@ -438,6 +438,8 @@ public class Sector : MonoBehaviour
         wildfireGraphics.SetActive(true);
         wildfire = true;
 
+        plannedTurns = 0;
+
         print("WILDFIRE!!!");
 
     }
