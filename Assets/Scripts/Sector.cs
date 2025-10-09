@@ -606,7 +606,6 @@ public class Sector : MonoBehaviour
             case 16:
                 currentPattern = pattern16;
                 break;             
-            
         }
     }
 

@@ -211,7 +211,7 @@ public class GameManager : MonoBehaviour
         timeProgressionRate = 1;
         updateSeasonMonthNames();
 
-        actionPointsCurrent = actionPointsMax;
+        //actionPointsCurrent = actionPointsMax;
     }
 
     public void rangerBookMenuCheck()

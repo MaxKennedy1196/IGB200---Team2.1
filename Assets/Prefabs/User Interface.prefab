@@ -4691,7 +4691,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Move between the nodes as quickly as you can!
+  m_text: Move between the flags as quickly as you can!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}

@@ -54,6 +54,8 @@ public class TutorialManager : MonoBehaviour
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
         player = Manager.player;
+
+        //Manager.actionPointsCurrent = 7;
     }
 
     // Update is called once per frame
