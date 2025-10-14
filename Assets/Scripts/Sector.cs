@@ -38,8 +38,11 @@ public class Sector : MonoBehaviour
 
     [Header("Wildfire Variables")]
     public GameObject wildfireGraphics;
-    
+
     public bool wildfire;
+
+    public int wildfireCooldown;
+    int wildFireMaxCooldown = 2;
 
     [Header("Environmental Challenge Variables")]
 
@@ -60,8 +63,6 @@ public class Sector : MonoBehaviour
     public GameObject tileMapIncineratedOverlay;
     public GameObject tileMapCoolBurnedOverlay;
 
-    public bool incinerated;
-    public bool coolBurned;
 
     public bool randomInital;
 
@@ -335,6 +336,8 @@ public class Sector : MonoBehaviour
 
     public void nextMonth()
     {
+        wildfireCooldown -= 1;
+
         if (currentStatus == Status.hotBurn)
         {
             Manager.scoreIncrease(Manager.pointsHotBurned);
@@ -356,8 +359,6 @@ public class Sector : MonoBehaviour
             Manager.scoreIncrease(Manager.pointsVerDry);
         }
 
-        incinerated = false;
-        coolBurned = false;
 
         plannedTurns -= 1;
         if (plannedTurns <= 0)
@@ -383,7 +384,11 @@ public class Sector : MonoBehaviour
 
                     if (randomiser <= Manager.wildfireChanceSpring)
                     {
-                        startWildFire();
+                        if(wildfireCooldown <= 0)
+                        {
+                            startWildFire();
+                        }
+                            
                     }
                 }
                 if (Manager.seasonName == "Summer")
@@ -392,7 +397,10 @@ public class Sector : MonoBehaviour
 
                     if (randomiser <= Manager.wildfireChanceSummer)
                     {
-                        startWildFire();
+                        if (wildfireCooldown <= 0)
+                        {
+                            startWildFire();
+                        }
                     }
                 }
             }
@@ -438,6 +446,14 @@ public class Sector : MonoBehaviour
         wildfireGraphics.SetActive(true);
         wildfire = true;
 
+        wildfireCooldown = wildFireMaxCooldown;
+
+        challengeTriggerList[0].planningFlag.SetActive(false);
+        challengeTriggerList[1].planningFlag.SetActive(false);
+        challengeTriggerList[2].planningFlag.SetActive(false);
+        challengeTriggerList[3].planningFlag.SetActive(false);
+        challengeTriggerList[4].planningFlag.SetActive(false);
+
         plannedTurns = 0;
 
         print("WILDFIRE!!!");
@@ -468,7 +484,6 @@ public class Sector : MonoBehaviour
         currentAction = "extinguish";
         beginEnvironmentalChallenge();
     }
-
 
     private void completeWildfire()
     {
@@ -543,8 +558,6 @@ public class Sector : MonoBehaviour
         wildfire = false;
         print("Extinguish Performed");
     }
-
-
 
     private void beginEnvironmentalChallenge()
     {

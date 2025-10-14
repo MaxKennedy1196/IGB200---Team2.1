@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     Controls controls;
 
     public Vector2 playerMovementInput;//input vector for play movement 
+    Vector2 combinedInput;
 
     public Rigidbody2D rb;//Player Rigidbody
 
@@ -63,7 +64,7 @@ public class Player : MonoBehaviour
             speed = maxSpeed;
 
             Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical);
-            Vector2 combinedInput = playerMovementInput + joystickInput;
+            combinedInput = playerMovementInput + joystickInput;
 
             combinedInput = Vector2.ClampMagnitude(combinedInput, 1f);
 
@@ -74,16 +75,15 @@ public class Player : MonoBehaviour
 
         detectCurrentSector();
 
-        anim.SetFloat("Horizontal", playerMovementInput.x);
-        anim.SetFloat("Vertical", playerMovementInput.y);
+        anim.SetFloat("Horizontal", combinedInput.x);
+        anim.SetFloat("Vertical", combinedInput.y);
 
-        anim.SetFloat("Horizontal", joystick.Horizontal);
-        anim.SetFloat("Vertical", joystick.Vertical);
+  
 
-        if (playerMovementInput != Vector2.zero)
+        if (combinedInput != Vector2.zero)
         {
-            anim.SetFloat("LastHorizontal", playerMovementInput.x);
-            anim.SetFloat("LastVertical", playerMovementInput.y);
+            anim.SetFloat("LastHorizontal", combinedInput.x);
+            anim.SetFloat("LastVertical", combinedInput.y);
         }
 
     }
