@@ -18,7 +18,6 @@ public class Player : MonoBehaviour
 
     // Xavier this is my attempt to add joystick support because i could not understand your code - Max :)
     public Joystick joystick;
-    float horizontalMovement = 0f;
 
     [Header("Sector Detection Variables")]
 
@@ -77,6 +76,9 @@ public class Player : MonoBehaviour
 
         anim.SetFloat("Horizontal", playerMovementInput.x);
         anim.SetFloat("Vertical", playerMovementInput.y);
+
+        anim.SetFloat("Horizontal", joystick.Horizontal);
+        anim.SetFloat("Vertical", joystick.Vertical);
 
         if (playerMovementInput != Vector2.zero)
         {
