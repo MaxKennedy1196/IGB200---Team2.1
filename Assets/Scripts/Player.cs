@@ -62,20 +62,16 @@ public class Player : MonoBehaviour
         if (isLocked == false)
         {
             speed = maxSpeed;
-            rb.linearVelocity = playerMovementInput * speed;
-            
+
+            Vector2 joystickInput = new Vector2(joystick.Horizontal, joystick.Vertical);
+            Vector2 combinedInput = playerMovementInput + joystickInput;
+
+            combinedInput = Vector2.ClampMagnitude(combinedInput, 1f);
+
+            rb.linearVelocity = combinedInput * speed;
+
         }
 
-        if (joystick.Horizontal >= 0.2f)
-        {
-            horizontalMovement = speed;
-        } else if (joystick.Horizontal <= -0.2f)
-        {
-            horizontalMovement = -speed;
-        } else
-        {
-            horizontalMovement = 0f;
-        }
 
         detectCurrentSector();
 
