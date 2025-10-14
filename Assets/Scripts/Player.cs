@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
 
     public Rigidbody2D rb;//Player Rigidbody
 
+    // Xavier this is my attempt to add joystick support because i could not understand your code - Max :)
+    public Joystick joystick;
+    float horizontalMovement = 0f;
+
     [Header("Sector Detection Variables")]
 
     float sectorDetectionRaycastDistance = 100f;// How long Sector detect raycast is 
@@ -60,6 +64,17 @@ public class Player : MonoBehaviour
             speed = maxSpeed;
             rb.linearVelocity = playerMovementInput * speed;
             
+        }
+
+        if (joystick.Horizontal >= 0.2f)
+        {
+            horizontalMovement = speed;
+        } else if (joystick.Horizontal <= -0.2f)
+        {
+            horizontalMovement = -speed;
+        } else
+        {
+            horizontalMovement = 0f;
         }
 
         detectCurrentSector();
