@@ -1,5 +1,7 @@
 
+using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.Animations;
 
 public class Player : MonoBehaviour
 {
@@ -29,8 +31,34 @@ public class Player : MonoBehaviour
     [Header("Animation Variables")]
     public Animator anim;
 
+
     bool isLocked = false;
     public bool isInMenu;
+
+    public enum Hat
+    {
+        Akubra,
+        BillyHat,
+        BinChickenHat,
+        BucketHat,
+        CorkHat,
+        Default,
+        Helmet,
+        NoHat
+    }
+
+    public Hat currentHat;
+
+    public RuntimeAnimatorController Akubra;
+    public RuntimeAnimatorController BillyHat;
+    public RuntimeAnimatorController BinChickenHat;
+    public RuntimeAnimatorController BucketHat;
+    public RuntimeAnimatorController CorkHat;
+    public RuntimeAnimatorController Default;
+    public RuntimeAnimatorController Helmet;
+    public RuntimeAnimatorController NoHat;
+
+
 
     void Awake()
     {
@@ -50,8 +78,6 @@ public class Player : MonoBehaviour
         }
     }
 
-
-
     void Update()
     {
         if (isLocked == true)
@@ -69,7 +95,6 @@ public class Player : MonoBehaviour
             combinedInput = Vector2.ClampMagnitude(combinedInput, 1f);
 
             rb.linearVelocity = combinedInput * speed;
-
         }
 
 
@@ -78,7 +103,7 @@ public class Player : MonoBehaviour
         anim.SetFloat("Horizontal", combinedInput.x);
         anim.SetFloat("Vertical", combinedInput.y);
 
-  
+
 
         if (combinedInput != Vector2.zero)
         {
@@ -86,6 +111,44 @@ public class Player : MonoBehaviour
             anim.SetFloat("LastVertical", combinedInput.y);
         }
 
+        updateHatAnimController();
+
+    }
+
+    void updateHatAnimController()
+    {
+        if (currentHat == Hat.Akubra)
+        {
+            anim.runtimeAnimatorController = Akubra;
+        }
+        if (currentHat == Hat.BillyHat)
+        {
+            anim.runtimeAnimatorController = BillyHat;
+        }
+        if (currentHat == Hat.BinChickenHat)
+        {
+            anim.runtimeAnimatorController = BinChickenHat;
+        }
+        if (currentHat == Hat.BucketHat)
+        {
+            anim.runtimeAnimatorController = BucketHat;
+        }
+        if (currentHat == Hat.CorkHat)
+        {
+            anim.runtimeAnimatorController = CorkHat;
+        }
+        if (currentHat == Hat.Default)
+        {
+            anim.runtimeAnimatorController = Default;
+        }
+        if (currentHat == Hat.Helmet)
+        {
+            anim.runtimeAnimatorController = Helmet;
+        }
+        if(currentHat == Hat.NoHat)
+        {
+            anim.runtimeAnimatorController = NoHat;
+        }
     }
 
     void detectCurrentSector()

@@ -171,7 +171,7 @@ public class GameManager : MonoBehaviour
     [Header("UI Elements")]
 
     // Attention lord Xavier, I am adding this variable to hide UI when needed
-    public bool UIActive;//this pleases lord xavier
+    public bool UIActive;
 
     Color incineratedColor = new Color(0f, 0f, 0f, 1f);
     Color hotBurnedColor = new Color(0f, 0.1f, 0f, 1f);
@@ -193,7 +193,42 @@ public class GameManager : MonoBehaviour
     public int pointsDry;
     public int pointsVerDry;
 
-    
+    [Header("Hat Unlocks")]
+    public bool unlockedAkubra;
+    public bool unlockedBillyHat;
+    public bool unlockedBinChickenHat;
+    public bool unlockedBucketHat;
+    public bool unlockedCorkHat;
+    public bool unlockedDefault;
+    public bool unlockedHelmet;
+    public bool unlockedNoHat;
+
+    public Button buttonAkubra;
+    public Button buttonBillyHat;
+    public Button buttonBinChickenHat;
+    public Button buttonBucketHat;
+    public Button buttonCorkHat;
+    public Button buttonDefault;
+    public Button buttonHelmet;
+    public Button buttonNoHat;
+
+    public Image checkBoxAkubra;
+    public Image checkBoxBillyHat;
+    public Image checkBoxBinChickenHat;
+    public Image checkBoxBucketHat;
+    public Image checkBoxCorkHat;
+    public Image checkBoxDefault;
+    public Image checkBoxHelmet;
+    public Image checkBoxNoHat;
+
+    public Image lockImageAkubra;
+    public Image lockImageBillyHat;
+    public Image lockImageBinChickenHat;
+    public Image lockImageBucketHat;
+    public Image lockImageCorkHat;
+    public Image lockImageDefault;
+    public Image lockImageHelmet;
+    public Image lockImageNoHat;
 
 
 
