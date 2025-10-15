@@ -1719,8 +1719,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 0.000030517578, y: -65}
-  m_SizeDelta: {x: 400, y: 150}
+  m_AnchoredPosition: {x: 0.000030517578, y: -24.042603}
+  m_SizeDelta: {x: 400, y: 222.9241}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &8873203189764613687
 CanvasRenderer:
@@ -4234,7 +4234,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1436184818992460666
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5044,7 +5044,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: NEXT MONTH
+  m_text: Next Month
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
@@ -6828,7 +6828,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 50, y: -50}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &4927586037217749314
 GameObject:
@@ -7577,7 +7577,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Select
+  m_text: 'Select
+
+    Cost 3'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
   m_sharedMaterial: {fileID: 4136699146335947991, guid: 76bb41ff72177ee46adda727d663a19f, type: 2}
@@ -12210,7 +12212,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 96, y: 96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8251305432121519662
 CanvasRenderer:
@@ -12384,11 +12386,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 256
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 256
+      value: 384
       objectReference: {fileID: 0}
     - target: {fileID: 2929252283123773938, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
       propertyPath: m_LocalPosition.x
@@ -12442,6 +12444,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fixed Joystick
       objectReference: {fileID: 0}
+    - target: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252285020697096, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 192
+      objectReference: {fileID: 0}
+    - target: {fileID: 2929252285020698103, guid: aaa2c939c0359ac4dbce3f49e8b90252, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3282408836958174450, guid: 27d5b56e1144ca54c9920902a86c99dc, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
