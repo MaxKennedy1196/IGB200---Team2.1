@@ -235,6 +235,29 @@ public class GameManager : MonoBehaviour
     [Header("End of Year Message")]
     public GameObject endYearGameObj;
 
+    public Image endYearHat;
+
+    public TextMeshProUGUI unlockDescription;
+
+    public Sprite SpriteAkubra;
+    public Sprite SpriteBillyHat;
+    public Sprite SpriteBinChickenHat;
+    public Sprite SpriteBucketHat;
+    public Sprite SpriteCorkHat;
+    public Sprite SpriteHelmet;
+    public Sprite SpriteNoHat;
+
+    private string unlockTextAkubra = "YOU'VE UNLOCKED AKUBRA";
+    private string unlockTextBillyHat = "YOU'VE UNLOCKED BILLY'S HAT";
+    private string unlockTextBinChickenHat = "YOU'VE UNLOCKED BIN CHICKEN HAT";
+    private string unlockTextBucketHat = "YOU'VE UNLOCKED BUCKET HAT";
+    private string unlockTextCorkHat = "YOU'VE UNLOCKED CORK HAT";
+    private string unlockTextHelmet = "YOU'VE UNLOCKED ANTI-MAGPIE HELMET";
+    private string unlockTextNoHat = "YOU'VE UNLOCKED NO HAT";
+    
+
+
+
 
 
     void Awake()
@@ -1049,9 +1072,14 @@ public class GameManager : MonoBehaviour
         {
             extinguishButtonGameObject.SetActive(true);
         }
-        if(player.sectorCurrent.wildfire == false)
+        if (player.sectorCurrent.wildfire == false)
         {
             extinguishButtonGameObject.SetActive(false);
+        }
+
+        if(player.sectorCurrent.challengeEnabled == true)
+        {
+            extinguishButton.interactable = false;
         }
     }
 
@@ -1514,6 +1542,90 @@ public class GameManager : MonoBehaviour
     private void endOfYearMessage()
     {
         endYearGameObj.SetActive(true);
+
+        randomiseHats();
+
+
+    }
+
+    void randomiseHats()
+    {
+        int randomiser = Random.Range(1, 9);
+
+        switch (randomiser)
+        {
+            case 1:
+                if (unlockedAkubra == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedAkubra = true;
+                endYearHat.sprite = SpriteAkubra;
+                unlockDescription.text = unlockTextAkubra;
+                break;
+            case 2:
+                if (unlockedBillyHat == true)
+                {
+                    randomiseHats();
+                }
+
+                unlockedBillyHat = true;
+                endYearHat.sprite = SpriteBillyHat;
+                unlockDescription.text = unlockTextBillyHat;
+                break;
+            case 3:
+                if (unlockedBinChickenHat == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedBinChickenHat = true;
+                endYearHat.sprite = SpriteBinChickenHat;
+                unlockDescription.text = unlockTextBinChickenHat;
+                break;
+            case 4:
+                if (unlockedBucketHat == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedBucketHat = true;
+                endYearHat.sprite = SpriteBucketHat;
+                unlockDescription.text = unlockTextBucketHat;
+                break;
+            case 5:
+                if (unlockedCorkHat == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedCorkHat = true;
+                endYearHat.sprite = SpriteCorkHat;
+                unlockDescription.text = unlockTextCorkHat;
+                break;
+            case 6:
+                if (unlockedHelmet == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedHelmet = true;
+                endYearHat.sprite = SpriteHelmet;
+                unlockDescription.text = unlockTextHelmet;
+                break;
+            case 7:
+                if (unlockedNoHat == true)
+                {
+                    randomiseHats();
+                }
+                
+                unlockedNoHat = true;
+                endYearHat.sprite = SpriteNoHat;
+                unlockDescription.text = unlockTextNoHat;
+                break;
+            
+        }
     }
 
     void OnEnable()

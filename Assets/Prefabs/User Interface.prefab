@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 1727416149819376597}
   - component: {fileID: 4658798032699088724}
   m_Layer: 0
-  m_Name: Image
+  m_Name: NoHatTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1261,7 +1261,7 @@ GameObject:
   - component: {fileID: 4075307347197269184}
   - component: {fileID: 6425059390103327528}
   m_Layer: 0
-  m_Name: Image
+  m_Name: BinChickenTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1336,7 +1336,7 @@ GameObject:
   - component: {fileID: 8708380979134456592}
   - component: {fileID: 9122391011413730845}
   m_Layer: 0
-  m_Name: Image
+  m_Name: BillyHatTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2472,7 +2472,7 @@ GameObject:
   - component: {fileID: 332650756376388316}
   - component: {fileID: 3619062820349178980}
   m_Layer: 0
-  m_Name: Image
+  m_Name: AkubraTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5735,7 +5735,7 @@ GameObject:
   - component: {fileID: 738912630759409069}
   - component: {fileID: 8246599235884012505}
   m_Layer: 0
-  m_Name: Image
+  m_Name: DefaultTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10793,7 +10793,7 @@ GameObject:
   - component: {fileID: 7345457046455868503}
   - component: {fileID: 3652731720525796823}
   m_Layer: 0
-  m_Name: Image
+  m_Name: CorkHatTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10868,7 +10868,7 @@ GameObject:
   - component: {fileID: 3188865796357373302}
   - component: {fileID: 4989067356556225226}
   m_Layer: 0
-  m_Name: Image
+  m_Name: HelmetTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11370,7 +11370,7 @@ GameObject:
   - component: {fileID: 2929251980242176478}
   - component: {fileID: 9111074406999819838}
   m_Layer: 0
-  m_Name: Image
+  m_Name: BucketHatTick
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12074,7 +12074,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &6045957928445925517
 RectTransform:
   m_ObjectHideFlags: 0
