@@ -273,6 +273,7 @@ public class GameManager : MonoBehaviour
         updateMinigameInstructions();
 
         updateLockedHats();
+        updateHatActiveUI();
 
         actionPointsRemainingText.text = "" + actionPointsCurrent;
     }
@@ -1379,18 +1380,100 @@ public class GameManager : MonoBehaviour
             buttonNoHat.interactable = true;
         }
 
-        
-        
-        //Akubra;
-        //BillyHat;
-        //BinChickenHat;
-        //BucketHat;
-        //CorkHat;
-        //Default;
-        //Helmet;
-        //NoHat;
+
     }
 
+    private void updateHatActiveUI()
+    {
+        checkIconAkubra.enabled = false;
+        checkIconBillyHat.enabled = false;
+        checkIconBinChickenHat.enabled = false;
+        checkIconBucketHat.enabled = false;
+        checkIconCorkHat.enabled = false;
+        checkIconDefault.enabled = false;
+        checkIconHelmet.enabled = false;
+        checkIconNoHat.enabled = false;
+
+        if (player.currentHat == Player.Hat.Akubra)
+        {
+            checkIconAkubra.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.BillyHat)
+        {
+            checkIconBillyHat.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.BinChickenHat)
+        {
+            checkIconBinChickenHat.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.BucketHat)
+        {
+            checkIconBucketHat.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.CorkHat)
+        {
+            checkIconCorkHat.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.Default)
+        {
+            checkIconDefault.enabled = true;
+        }
+
+        if (player.currentHat == Player.Hat.Helmet)
+        {
+            checkIconHelmet.enabled = true;
+        }
+        
+        if(player.currentHat == Player.Hat.NoHat)
+        {
+            checkIconNoHat.enabled = true;
+        }
+    }
+
+    public void setHatAkubra()
+    {
+        player.currentHat = Player.Hat.Akubra;
+    }
+
+    public void setHatBillyHat()
+    {
+        player.currentHat = Player.Hat.BillyHat;
+    }
+
+    public void setHatBinChickenHat()
+    {
+        player.currentHat = Player.Hat.BinChickenHat;
+    }
+
+    public void setHatBucketHat()
+    {
+        player.currentHat = Player.Hat.BucketHat;
+    }
+
+    public void setHatCorkHat()
+    {
+        player.currentHat = Player.Hat.CorkHat;
+    }
+
+    public void setHatDefault()
+    {
+        player.currentHat = Player.Hat.Default;
+    }
+
+    public void setHatHelmet()
+    {
+        player.currentHat = Player.Hat.Helmet;
+    }
+
+    public void setHatNoHat()
+    {
+        player.currentHat = Player.Hat.NoHat;
+    }
 
     void OnEnable()
     {
