@@ -364,6 +364,13 @@ public class Sector : MonoBehaviour
         if (plannedTurns <= 0)
         {
             plannedTurns = 0;
+
+            challengeTriggerList[0].planningFlag.SetActive(false);
+            challengeTriggerList[1].planningFlag.SetActive(false);
+            challengeTriggerList[2].planningFlag.SetActive(false);
+            challengeTriggerList[3].planningFlag.SetActive(false);
+            challengeTriggerList[4].planningFlag.SetActive(false);
+
         }
 
         if (wildfire == true)

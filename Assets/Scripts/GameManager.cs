@@ -232,12 +232,15 @@ public class GameManager : MonoBehaviour
     public Image lockIconHelmet;
     public Image lockIconNoHat;
 
+
     [Header("End of Year Message")]
     public GameObject endYearGameObj;
 
     public Image endYearHat;
 
     public TextMeshProUGUI unlockDescription;
+
+    public TextMeshProUGUI endOfYearScore;
 
     public Sprite SpriteAkubra;
     public Sprite SpriteBillyHat;
@@ -847,7 +850,7 @@ public class GameManager : MonoBehaviour
 
 
         float lastmonth = month;
-
+/*
         if (lastmonth == 3)
         {
             StartCoroutine(Seasons[1].GetComponent<FadeUI>().FadeInAndOut(Seasons[1].gameObject));
@@ -866,7 +869,7 @@ public class GameManager : MonoBehaviour
         else if (lastmonth == 12)
         {
             StartCoroutine(Seasons[0].GetComponent<FadeUI>().FadeInAndOut(Seasons[0].gameObject));
-        }
+        }*/
 
         updateSeasonMonthNames();
 
@@ -944,28 +947,24 @@ public class GameManager : MonoBehaviour
 
         if (seasonName == "Spring" || seasonName == "Summer")
         {
+            
+
             coolBurnButtonGameObject.SetActive(false);
+
         }
         if (seasonName == "Autumn" || seasonName == "Winter")
         {
             coolBurnButtonGameObject.SetActive(true);
-            if (actionPointsCurrent < coolBurnAPCost)
+
+            if (actionPointsCurrent < hotBurnAPCost)
             {
                 coolBurnButton.interactable = false;
             }
-            if (actionPointsCurrent >= coolBurnAPCost)
+            if (actionPointsCurrent >= hotBurnAPCost)
             {
                 coolBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
-            {
-                coolBurnButton.interactable = false;
-            }
 
-            if(player.sectorCurrent.wildfire == true)
-            {
-                coolBurnButtonGameObject.SetActive(false);
-            }
         }
 
         if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true)
@@ -973,9 +972,22 @@ public class GameManager : MonoBehaviour
             coolBurnButton.interactable = false;
         }
 
-        if (coolBurnInteractableOverride == false)
+        if (hotBurnInteractableOverride == false)
         {
             coolBurnButton.interactable = false;
+        }
+
+        if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn ||
+            player.sectorCurrent.currentStatus == Sector.Status.hotBurn ||
+            player.sectorCurrent.currentStatus == Sector.Status.incinerated ||
+            player.sectorCurrent.currentStatus == Sector.Status.healthy)
+        {
+            coolBurnButtonGameObject.SetActive(false);
+        }
+
+        if(player.sectorCurrent.wildfire == true)
+        {
+            coolBurnButtonGameObject.SetActive(false);
         }
 
     }
@@ -985,6 +997,7 @@ public class GameManager : MonoBehaviour
         if (seasonName == "Spring" || seasonName == "Summer")
         {
             hotBurnButtonGameObject.SetActive(true);
+
             if (actionPointsCurrent < hotBurnAPCost)
             {
                 hotBurnButton.interactable = false;
@@ -992,14 +1005,6 @@ public class GameManager : MonoBehaviour
             if (actionPointsCurrent >= hotBurnAPCost)
             {
                 hotBurnButton.interactable = true;
-            }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.wildfire == true)
-            {
-                hotBurnButton.interactable = false;
-            }
-            if(player.sectorCurrent.wildfire == true)
-            {
-                hotBurnButtonGameObject.SetActive(false);
             }
 
         }
@@ -1019,10 +1024,40 @@ public class GameManager : MonoBehaviour
             hotBurnButton.interactable = false;
         }
 
+        if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn ||
+            player.sectorCurrent.currentStatus == Sector.Status.hotBurn ||
+            player.sectorCurrent.currentStatus == Sector.Status.incinerated ||
+            player.sectorCurrent.currentStatus == Sector.Status.healthy)
+        {
+            hotBurnButtonGameObject.SetActive(false);
+        }
+
+        if(player.sectorCurrent.wildfire == true)
+        {
+            hotBurnButtonGameObject.SetActive(false);
+        }
+
     }
 
     void checkPlanningAvailable()
     {
+        if (player.sectorCurrent.wildfire == true)
+        {
+            planningButtonGameObject.SetActive(false);
+        }
+        if(player.sectorCurrent.wildfire == false)
+        {
+            planningButtonGameObject.SetActive(true);
+        }
+
+        if(player.sectorCurrent.currentStatus == Sector.Status.healthy ||
+        player.sectorCurrent.currentStatus == Sector.Status.coolBurn ||
+        player.sectorCurrent.currentStatus == Sector.Status.hotBurn ||
+        player.sectorCurrent.currentStatus == Sector.Status.incinerated)
+        {
+            planningButtonGameObject.SetActive(false);
+        }
+
         if (actionPointsCurrent < planningAPCost)
         {
             planningButton.interactable = false;
@@ -1032,7 +1067,10 @@ public class GameManager : MonoBehaviour
             planningButton.interactable = true;
         }
 
-        if (player.sectorCurrent.plannedTurns == planningDuration || player.sectorCurrent.challengeEnabled == true || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.wildfire == true)
+        
+
+        if (player.sectorCurrent.plannedTurns != 0 ||
+            player.sectorCurrent.challengeEnabled == true)
         {
             planningButton.interactable = false;
         }
@@ -1042,14 +1080,7 @@ public class GameManager : MonoBehaviour
             planningButton.interactable = false;
         }
 
-        if (player.sectorCurrent.wildfire == true)
-        {
-            planningButtonGameObject.SetActive(false);
-        }
-        if(player.sectorCurrent.wildfire == false)
-        {
-            planningButtonGameObject.SetActive(true);
-        }
+        
     }
 
     void checkExtinguishAvailable()
@@ -1544,6 +1575,10 @@ public class GameManager : MonoBehaviour
         endYearGameObj.SetActive(true);
 
         randomiseHats();
+
+        endOfYearScore.text = "SCORE: " + score;
+
+        player.lockPlayer();
 
 
     }
