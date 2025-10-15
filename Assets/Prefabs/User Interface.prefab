@@ -451,7 +451,7 @@ GameObject:
   - component: {fileID: 558229256953629258}
   - component: {fileID: 8384754384894436800}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: CorkHatcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -801,7 +801,7 @@ GameObject:
   - component: {fileID: 4850095382366405652}
   - component: {fileID: 8798285480385180389}
   m_Layer: 0
-  m_Name: locked
+  m_Name: BucketHatlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1622,7 +1622,7 @@ GameObject:
   - component: {fileID: 7749028836733388701}
   - component: {fileID: 8785366692858712876}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: BillyHatHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2350,7 +2350,7 @@ GameObject:
   - component: {fileID: 8321068506837005446}
   - component: {fileID: 7720461208102943468}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: Default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2891,7 +2891,7 @@ GameObject:
   - component: {fileID: 2319272022503599459}
   - component: {fileID: 2279843341489997156}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: NoHatHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3275,7 +3275,7 @@ GameObject:
   - component: {fileID: 3999958145265083503}
   - component: {fileID: 5083019267623342326}
   m_Layer: 0
-  m_Name: locked
+  m_Name: NoHatlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3426,7 +3426,7 @@ GameObject:
   - component: {fileID: 6475788122850700377}
   - component: {fileID: 113229272809999965}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: Akubra
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3589,7 +3589,7 @@ GameObject:
   - component: {fileID: 7357938782081343395}
   - component: {fileID: 7605408126674326801}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: BucketHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3885,7 +3885,7 @@ GameObject:
   - component: {fileID: 317560020489547269}
   - component: {fileID: 1287001182800682791}
   m_Layer: 0
-  m_Name: locked
+  m_Name: Helmetlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3960,7 +3960,7 @@ GameObject:
   - component: {fileID: 7040577118903456448}
   - component: {fileID: 4893140492380646242}
   m_Layer: 0
-  m_Name: locked
+  m_Name: BinChickenlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4766,7 +4766,7 @@ GameObject:
   - component: {fileID: 1432442793071200450}
   - component: {fileID: 1062567324421335435}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: DefaultHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5127,7 +5127,7 @@ GameObject:
   - component: {fileID: 5156413032775293801}
   - component: {fileID: 6149942677079149548}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: Helmetcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5413,7 +5413,7 @@ GameObject:
   - component: {fileID: 1397168544461949624}
   - component: {fileID: 2364836545236342925}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: HelmetHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5488,7 +5488,7 @@ GameObject:
   - component: {fileID: 6595938787779878254}
   - component: {fileID: 5208778534641469691}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: Akubracheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6292,7 +6292,7 @@ GameObject:
   - component: {fileID: 6886078013605035692}
   - component: {fileID: 8294111628843574986}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: BillyHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6414,7 +6414,7 @@ GameObject:
   - component: {fileID: 4277571502187363880}
   - component: {fileID: 1624682888349596547}
   m_Layer: 0
-  m_Name: locked
+  m_Name: Defaultlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6842,7 +6842,7 @@ GameObject:
   - component: {fileID: 4847443714919741107}
   - component: {fileID: 705660284723084683}
   m_Layer: 0
-  m_Name: locked
+  m_Name: CorkHatlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6918,7 +6918,7 @@ GameObject:
   - component: {fileID: 6285263751383500953}
   - component: {fileID: 5695865809035686251}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: BinChicken
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7040,7 +7040,7 @@ GameObject:
   - component: {fileID: 4147062022254392556}
   - component: {fileID: 2805838147102342198}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: BinChickenHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7191,7 +7191,7 @@ GameObject:
   - component: {fileID: 3578230130734644424}
   - component: {fileID: 6541266886738218039}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: Helmet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7313,7 +7313,7 @@ GameObject:
   - component: {fileID: 1288602436320622544}
   - component: {fileID: 6011297487803141407}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: AkubraHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7758,7 +7758,7 @@ GameObject:
   - component: {fileID: 9040807834532746419}
   - component: {fileID: 2657019465635237181}
   m_Layer: 0
-  m_Name: locked
+  m_Name: Akubralocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7949,7 +7949,7 @@ GameObject:
   - component: {fileID: 2083122045728496937}
   - component: {fileID: 5608448247750024143}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: BucketHatcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8026,7 +8026,7 @@ GameObject:
   - component: {fileID: 1143649782798649304}
   - component: {fileID: 6590986003424398465}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: CorkHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8148,7 +8148,7 @@ GameObject:
   - component: {fileID: 32102591195443108}
   - component: {fileID: 5163887695626921623}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: BinChickencheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9547,7 +9547,7 @@ GameObject:
   - component: {fileID: 2614688007083428184}
   - component: {fileID: 7527734174864211948}
   m_Layer: 0
-  m_Name: Frame
+  m_Name: NoHat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9767,7 +9767,7 @@ GameObject:
   - component: {fileID: 3777908020071187454}
   - component: {fileID: 2204688204158947068}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: Defaultcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10155,13 +10155,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2178430723362120797}
-  - {fileID: 6513375396578252601}
-  - {fileID: 3604877364790880416}
-  - {fileID: 8259552346842854553}
-  - {fileID: 1090832577824635319}
   - {fileID: 1195161899333555418}
+  - {fileID: 6513375396578252601}
   - {fileID: 5937742599025048806}
+  - {fileID: 1090832577824635319}
+  - {fileID: 3604877364790880416}
+  - {fileID: 2178430723362120797}
+  - {fileID: 8259552346842854553}
   - {fileID: 7260187426911741556}
   m_Father: {fileID: 1530547708708340730}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -10718,7 +10718,7 @@ GameObject:
   - component: {fileID: 7754999886094974875}
   - component: {fileID: 4167863930645528921}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: CorkHatHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11220,7 +11220,7 @@ GameObject:
   - component: {fileID: 7140464597118015824}
   - component: {fileID: 3700471363532451293}
   m_Layer: 0
-  m_Name: HatImages
+  m_Name: BucketHatHatImages
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11709,7 +11709,7 @@ GameObject:
   - component: {fileID: 7442646686158301419}
   - component: {fileID: 3046382518814092789}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: BillyHatcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11921,7 +11921,7 @@ GameObject:
   - component: {fileID: 7145172285679685517}
   - component: {fileID: 6773043642936134511}
   m_Layer: 0
-  m_Name: locked
+  m_Name: BillyHatlocked
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12110,7 +12110,7 @@ GameObject:
   - component: {fileID: 6047694086560986711}
   - component: {fileID: 4782789082143286614}
   m_Layer: 0
-  m_Name: checkbox
+  m_Name: NoHatcheckbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

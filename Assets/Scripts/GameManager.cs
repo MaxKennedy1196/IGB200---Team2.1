@@ -212,23 +212,23 @@ public class GameManager : MonoBehaviour
     public Button buttonHelmet;
     public Button buttonNoHat;
 
-    public Image checkBoxAkubra;
-    public Image checkBoxBillyHat;
-    public Image checkBoxBinChickenHat;
-    public Image checkBoxBucketHat;
-    public Image checkBoxCorkHat;
-    public Image checkBoxDefault;
-    public Image checkBoxHelmet;
-    public Image checkBoxNoHat;
+    public Image checkIconAkubra;
+    public Image checkIconBillyHat;
+    public Image checkIconBinChickenHat;
+    public Image checkIconBucketHat;
+    public Image checkIconCorkHat;
+    public Image checkIconDefault;
+    public Image checkIconHelmet;
+    public Image checkIconNoHat;
 
-    public Image lockImageAkubra;
-    public Image lockImageBillyHat;
-    public Image lockImageBinChickenHat;
-    public Image lockImageBucketHat;
-    public Image lockImageCorkHat;
-    public Image lockImageDefault;
-    public Image lockImageHelmet;
-    public Image lockImageNoHat;
+    public Image lockIconAkubra;
+    public Image lockIconBillyHat;
+    public Image lockIconBinChickenHat;
+    public Image lockIconBucketHat;
+    public Image lockIconCorkHat;
+    public Image lockIconDefault;
+    public Image lockIconHelmet;
+    public Image lockIconNoHat;
 
 
 
@@ -249,24 +249,7 @@ public class GameManager : MonoBehaviour
         //actionPointsCurrent = actionPointsMax;
     }
 
-    public void rangerBookMenuCheck()
-    {
-        if (rangerBookOpen == false)
-        {
-            RangerBook.SetActive(true);
-            player.lockPlayer();
-            rangerBookOpen = true;
-            return;
-        }
-        if (rangerBookOpen == true)
-        {
-            RangerBook.SetActive(false);
-            player.unlockPlayer();
-            rangerBookOpen = false;
-            return;
-        }
-        
-    }
+    
 
     void Update()
     {
@@ -288,6 +271,8 @@ public class GameManager : MonoBehaviour
         updateMonthArrowPosition();
 
         updateMinigameInstructions();
+
+        updateLockedHats();
 
         actionPointsRemainingText.text = "" + actionPointsCurrent;
     }
@@ -903,6 +888,24 @@ public class GameManager : MonoBehaviour
         actionPointsCurrent -= extinguishAPCost;
     }
 
+    public void rangerBookMenuCheck()
+    {
+        if (rangerBookOpen == false)
+        {
+            RangerBook.SetActive(true);
+            player.lockPlayer();
+            rangerBookOpen = true;
+            return;
+        }
+        if (rangerBookOpen == true)
+        {
+            RangerBook.SetActive(false);
+            player.unlockPlayer();
+            rangerBookOpen = false;
+            return;
+        }
+        
+    }
 
     void checkCoolBurnAvailable()
     {
@@ -1076,7 +1079,6 @@ public class GameManager : MonoBehaviour
         awarenessRaised = true;
         actionPointsCurrent -= awarenessAPCost;
     }
-
 
     void updateScoreText()
     {
@@ -1285,6 +1287,110 @@ public class GameManager : MonoBehaviour
     {
         score += input;
     }
+
+    void updateLockedHats()
+    {
+        if (unlockedAkubra == false)
+        {
+            lockIconAkubra.enabled = true;
+            buttonAkubra.interactable = false;
+        }
+        if (unlockedAkubra == true)
+        {
+            lockIconAkubra.enabled = false;
+            buttonAkubra.interactable = true;
+        }
+        
+        if (unlockedBillyHat == false)
+        {
+            lockIconBillyHat.enabled = true;
+            buttonBillyHat.interactable = false;
+        }
+        if (unlockedBillyHat == true)
+        {
+            lockIconBillyHat.enabled = false;
+            buttonBillyHat.interactable = true;
+        }
+
+        if (unlockedBinChickenHat == false)
+        {
+            lockIconBinChickenHat.enabled = true;
+            buttonBinChickenHat.interactable = false;
+        }
+        if (unlockedBinChickenHat == true)
+        {
+            lockIconBinChickenHat.enabled = false;
+            buttonBinChickenHat.interactable = true;
+        }
+
+        if (unlockedBucketHat == false)
+        {
+            lockIconBucketHat.enabled = true;
+            buttonBucketHat.interactable = false;
+        }
+        if (unlockedBucketHat == true)
+        {
+            lockIconBucketHat.enabled = false;
+            buttonBucketHat.interactable = true;
+        }
+
+        if (unlockedCorkHat == false)
+        {
+            lockIconCorkHat.enabled = true;
+            buttonCorkHat.interactable = false;
+        }
+        if (unlockedCorkHat == true)
+        {
+            lockIconCorkHat.enabled = false;
+            buttonCorkHat.interactable = true;
+        }
+
+        if (unlockedDefault == false)
+        {
+            lockIconDefault.enabled = true;
+            buttonDefault.interactable = false;
+        }
+        if (unlockedDefault == true)
+        {
+            lockIconDefault.enabled = false;
+            buttonDefault.interactable = true;
+        }
+
+        if (unlockedHelmet == false)
+        {
+            lockIconHelmet.enabled = true;
+            buttonHelmet.interactable = false;
+        }
+        if (unlockedHelmet == true)
+        {
+            lockIconHelmet.enabled = false;
+            buttonHelmet.interactable = true;
+        }
+
+
+        if (unlockedNoHat == false)
+        {
+            lockIconNoHat.enabled = true;
+            buttonNoHat.interactable = false;
+        }
+        if (unlockedNoHat == true)
+        {
+            lockIconNoHat.enabled = false;
+            buttonNoHat.interactable = true;
+        }
+
+        
+        
+        //Akubra;
+        //BillyHat;
+        //BinChickenHat;
+        //BucketHat;
+        //CorkHat;
+        //Default;
+        //Helmet;
+        //NoHat;
+    }
+
 
     void OnEnable()
     {
