@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Planning Variables")]
     public Button planningButton;
+    public GameObject planningButtonGameObject;
     public TextMeshProUGUI plannedTurnsText;
     public GameObject plannedTurnsTextGameObject;
 
@@ -61,6 +62,7 @@ public class GameManager : MonoBehaviour
 
     [Header("Extinguish Variables")]
     public Button extinguishButton;
+    public GameObject extinguishButtonGameObject;
 
     public int extinguishAPCost;
 
@@ -229,6 +231,9 @@ public class GameManager : MonoBehaviour
     public Image lockIconDefault;
     public Image lockIconHelmet;
     public Image lockIconNoHat;
+
+    [Header("End of Year Message")]
+    public GameObject endYearGameObj;
 
 
 
@@ -782,7 +787,10 @@ public class GameManager : MonoBehaviour
 
     public void beginNextMonth()
     {
-        
+        if(month == 2)
+        {
+            endOfYearMessage();
+        }
 
         foreach (EnvironmentalTreeVisuals tree in treeList)
         {
@@ -926,9 +934,14 @@ public class GameManager : MonoBehaviour
             {
                 coolBurnButton.interactable = true;
             }
-            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy || player.sectorCurrent.wildfire == true)
+            if (player.sectorCurrent.currentStatus == Sector.Status.coolBurn || player.sectorCurrent.currentStatus == Sector.Status.hotBurn || player.sectorCurrent.currentStatus == Sector.Status.incinerated || player.sectorCurrent.currentStatus == Sector.Status.healthy)
             {
                 coolBurnButton.interactable = false;
+            }
+
+            if(player.sectorCurrent.wildfire == true)
+            {
+                coolBurnButtonGameObject.SetActive(false);
             }
         }
 
@@ -961,6 +974,11 @@ public class GameManager : MonoBehaviour
             {
                 hotBurnButton.interactable = false;
             }
+            if(player.sectorCurrent.wildfire == true)
+            {
+                hotBurnButtonGameObject.SetActive(false);
+            }
+
         }
         if (seasonName == "Autumn" || seasonName == "Winter")
         {
@@ -1000,6 +1018,15 @@ public class GameManager : MonoBehaviour
         {
             planningButton.interactable = false;
         }
+
+        if (player.sectorCurrent.wildfire == true)
+        {
+            planningButtonGameObject.SetActive(false);
+        }
+        if(player.sectorCurrent.wildfire == false)
+        {
+            planningButtonGameObject.SetActive(true);
+        }
     }
 
     void checkExtinguishAvailable()
@@ -1016,6 +1043,15 @@ public class GameManager : MonoBehaviour
         if (extinguishInteractableOverride == false)
         {
             extinguishButton.interactable = false;
+        }
+
+        if (player.sectorCurrent.wildfire == true)
+        {
+            extinguishButtonGameObject.SetActive(true);
+        }
+        if(player.sectorCurrent.wildfire == false)
+        {
+            extinguishButtonGameObject.SetActive(false);
         }
     }
 
@@ -1473,6 +1509,11 @@ public class GameManager : MonoBehaviour
     public void setHatNoHat()
     {
         player.currentHat = Player.Hat.NoHat;
+    }
+
+    private void endOfYearMessage()
+    {
+        endYearGameObj.SetActive(true);
     }
 
     void OnEnable()
