@@ -80,8 +80,16 @@ public class GameManager : MonoBehaviour
 
     public bool awarenessInteractableOverride;
 
+    [Header("UI Score & Token Animation Variables")]
 
-    
+    [SerializeField] GameObject scoreChangePrefab;
+    [SerializeField] Transform scoreParent;
+    [SerializeField] RectTransform scoreEndPoint;
+
+    [SerializeField] GameObject tokenChangePrefab;
+    [SerializeField] Transform tokenParent;
+    [SerializeField] RectTransform tokenEndPoint;
+
 
     [Header("Action Point Variables")]
     public int actionPointsMax;
@@ -824,6 +832,7 @@ public class GameManager : MonoBehaviour
             tree.nextTurn();
         }
 
+
         actionPointsCurrent += actionPointsIncreaseRate;
 
         if (awarenessRaised)
@@ -1401,6 +1410,12 @@ public class GameManager : MonoBehaviour
     public void scoreIncrease(float input)
     {
         score += input;
+    }
+
+    private void ShowScoreChange(int change)
+    {
+        var inst = Instantiate(scoreChangePrefab, Vector3.zero, Quaternion.identity);
+        inst.transform.SetParent(scoreParent, false);
     }
 
     void updateLockedHats()
