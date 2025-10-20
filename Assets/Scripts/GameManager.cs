@@ -156,6 +156,7 @@ public class GameManager : MonoBehaviour
     public GameObject planningIconBR;
 
     public bool rangerBookOpen;
+    public bool communityCentreOpen;
 
     [Header("Community Centre Variables")]
 
@@ -940,6 +941,24 @@ public class GameManager : MonoBehaviour
             return;
         }
         
+    }
+
+    public void CommunityCentreCheck()
+    {
+        if (communityCentreOpen == false)
+        {
+            communityCentreMenu.SetActive(true);
+            player.lockPlayer();
+            communityCentreOpen = true;
+            return;
+        }
+        if (communityCentreOpen == true)
+        {
+            communityCentreMenu.SetActive(false);
+            player.unlockPlayer();
+            communityCentreOpen = false;
+            return;
+        }
     }
 
     void checkCoolBurnAvailable()
