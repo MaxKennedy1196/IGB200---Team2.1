@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Collections;
+using System.Collections.Generic;
 
 public class TutorialManager : MonoBehaviour
 {
@@ -229,25 +231,7 @@ public class TutorialManager : MonoBehaviour
             Manager.extinguishInteractableOverride = false;
         }
 
-        if (Manager.month == 9 && tutorialPhase == 11)
-        {
-            SpringStart.SetActive(true);
-            tutorialPhase = 12;
-
-            Sector4.currentStatus = Sector.Status.healthy;
-            Sector9.currentStatus = Sector.Status.healthy;
-            Sector2.currentStatus = Sector.Status.veryDry;
-            Sector7.currentStatus = Sector.Status.veryDry;
-
-            Manager.timeProgressionRate = 4;
-
-            Manager.nextMonthInteractableOverride = false;
-            Manager.coolBurnInteractableOverride = false;
-            Manager.hotBurnInteractableOverride = false;
-            Manager.planningInteractableOverride = false;
-            Manager.awarenessInteractableOverride = false;
-            Manager.extinguishInteractableOverride = false;
-        }
+        OnSpringFadeComplete();
 
         if (Manager.rangerBookOpen == true && tutorialPhase == 12)
         {
@@ -438,5 +422,35 @@ public class TutorialManager : MonoBehaviour
         }
     }
     
+    public void OnSpringFadeComplete()
+    {
+       if (Manager.month == 9 && tutorialPhase == 11)
+        {
+            StartCoroutine(SpringFadeSequence());
+        }
+    }
 
+    private IEnumerator SpringFadeSequence()
+    {
+        yield return new WaitForSeconds(5f);
+
+        SpringStart.SetActive(true);
+        tutorialPhase = 12;
+
+        Sector4.currentStatus = Sector.Status.healthy;
+        Sector9.currentStatus = Sector.Status.healthy;
+        Sector2.currentStatus = Sector.Status.veryDry;
+        Sector7.currentStatus = Sector.Status.veryDry;
+
+        Manager.timeProgressionRate = 4;
+
+        Manager.nextMonthInteractableOverride = false;
+        Manager.coolBurnInteractableOverride = false;
+        Manager.hotBurnInteractableOverride = false;
+        Manager.planningInteractableOverride = false;
+        Manager.awarenessInteractableOverride = false;
+        Manager.extinguishInteractableOverride = false;
+
+        Debug.Log("SPRING FADE COMPLETE");
+    }
 }

@@ -9,9 +9,11 @@ public class FadeUI : MonoBehaviour
     [SerializeField] private Image SeasonUI;
     [SerializeField] public float fadeDuration;
 
+    public System.Action OnFadeComplete;
+
     // fade in the correct canvas group depending on the season
     // called from game manager when season changes
-    
+
     public IEnumerator FadeInAndOut(GameObject fadingObject)
     {
         //Debug.Log("RAAAAH");
@@ -24,8 +26,10 @@ public class FadeUI : MonoBehaviour
         FadeIn();
         yield return new WaitForSeconds(4);
         FadeOut();
-        yield return null;
+        yield return new WaitForSeconds(fadeDuration);
         fadingObject.SetActive(false);
+
+        OnFadeComplete?.Invoke();
     }
 
     public void FadeIn()

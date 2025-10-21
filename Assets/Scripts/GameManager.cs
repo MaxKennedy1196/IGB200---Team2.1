@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -861,7 +862,7 @@ public class GameManager : MonoBehaviour
 
 
         float lastmonth = month;
-/*
+
         if (lastmonth == 3)
         {
             StartCoroutine(Seasons[1].GetComponent<FadeUI>().FadeInAndOut(Seasons[1].gameObject));
@@ -874,13 +875,25 @@ public class GameManager : MonoBehaviour
 
         else if (lastmonth == 9)
         {
+
+            var fadeUI = Seasons[3].GetComponent<FadeUI>();
+
+            if (SceneManager.GetActiveScene().name == "Tutorial")
+            {
+                fadeUI.OnFadeComplete += () =>
+                {
+                    FindObjectOfType<TutorialManager>()?.OnSpringFadeComplete();
+                };
+            }
+
+
             StartCoroutine(Seasons[3].GetComponent<FadeUI>().FadeInAndOut(Seasons[3].gameObject));
         }
 
         else if (lastmonth == 12)
         {
             StartCoroutine(Seasons[0].GetComponent<FadeUI>().FadeInAndOut(Seasons[0].gameObject));
-        }*/
+        }
 
         updateSeasonMonthNames();
 
