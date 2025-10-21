@@ -984,13 +984,28 @@ public class GameManager : MonoBehaviour
         {
             coolBurnButtonGameObject.SetActive(true);
 
-            if (actionPointsCurrent < hotBurnAPCost)
+            if (player.sectorCurrent.plannedTurns == 0)
             {
-                coolBurnButton.interactable = false;
+                if (actionPointsCurrent < coolBurnAPCost)
+                {
+                    coolBurnButton.interactable = false;
+                }
+                if (actionPointsCurrent >= coolBurnAPCost)
+                {
+                    coolBurnButton.interactable = true;
+                }
             }
-            if (actionPointsCurrent >= hotBurnAPCost)
+
+            if (player.sectorCurrent.plannedTurns != 0)
             {
-                coolBurnButton.interactable = true;
+                if (actionPointsCurrent < coolBurnAPCost - planningAPDiscount)
+                {
+                    coolBurnButton.interactable = false;
+                }
+                if (actionPointsCurrent >= coolBurnAPCost - planningAPDiscount)
+                {
+                    coolBurnButton.interactable = true;
+                }
             }
 
         }
@@ -1000,7 +1015,7 @@ public class GameManager : MonoBehaviour
             coolBurnButton.interactable = false;
         }
 
-        if (hotBurnInteractableOverride == false)
+        if (coolBurnInteractableOverride == false)
         {
             coolBurnButton.interactable = false;
         }
@@ -1026,13 +1041,28 @@ public class GameManager : MonoBehaviour
         {
             hotBurnButtonGameObject.SetActive(true);
 
-            if (actionPointsCurrent < hotBurnAPCost)
+            if (player.sectorCurrent.plannedTurns == 0)
             {
-                hotBurnButton.interactable = false;
+                if (actionPointsCurrent < hotBurnAPCost)
+                {
+                    hotBurnButton.interactable = false;
+                }
+                if (actionPointsCurrent >= hotBurnAPCost)
+                {
+                    hotBurnButton.interactable = true;
+                }
             }
-            if (actionPointsCurrent >= hotBurnAPCost)
+
+            if (player.sectorCurrent.plannedTurns != 0)
             {
-                hotBurnButton.interactable = true;
+                if (actionPointsCurrent < hotBurnAPCost - planningAPDiscount)
+                {
+                    hotBurnButton.interactable = false;
+                }
+                if (actionPointsCurrent >= hotBurnAPCost - planningAPDiscount)
+                {
+                    hotBurnButton.interactable = true;
+                }
             }
 
         }
