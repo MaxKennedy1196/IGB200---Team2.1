@@ -72,9 +72,28 @@ public class Dialogue : MonoBehaviour
 
     IEnumerator TypeLine()
     {
-        foreach (char c in lines[index].ToCharArray())
+        string line = lines[index];
+        int i = 0;
+
+        while (i < line.Length)
         {
-            textComponent.text += c;
+            // Handle TMP tags (like <sprite>, <b>, <color>, etc.)
+            if (line[i] == '<')
+            {
+                int closingIndex = line.IndexOf('>', i);
+                if (closingIndex != -1)
+                {
+                    string tag = line.Substring(i, closingIndex - i + 1);
+                    textComponent.text += tag;
+                    i = closingIndex + 1;
+                    continue;
+                }
+            }
+
+            // Normal character
+            textComponent.text += line[i];
+            i++;
+
             yield return new WaitForSeconds(textSpeed);
         }
     }
