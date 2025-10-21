@@ -190,12 +190,12 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Player_Run_RangerHat_0
+      name: Player_Extinguish_RangerHat_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -203,21 +203,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 0112671b0406e93a0800000000000000
-      internalID: -6656777368235532016
+      spriteID: 20b89d57b445475419c30914ab1a1dd2
+      internalID: -2070184922
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_1
+      name: Player_Extinguish_RangerHat_1
       rect:
         serializedVersion: 2
-        x: 18
+        x: 20
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -225,21 +225,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 2ca9a26660cf27440800000000000000
-      internalID: 4932281646338185922
+      spriteID: e8f6f7457161b0c45a128ccb407c01b6
+      internalID: 846668012
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_2
+      name: Player_Extinguish_RangerHat_2
       rect:
         serializedVersion: 2
-        x: 36
+        x: 40
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -247,21 +247,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 68344f27f37951960800000000000000
-      internalID: 7572124647260701574
+      spriteID: 6834e9971d0978c42bdf0ea4341c25bf
+      internalID: 591643118
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_3
+      name: Player_Extinguish_RangerHat_3
       rect:
         serializedVersion: 2
-        x: 54
+        x: 60
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -269,21 +269,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 1bd8cdf5da7c4c7a0800000000000000
-      internalID: -6357737226488738383
+      spriteID: c488169b26090854f997459af522ca3b
+      internalID: 1145730106
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_4
+      name: Player_Extinguish_RangerHat_4
       rect:
         serializedVersion: 2
-        x: 72
+        x: 80
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -291,21 +291,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 9e0a590f73c774a60800000000000000
-      internalID: 7658226271068201193
+      spriteID: 1388c1993ee75fa47b8ec8406d2740cc
+      internalID: 317869099
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_5
+      name: Player_Extinguish_RangerHat_5
       rect:
         serializedVersion: 2
-        x: 90
+        x: 100
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -313,21 +313,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f4f4f1ee52d9b0a00800000000000000
-      internalID: 723844951357476687
+      spriteID: 6399e8650c908504eb11c87222a2c25d
+      internalID: -1620844070
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_6
+      name: Player_Extinguish_RangerHat_6
       rect:
         serializedVersion: 2
-        x: 108
+        x: 120
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -335,21 +335,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 8fd16ccc37e3a2dc0800000000000000
-      internalID: -3663046679834780168
+      spriteID: 809664a0b81056643a8f437f526be479
+      internalID: -1487773583
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_7
+      name: Player_Extinguish_RangerHat_7
       rect:
         serializedVersion: 2
-        x: 126
+        x: 140
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -357,21 +357,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: 441aabf23fef2b800800000000000000
-      internalID: 626843618589188420
+      spriteID: 6f7a9520c0de5e74bb5d11286862d35d
+      internalID: 206869947
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_8
+      name: Player_Extinguish_RangerHat_8
       rect:
         serializedVersion: 2
-        x: 144
+        x: 160
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -379,175 +379,21 @@ TextureImporter:
       customData: 
       outline: []
       physicsShape: []
-      tessellationDetail: -1
+      tessellationDetail: 0
       bones: []
-      spriteID: f638d6f3947d4d010800000000000000
-      internalID: 1212830909266232175
+      spriteID: f5454de5abd82864db61b185c5ddc9bd
+      internalID: 1364405652
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_9
-      rect:
-        serializedVersion: 2
-        x: 162
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 87cec0d3c7fa75f50800000000000000
-      internalID: 6870152704712043640
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_10
+      name: Player_Extinguish_RangerHat_9
       rect:
         serializedVersion: 2
         x: 180
         y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 630944c50cac9abc0800000000000000
-      internalID: -3771260285415550922
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_11
-      rect:
-        serializedVersion: 2
-        x: 198
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 8b4dad684f7d8ce70800000000000000
-      internalID: 9135789289355531448
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_12
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 288cd00131075e4d0800000000000000
-      internalID: -3105953140826060670
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_13
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 181a2f0c9f6400270800000000000000
-      internalID: 8214643758821712257
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_14
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: d9ba06cd9ea63e7a0800000000000000
-      internalID: -6349113497005020259
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_15
-      rect:
-        serializedVersion: 2
-        x: 270
-        y: 0
-        width: 18
-        height: 19
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 00ee1003a38e5f890800000000000000
-      internalID: -7424773074039214592
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Player_Run_RangerHat_16
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -557,19 +403,19 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 14871dcda69fb554aa17f01e8fc78d17
-      internalID: -1590002843
+      spriteID: e1a157c5c431ff34d876b130013cc73c
+      internalID: 1569517331
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Player_Run_RangerHat_17
+      name: Player_Extinguish_RangerHat_10
       rect:
         serializedVersion: 2
-        x: 306
+        x: 200
         y: 0
-        width: 18
+        width: 20
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -579,8 +425,162 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 507028bb7c562134fae5ad32e5c6d99b
-      internalID: 103883443
+      spriteID: b2f5c057e38ce054ca6952ac9222d2e2
+      internalID: -1659875308
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_11
+      rect:
+        serializedVersion: 2
+        x: 220
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af70cb94035dca9419e7b5746c654728
+      internalID: 331459017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_12
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd9657ca31b09e42b1edd7637640903
+      internalID: 1637909832
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_13
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aca715eba8c557468929e6b782a7489
+      internalID: 1093430259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_14
+      rect:
+        serializedVersion: 2
+        x: 280
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 138f1f659335ceb4192041676fd5f674
+      internalID: -1279014825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_15
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e091586b908015046961f5d341475486
+      internalID: 1107986421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_16
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6720c9046e6e4884bb35e61add721859
+      internalID: -1295213318
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Player_Extinguish_RangerHat_17
+      rect:
+        serializedVersion: 2
+        x: 340
+        y: 0
+        width: 20
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e2686cd68d7ef9046b902214cb029cb0
+      internalID: 2093844796
       vertices: []
       indices: 
       edges: []
@@ -599,26 +599,26 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":18.0,"y":1.0},"gridSpriteSize":{"x":18.0,"y":19.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":18.0,"y":1.0},"gridSpriteSize":{"x":20.0,"y":19.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Player_Run_RangerHat_0: -6656777368235532016
-      Player_Run_RangerHat_1: 4932281646338185922
-      Player_Run_RangerHat_10: -3771260285415550922
-      Player_Run_RangerHat_11: 9135789289355531448
-      Player_Run_RangerHat_12: -3105953140826060670
-      Player_Run_RangerHat_13: 8214643758821712257
-      Player_Run_RangerHat_14: -6349113497005020259
-      Player_Run_RangerHat_15: -7424773074039214592
-      Player_Run_RangerHat_16: -1590002843
-      Player_Run_RangerHat_17: 103883443
-      Player_Run_RangerHat_2: 7572124647260701574
-      Player_Run_RangerHat_3: -6357737226488738383
-      Player_Run_RangerHat_4: 7658226271068201193
-      Player_Run_RangerHat_5: 723844951357476687
-      Player_Run_RangerHat_6: -3663046679834780168
-      Player_Run_RangerHat_7: 626843618589188420
-      Player_Run_RangerHat_8: 1212830909266232175
-      Player_Run_RangerHat_9: 6870152704712043640
+      Player_Extinguish_RangerHat_0: -2070184922
+      Player_Extinguish_RangerHat_1: 846668012
+      Player_Extinguish_RangerHat_10: -1659875308
+      Player_Extinguish_RangerHat_11: 331459017
+      Player_Extinguish_RangerHat_12: 1637909832
+      Player_Extinguish_RangerHat_13: 1093430259
+      Player_Extinguish_RangerHat_14: -1279014825
+      Player_Extinguish_RangerHat_15: 1107986421
+      Player_Extinguish_RangerHat_16: -1295213318
+      Player_Extinguish_RangerHat_17: 2093844796
+      Player_Extinguish_RangerHat_2: 591643118
+      Player_Extinguish_RangerHat_3: 1145730106
+      Player_Extinguish_RangerHat_4: 317869099
+      Player_Extinguish_RangerHat_5: -1620844070
+      Player_Extinguish_RangerHat_6: -1487773583
+      Player_Extinguish_RangerHat_7: 206869947
+      Player_Extinguish_RangerHat_8: 1364405652
+      Player_Extinguish_RangerHat_9: 1569517331
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
