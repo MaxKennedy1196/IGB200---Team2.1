@@ -52,6 +52,8 @@ public class TutorialManager : MonoBehaviour
     public Sector Sector7;
     public GameObject TownBorders;
 
+    public GameObject Sector7Borders;
+
     void Start()
     {
         Manager = GameObject.FindGameObjectWithTag("GameManager").GetComponent<GameManager>();//find the GameManager
@@ -229,6 +231,7 @@ public class TutorialManager : MonoBehaviour
             Manager.planningInteractableOverride = false;
             Manager.awarenessInteractableOverride = false;
             Manager.extinguishInteractableOverride = false;
+            Sector7Borders.SetActive(false);
         }
 
         OnSpringFadeComplete();
@@ -246,6 +249,7 @@ public class TutorialManager : MonoBehaviour
             Manager.planningInteractableOverride = false;
             Manager.awarenessInteractableOverride = false;
             Manager.extinguishInteractableOverride = false;
+            Sector7Borders.SetActive(true);
         }
 
         if (player.sectorCurrent == Sector2 && tutorialPhase == 13)
@@ -260,6 +264,7 @@ public class TutorialManager : MonoBehaviour
             Manager.planningInteractableOverride = false;
             Manager.awarenessInteractableOverride = false;
             Manager.extinguishInteractableOverride = false;
+            Sector7Borders.SetActive(true);
         }
 
         if (Sector2.currentStatus == Sector.Status.hotBurn && tutorialPhase == 14)
@@ -274,6 +279,8 @@ public class TutorialManager : MonoBehaviour
             Manager.planningInteractableOverride = false;
             Manager.awarenessInteractableOverride = false;
             Manager.extinguishInteractableOverride = false;
+            Sector7Borders.SetActive(false);
+            
         }
 
         if (Manager.month == 10 && tutorialPhase == 15)
@@ -288,6 +295,7 @@ public class TutorialManager : MonoBehaviour
             Manager.planningInteractableOverride = false;
             Manager.awarenessInteractableOverride = false;
             Manager.extinguishInteractableOverride = false;
+            Sector7Borders.SetActive(false);
         }
 
         if (player.sectorCurrent == Sector7 && tutorialPhase == 16)
