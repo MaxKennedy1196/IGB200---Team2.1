@@ -344,7 +344,7 @@ public class Sector : MonoBehaviour
         }
         if (currentStatus == Status.coolBurn)
         {
-            Manager.scoreIncrease(Manager.pointsCoolBurned, new Vector2 (0,-40));
+            Manager.scoreIncrease(Manager.pointsCoolBurned, new Vector2 (0,-100));
         }
         if (currentStatus == Status.healthy)
         {

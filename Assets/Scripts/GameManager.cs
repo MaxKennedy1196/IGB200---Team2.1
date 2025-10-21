@@ -832,11 +832,12 @@ public class GameManager : MonoBehaviour
             tree.nextTurn();
         }
 
-
+        ShowTokenChange(actionPointsIncreaseRate, new Vector2(0,0));
         actionPointsCurrent += actionPointsIncreaseRate;
 
         if (awarenessRaised)
         {
+            ShowTokenChange(awarenessAPGain, new Vector2(0, -100));
             actionPointsCurrent += awarenessAPGain;
             awarenessRaised = false;
         }
@@ -1461,9 +1462,49 @@ public class GameManager : MonoBehaviour
             Destroy(inst);
             });
 
-        LeanTween.alphaText(rect, 0.2f, 1.5f);
+        LeanTween.value(inst, 1f, 0f, 1.5f).setOnUpdate((float val) =>
+        {
+            var c = text.color;
+            c.a = val;
+            text.color = c;
+        })
+            .setOnComplete(() =>
+        {
+            Destroy(inst);
+        });
 
         Debug.Log("Score Change Shown");
+    }
+
+    private void ShowTokenChange(int change, Vector2 offset = default)
+    {
+        var inst = Instantiate(tokenChangePrefab, Vector3.zero, Quaternion.identity);
+        inst.transform.SetParent(tokenParent, false);
+
+        RectTransform rect = inst.GetComponent<RectTransform>();
+
+        TMP_Text text = inst.GetComponent<TMP_Text>();
+
+        text.text = (change > 0 ? "+" : "") + change.ToString();
+
+        rect.anchoredPosition = tokenEndPoint.anchoredPosition + offset;
+
+        LeanTween.moveY(rect, tokenEndPoint.anchoredPosition.y + 20f, 1.5f).setOnComplete(() => {
+            Destroy(inst);
+        });
+
+        LeanTween.value(inst, 1f, 0f, 1.5f).setOnUpdate((float val) =>
+        {
+            var c = text.color;
+            c.a = val;
+            text.color = c;
+        })
+            .setOnComplete(() =>
+            {
+                Destroy(inst);
+            });
+
+        Debug.Log("Token Change Shown");
     }
 
     void updateLockedHats()
