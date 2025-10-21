@@ -195,7 +195,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -205,8 +205,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 303a7d4b4ae3f354daf9ca447c06e7c7
-      internalID: -1618407099
+      spriteID: b8594b526ad974242b9d918cd8844e70
+      internalID: 1802459638
       vertices: []
       indices: 
       edges: []
@@ -215,9 +215,9 @@ TextureImporter:
       name: Player_Burn_Default_1
       rect:
         serializedVersion: 2
-        x: 17
+        x: 18
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -227,8 +227,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 47685eaad436be94c831cd77f0a3bc15
-      internalID: 572972618
+      spriteID: 805ee33c2426a1840b351fdcfb25ecc0
+      internalID: -794468395
       vertices: []
       indices: 
       edges: []
@@ -237,9 +237,9 @@ TextureImporter:
       name: Player_Burn_Default_2
       rect:
         serializedVersion: 2
-        x: 34
+        x: 36
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -249,8 +249,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8778025a08e7c3744ade1d7397135d8d
-      internalID: -1586804971
+      spriteID: 483f5a8629c80fd45aee84eca016d1b3
+      internalID: -732091835
       vertices: []
       indices: 
       edges: []
@@ -259,9 +259,9 @@ TextureImporter:
       name: Player_Burn_Default_3
       rect:
         serializedVersion: 2
-        x: 51
+        x: 54
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -271,8 +271,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1c25cd1852a329f4f8e5abf4962ad5cf
-      internalID: 744858866
+      spriteID: 05f2179d7d1b17b4d87a2d74bd3f4f74
+      internalID: -215590715
       vertices: []
       indices: 
       edges: []
@@ -281,9 +281,9 @@ TextureImporter:
       name: Player_Burn_Default_4
       rect:
         serializedVersion: 2
-        x: 68
+        x: 72
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -293,8 +293,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0ef4ebfdc81f0a74a8636c022ef57c89
-      internalID: -1229145316
+      spriteID: 8508e31c2673747429872592fa69897a
+      internalID: 1107453551
       vertices: []
       indices: 
       edges: []
@@ -303,9 +303,9 @@ TextureImporter:
       name: Player_Burn_Default_5
       rect:
         serializedVersion: 2
-        x: 85
+        x: 90
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -315,8 +315,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8c71ae214b219fd458d298d746e78d2b
-      internalID: 836550065
+      spriteID: f9e43a770aad72e4c80570ee9c640e6b
+      internalID: -98996330
       vertices: []
       indices: 
       edges: []
@@ -325,9 +325,9 @@ TextureImporter:
       name: Player_Burn_Default_6
       rect:
         serializedVersion: 2
-        x: 102
+        x: 108
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -337,8 +337,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8412ecd4656b7b346aea699bf77dba07
-      internalID: 359002943
+      spriteID: b7edc629097161848a9f5180ae09c0ea
+      internalID: -1488547163
       vertices: []
       indices: 
       edges: []
@@ -347,9 +347,9 @@ TextureImporter:
       name: Player_Burn_Default_7
       rect:
         serializedVersion: 2
-        x: 119
+        x: 126
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -359,8 +359,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b85825c71d9ef9243b58f251ac1462f4
-      internalID: 720160187
+      spriteID: 8a883765c41d5d8469fd5dba09f34253
+      internalID: -1126466198
       vertices: []
       indices: 
       edges: []
@@ -369,9 +369,9 @@ TextureImporter:
       name: Player_Burn_Default_8
       rect:
         serializedVersion: 2
-        x: 136
+        x: 144
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -381,8 +381,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cdff7ad8a5f8c454ea4955737da7d0f3
-      internalID: 2059274183
+      spriteID: 369e1ac4d81958c40840836ffee00726
+      internalID: 533553141
       vertices: []
       indices: 
       edges: []
@@ -391,9 +391,9 @@ TextureImporter:
       name: Player_Burn_Default_9
       rect:
         serializedVersion: 2
-        x: 153
+        x: 162
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -403,8 +403,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a8f105925c9b133428ee205fcb86f0d0
-      internalID: 1464901753
+      spriteID: 7eefe214ac7f9064f92076e805aafa03
+      internalID: -2038654742
       vertices: []
       indices: 
       edges: []
@@ -413,9 +413,9 @@ TextureImporter:
       name: Player_Burn_Default_10
       rect:
         serializedVersion: 2
-        x: 170
+        x: 180
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -425,8 +425,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5ec36fe9d789e8f47a4ba56f68b50629
-      internalID: 159154569
+      spriteID: 4ce9373f5eadcce4fa6e9e0e360399fc
+      internalID: -306862551
       vertices: []
       indices: 
       edges: []
@@ -435,9 +435,9 @@ TextureImporter:
       name: Player_Burn_Default_11
       rect:
         serializedVersion: 2
-        x: 187
+        x: 198
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -447,8 +447,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03ebd85f49e0f3942a343951b1ebe919
-      internalID: -1802487387
+      spriteID: 1769b83354e933d47ac6dadb0c6fe34c
+      internalID: -2108860429
       vertices: []
       indices: 
       edges: []
@@ -457,9 +457,9 @@ TextureImporter:
       name: Player_Burn_Default_12
       rect:
         serializedVersion: 2
-        x: 204
+        x: 216
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -469,8 +469,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32fee33e700463e459cf4d47d5bb3440
-      internalID: 141374732
+      spriteID: ab6c2f2124f1b8a449b66ec31259a244
+      internalID: -271710027
       vertices: []
       indices: 
       edges: []
@@ -479,9 +479,9 @@ TextureImporter:
       name: Player_Burn_Default_13
       rect:
         serializedVersion: 2
-        x: 221
+        x: 234
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -491,8 +491,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cca1acae58d1cdc46a66ec7a9efb33db
-      internalID: 1588255918
+      spriteID: 7ebdfc415de473e438a15fd9f14727a4
+      internalID: 1428786446
       vertices: []
       indices: 
       edges: []
@@ -501,9 +501,9 @@ TextureImporter:
       name: Player_Burn_Default_14
       rect:
         serializedVersion: 2
-        x: 238
+        x: 252
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -513,8 +513,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 220c2035e6f9d614a9bb3367f77ecfd2
-      internalID: 783502009
+      spriteID: 762a4d44fb18e3d49a8c6ac5979ac98a
+      internalID: 212768768
       vertices: []
       indices: 
       edges: []
@@ -523,9 +523,9 @@ TextureImporter:
       name: Player_Burn_Default_15
       rect:
         serializedVersion: 2
-        x: 255
+        x: 270
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -535,8 +535,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ba9578948d339b241bda81a5f391e224
-      internalID: 23513165
+      spriteID: 323cdc56cb0cd7845ad296c83c645847
+      internalID: 2066981649
       vertices: []
       indices: 
       edges: []
@@ -545,9 +545,9 @@ TextureImporter:
       name: Player_Burn_Default_16
       rect:
         serializedVersion: 2
-        x: 272
+        x: 288
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -557,8 +557,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a09702824578d44fa3e81a6ace0349a
-      internalID: 775670785
+      spriteID: aa39cdeac1038b648982c876294092be
+      internalID: -2120056652
       vertices: []
       indices: 
       edges: []
@@ -567,9 +567,9 @@ TextureImporter:
       name: Player_Burn_Default_17
       rect:
         serializedVersion: 2
-        x: 289
+        x: 306
         y: 0
-        width: 17
+        width: 18
         height: 19
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -579,8 +579,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4e1891c0e0e9cc541a3b5ba3f0af7ddc
-      internalID: -857145000
+      spriteID: 9967e48a014ed8c4dadb7054ed6b67de
+      internalID: 165267858
       vertices: []
       indices: 
       edges: []
@@ -599,26 +599,26 @@ TextureImporter:
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":18.0,"y":1.0},"gridSpriteSize":{"x":17.0,"y":19.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":18.0,"y":1.0},"gridSpriteSize":{"x":18.0,"y":19.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      Player_Burn_Default_0: -1618407099
-      Player_Burn_Default_1: 572972618
-      Player_Burn_Default_10: 159154569
-      Player_Burn_Default_11: -1802487387
-      Player_Burn_Default_12: 141374732
-      Player_Burn_Default_13: 1588255918
-      Player_Burn_Default_14: 783502009
-      Player_Burn_Default_15: 23513165
-      Player_Burn_Default_16: 775670785
-      Player_Burn_Default_17: -857145000
-      Player_Burn_Default_2: -1586804971
-      Player_Burn_Default_3: 744858866
-      Player_Burn_Default_4: -1229145316
-      Player_Burn_Default_5: 836550065
-      Player_Burn_Default_6: 359002943
-      Player_Burn_Default_7: 720160187
-      Player_Burn_Default_8: 2059274183
-      Player_Burn_Default_9: 1464901753
+      Player_Burn_Default_0: 1802459638
+      Player_Burn_Default_1: -794468395
+      Player_Burn_Default_10: -306862551
+      Player_Burn_Default_11: -2108860429
+      Player_Burn_Default_12: -271710027
+      Player_Burn_Default_13: 1428786446
+      Player_Burn_Default_14: 212768768
+      Player_Burn_Default_15: 2066981649
+      Player_Burn_Default_16: -2120056652
+      Player_Burn_Default_17: 165267858
+      Player_Burn_Default_2: -732091835
+      Player_Burn_Default_3: -215590715
+      Player_Burn_Default_4: 1107453551
+      Player_Burn_Default_5: -98996330
+      Player_Burn_Default_6: -1488547163
+      Player_Burn_Default_7: -1126466198
+      Player_Burn_Default_8: 533553141
+      Player_Burn_Default_9: -2038654742
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
