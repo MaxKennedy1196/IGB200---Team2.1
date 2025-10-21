@@ -633,6 +633,20 @@ public class Sector : MonoBehaviour
 
     private void environmentalChallenge()
     {
+        if (currentAction == "coolBurn")
+        {
+            Manager.player.anim.SetBool("IsBurning", true);
+        }
+        if (currentAction == "hotBurn")
+        {
+            Manager.player.anim.SetBool("IsBurning", true);
+            }
+        if (currentAction == "extinguish")
+        {
+            Manager.player.anim.SetBool("IsExtinguish", true);
+        }
+            
+
 
         if (challengeEnabled == true)
         {
@@ -648,7 +662,7 @@ public class Sector : MonoBehaviour
                 iterator += 1;
                 target.SetActive(true);
             }
-            
+
             iterator = 0;
             foreach (GameObject target in planningTargetList)
             {
@@ -864,6 +878,8 @@ public class Sector : MonoBehaviour
 
     private void environmentalChallengeReset()
     {
+        Manager.player.anim.SetBool("IsBurning", false);
+        Manager.player.anim.SetBool("IsExtinguish", false);
         currentAction = "null";
         challengeEnabled = false;
         challengePhase = 1;
