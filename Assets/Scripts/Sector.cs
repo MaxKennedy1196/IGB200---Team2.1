@@ -340,23 +340,23 @@ public class Sector : MonoBehaviour
 
         if (currentStatus == Status.hotBurn)
         {
-            Manager.scoreIncrease(Manager.pointsHotBurned);
+            Manager.scoreIncrease(Manager.pointsHotBurned, new Vector2 (0,0));
         }
         if (currentStatus == Status.coolBurn)
         {
-            Manager.scoreIncrease(Manager.pointsCoolBurned);
+            Manager.scoreIncrease(Manager.pointsCoolBurned, new Vector2 (0,-40));
         }
         if (currentStatus == Status.healthy)
         {
-            Manager.scoreIncrease(Manager.pointsHealthy);
+            Manager.scoreIncrease(Manager.pointsHealthy, new Vector2 (0,-80));
         }
         if (currentStatus == Status.dry)
         {
-            Manager.scoreIncrease(Manager.pointsDry);
+            Manager.scoreIncrease(Manager.pointsDry, new Vector2 (0, -120));
         }
         if (currentStatus == Status.veryDry)
         {
-            Manager.scoreIncrease(Manager.pointsVerDry);
+            Manager.scoreIncrease(Manager.pointsVerDry, new Vector2 (0, -160));
         }
 
 

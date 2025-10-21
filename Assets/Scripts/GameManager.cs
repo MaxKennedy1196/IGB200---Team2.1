@@ -1437,15 +1437,33 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void scoreIncrease(float input)
+    public void scoreIncrease(float input, Vector2 offset = default)
     {
+        ShowScoreChange(Mathf.RoundToInt(input), offset);
         score += input;
+        
     }
 
-    private void ShowScoreChange(int change)
+    private void ShowScoreChange(int change, Vector2 offset = default)
     {
         var inst = Instantiate(scoreChangePrefab, Vector3.zero, Quaternion.identity);
         inst.transform.SetParent(scoreParent, false);
+
+        RectTransform rect = inst.GetComponent<RectTransform>();
+
+        TMP_Text text = inst.GetComponent<TMP_Text>();
+
+        text.text = (change > 0 ? "+" : "") + change.ToString();
+
+        rect.anchoredPosition = scoreEndPoint.anchoredPosition + offset;
+
+        LeanTween.moveY(rect, scoreEndPoint.anchoredPosition.y + 20f, 1.5f).setOnComplete(() => {
+            Destroy(inst);
+            });
+
+        LeanTween.alphaText(rect, 0.2f, 1.5f);
+
+        Debug.Log("Score Change Shown");
     }
 
     void updateLockedHats()

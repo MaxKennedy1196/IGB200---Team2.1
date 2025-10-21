@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8642877789431680156}
   - component: {fileID: 8206247724117387901}
   m_Layer: 0
-  m_Name: TokenChange
+  m_Name: ScoreChange
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
