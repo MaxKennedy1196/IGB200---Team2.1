@@ -1296,6 +1296,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 92245253}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 92245247}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &92245250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1391,6 +1403,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!1001 &93207334
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6218,6 +6233,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!114 &516891445
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6293,6 +6311,18 @@ MonoBehaviour:
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 516891444}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 516891441}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -6775,6 +6805,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 560605944}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 560605938}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
       - m_Target: {fileID: 269192416}
         m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
         m_MethodName: SetActive
@@ -6882,6 +6924,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!1001 &585501411
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7585,6 +7630,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 626221871}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 626221865}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &626221868
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7680,6 +7737,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!1001 &635477379
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -15346,6 +15406,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1341481173}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1341481167}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1341481170
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15441,6 +15513,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!1001 &1353130484
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17820,6 +17895,8 @@ GameObject:
   - component: {fileID: 1481136694}
   - component: {fileID: 1481136693}
   - component: {fileID: 1481136692}
+  - component: {fileID: 1481136696}
+  - component: {fileID: 1481136695}
   m_Layer: 0
   m_Name: Credits
   m_TagString: Untagged
@@ -17914,6 +17991,30 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 1481136696}
+        m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+        m_MethodName: OnClickEffect
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1481136690}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 1989756710}
+        m_TargetAssemblyTypeName: UnityEngine.AudioSource, UnityEngine
+        m_MethodName: PlayOneShot
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 8300000, guid: 3faa709565756c34ebb5e355632e2a66, type: 3}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
 --- !u!114 &1481136693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17952,6 +18053,66 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1481136690}
   m_CullTransparentMesh: 1
+--- !u!114 &1481136695
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481136690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1481136696}
+          m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+          m_MethodName: OnHoverEnterEffect
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1481136690}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 1481136696}
+          m_TargetAssemblyTypeName: HoverUIEffect, Assembly-CSharp
+          m_MethodName: OnHoverExitEffect
+          m_Mode: 2
+          m_Arguments:
+            m_ObjectArgument: {fileID: 1481136690}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+--- !u!114 &1481136696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1481136690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f3d00b59530f0b449ba5165bd52ceba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverScale: 1.1
+  tweenTime: 0.15
+  easeType: 15
 --- !u!1001 &1494281996
 PrefabInstance:
   m_ObjectHideFlags: 0

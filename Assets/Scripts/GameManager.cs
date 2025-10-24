@@ -880,6 +880,8 @@ public class GameManager : MonoBehaviour
 
             if (SceneManager.GetActiveScene().name == "Tutorial")
             {
+                fadeUI.OnFadeComplete = null;
+
                 fadeUI.OnFadeComplete += () =>
                 {
                     FindObjectOfType<TutorialManager>()?.OnSpringFadeComplete();

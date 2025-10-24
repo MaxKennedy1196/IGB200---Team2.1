@@ -234,7 +234,6 @@ public class TutorialManager : MonoBehaviour
             Sector7Borders.SetActive(false);
         }
 
-        OnSpringFadeComplete();
 
         if (Manager.rangerBookOpen == true && tutorialPhase == 12)
         {
@@ -429,10 +428,10 @@ public class TutorialManager : MonoBehaviour
             BushfireReaction.SetActive(true);
         }
     }
-    
+
     public void OnSpringFadeComplete()
     {
-       if (Manager.month == 9 && tutorialPhase == 11)
+        if (Manager.month == 9 && tutorialPhase == 11)
         {
             StartCoroutine(SpringFadeSequence());
         }
@@ -440,8 +439,6 @@ public class TutorialManager : MonoBehaviour
 
     private IEnumerator SpringFadeSequence()
     {
-        yield return new WaitForSeconds(5f);
-
         SpringStart.SetActive(true);
         tutorialPhase = 12;
 
@@ -460,5 +457,15 @@ public class TutorialManager : MonoBehaviour
         Manager.extinguishInteractableOverride = false;
 
         Debug.Log("SPRING FADE COMPLETE");
+
+        var fadeUI = FindObjectOfType<FadeUI>();
+        if (fadeUI != null)
+        {
+            fadeUI.OnFadeComplete = null;
+        }
+
+        yield return null;
     }
+
+
 }

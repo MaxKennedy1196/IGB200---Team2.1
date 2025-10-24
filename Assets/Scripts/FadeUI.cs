@@ -27,6 +27,9 @@ public class FadeUI : MonoBehaviour
         yield return new WaitForSeconds(4);
         FadeOut();
         yield return new WaitForSeconds(fadeDuration);
+
+        OnFadeComplete?.Invoke();
+        OnFadeComplete = null;
         fadingObject.SetActive(false);
 
         OnFadeComplete?.Invoke();
